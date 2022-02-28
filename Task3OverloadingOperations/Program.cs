@@ -15,12 +15,16 @@ namespace Task3OverloadingOperations
 			SquareMatrix b = new SquareMatrix();
 			SquareMatrix.FillMatrixAuto (b);
 			Console.WriteLine();
-			
+
 			SquareMatrix c = a + b;
+			c = a - b;
+			c = a * b;
+			c = a / b;
 			
+
 			Console.WriteLine();
 
-			Console.ReadKey();
+			Console.ReadLine();
 		}
 	}
 }
