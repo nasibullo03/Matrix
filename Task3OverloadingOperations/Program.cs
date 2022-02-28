@@ -2,16 +2,25 @@
 
 namespace Task3OverloadingOperations
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.Clear();
-            SquareMatrix m = new SquareMatrix();
-            SquareMatrix.Size = 5;
-            m.FillMatrixAuto();
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			Console.Clear();
+			SquareMatrix a = new SquareMatrix();
+			SquareMatrix.Size = 5;
+			SquareMatrix.FillMatrixAuto (a);
+			Console.WriteLine();
 
-            Console.ReadKey();
-        }
-    }
+			SquareMatrix b = new SquareMatrix();
+			SquareMatrix.FillMatrixAuto (b);
+			Console.WriteLine();
+			
+			SquareMatrix c = a + b;
+			
+			Console.WriteLine();
+
+			Console.ReadKey();
+		}
+	}
 }
