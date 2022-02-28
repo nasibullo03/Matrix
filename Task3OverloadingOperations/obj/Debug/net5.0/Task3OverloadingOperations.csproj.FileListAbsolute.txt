@@ -1,0 +1,16 @@
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\bin\Debug\net5.0\Task3OverloadingOperations.exe
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\bin\Debug\net5.0\Task3OverloadingOperations.deps.json
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\bin\Debug\net5.0\Task3OverloadingOperations.runtimeconfig.json
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\bin\Debug\net5.0\Task3OverloadingOperations.runtimeconfig.dev.json
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\bin\Debug\net5.0\Task3OverloadingOperations.dll
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\bin\Debug\net5.0\ref\Task3OverloadingOperations.dll
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\bin\Debug\net5.0\Task3OverloadingOperations.pdb
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\obj\Debug\net5.0\Task3OverloadingOperations.csproj.AssemblyReference.cache
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\obj\Debug\net5.0\Task3OverloadingOperations.GeneratedMSBuildEditorConfig.editorconfig
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\obj\Debug\net5.0\Task3OverloadingOperations.AssemblyInfoInputs.cache
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\obj\Debug\net5.0\Task3OverloadingOperations.AssemblyInfo.cs
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\obj\Debug\net5.0\Task3OverloadingOperations.csproj.CoreCompileInputs.cache
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\obj\Debug\net5.0\Task3OverloadingOperations.dll
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\obj\Debug\net5.0\ref\Task3OverloadingOperations.dll
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\obj\Debug\net5.0\Task3OverloadingOperations.pdb
+D:\WORK\nasibullo Pi-211\c-sharp\Task3OverloadingOperations\obj\Debug\net5.0\Task3OverloadingOperations.genruntimeconfig.cache
