@@ -1,0 +1,8 @@
+*.vscode
+*.vs
+*.git
+*.exe
+*bin
+*obj
+*.csproj
+

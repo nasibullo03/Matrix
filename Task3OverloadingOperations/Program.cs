@@ -6,14 +6,15 @@ namespace Task3OverloadingOperations
 	{
 		static void Main(string[] args)
 		{
-			Console.Clear();
+			// Console.Clear();
+
 			SquareMatrix a = new SquareMatrix();
 			SquareMatrix.Size = 5;
-			SquareMatrix.FillMatrixAuto (a);
+			SquareMatrix.FillAuto(a);
 			Console.WriteLine();
 
 			SquareMatrix b = new SquareMatrix();
-			SquareMatrix.FillMatrixAuto (b);
+			SquareMatrix.FillAuto(b);
 			Console.WriteLine();
 
 			SquareMatrix c = a + b;
@@ -23,7 +24,6 @@ namespace Task3OverloadingOperations
 			
 
 			Console.WriteLine();
-
 			Console.ReadLine();
 		}
 	}
