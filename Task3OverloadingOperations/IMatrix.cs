@@ -15,7 +15,7 @@ namespace Task3OverloadingOperations
             {
                 for (int j = 0; j < Size; ++j)
                 {
-                    matrix.Matrix[i, j] = rand.Next(0, 9);   
+                    matrix.Matrix[i, j] = rand.Next(0, 9);
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace Task3OverloadingOperations
 
                 for (int SecondMatrixIndex = 0; SecondMatrixIndex < size; ++SecondMatrixIndex)
                 {
-                    Console.Write("{0,4}", result.Matrix[rowIndex, SecondMatrixIndex]);
+                    Console.Write("{0,4}", secondMatrix.Matrix[rowIndex, SecondMatrixIndex]);
                 }
 
                 if (rowIndex == (int)size / 2)
@@ -61,6 +61,49 @@ namespace Task3OverloadingOperations
                 for (int ResultMatrixIndex = 0; ResultMatrixIndex < size; ++ResultMatrixIndex)
                 {
                     Console.Write("{0,4}", result.Matrix[rowIndex, ResultMatrixIndex]);
+                }
+
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+
+        protected static void PrintOperations(
+            SquareMatrix firstMatrix,
+            SquareMatrix secondMatrix,
+            string operation,
+            bool result,
+            int size
+        )
+        {
+            for (int rowIndex = 0; rowIndex < size; ++rowIndex)
+            {
+                Console.Write("|");
+                for (int firstMatrixIndex = 0; firstMatrixIndex < size; ++firstMatrixIndex)
+                {
+                    Console.Write("{0,4}", firstMatrix.Matrix[rowIndex, firstMatrixIndex]);
+                }
+
+                if (rowIndex == (int)size / 2)
+                {
+                    Console.Write("{0,4}", operation);
+                }
+                else
+                {
+                    Console.Write("{0,4}", "");
+                }
+
+                for (int SecondMatrixIndex = 0; SecondMatrixIndex < size; ++SecondMatrixIndex)
+                {
+                    Console.Write("{0,4}", secondMatrix.Matrix[rowIndex, SecondMatrixIndex]);
+                }
+
+                Console.Write("{0,4}", "|");
+
+                if (rowIndex == (int)size / 2)
+                {
+                    Console.Write("{0,2}", "=");
+                    Console.Write("{0,6}", result);
                 }
 
                 Console.WriteLine();
