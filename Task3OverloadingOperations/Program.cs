@@ -6,15 +6,15 @@ namespace Task3OverloadingOperations
     {
         static void Main(string[] args)
         {
-            // Console.Clear();
+            Console.Clear();
 
             SquareMatrix a = new SquareMatrix();
             SquareMatrix.Size = 5;
-            SquareMatrix.FillAuto(a);
+            SquareMatrix.FillAuto (a);
             Console.WriteLine();
 
             SquareMatrix b = new SquareMatrix();
-            SquareMatrix.FillAuto(b);
+            SquareMatrix.FillAuto (b);
             Console.WriteLine();
 
             SquareMatrix c = a + b;
@@ -25,6 +25,15 @@ namespace Task3OverloadingOperations
             bool eq;
             eq = a == b;
             eq = a != b;
+
+            c = a > b;
+            c = a < b;
+            c = a >= b;
+            c = a <= b;
+
+            c = a <= b;
+
+            // SquareMatrix.Determinant (a);
 
             Console.WriteLine();
 
