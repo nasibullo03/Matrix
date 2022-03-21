@@ -9,7 +9,7 @@ namespace Task3OverloadingOperations
             Console.Clear();
 
             SquareMatrix a = new SquareMatrix();
-            SquareMatrix.Size = 5;
+            SquareMatrix.Size = 4;
             SquareMatrix.FillAuto (a);
             Console.WriteLine();
 
@@ -17,25 +17,24 @@ namespace Task3OverloadingOperations
             SquareMatrix.FillAuto (b);
             Console.WriteLine();
 
-            SquareMatrix c = a + b;
-            c = a - b;
-            c = a * b;
-            c = a / b;
+            // SquareMatrix c = a + b;
+            // c = a - b;
+            // c = a * b;
+            // c = a / b;
+            // bool eq;
+            // eq = a == b;
+            // eq = a != b;
+            // c = a > b;
+            // c = a < b;
+            // c = a >= b;
+            // c = a <= b;
+            // c = a <= b;
+            int hhh = 0;
 
-            bool eq;
-            eq = a == b;
-            eq = a != b;
-
-            c = a > b;
-            c = a < b;
-            c = a >= b;
-            c = a <= b;
-
-            c = a <= b;
-
-            // SquareMatrix.Determinant (a);
-
-            Console.WriteLine();
+            // Console.WriteLine($"Det={SquareMatrix.Determinant (a)}");
+            // Console.WriteLine();
+            // Console.WriteLine(a >= b);
+            hhh = SquareMatrix.DeterminantOver3(a.Matrix);
 
             Console.ReadLine();
         }
