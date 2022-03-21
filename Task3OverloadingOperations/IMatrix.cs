@@ -1,3 +1,4 @@
+using System.IO.Enumeration;
 using System;
 
 namespace Task3OverloadingOperations
@@ -11,45 +12,45 @@ namespace Task3OverloadingOperations
 
             matrix.Matrix = new int[Size, Size];
 
-            for (int i = 0; i < Size; ++i)
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
-                for (int j = 0; j < Size; ++j)
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
                 {
-                    matrix.Matrix[i, j] = rand.Next(0, 9);
+                    matrix.Matrix[ColIndex, RowIndex] = rand.Next(0, 9);
                 }
             }
         }
 
         protected static void PrintOperations(
-            SquareMatrix firstMatrix,
-            SquareMatrix secondMatrix,
-            string operation,
-            SquareMatrix result,
+            SquareMatrix FirstMatrix,
+            SquareMatrix SecondMatrix,
+            string Operation,
+            SquareMatrix Result,
             int size
         )
         {
-            for (int rowIndex = 0; rowIndex < size; ++rowIndex)
+            for (int ColIndex = 0; ColIndex < size; ++ColIndex)
             {
-                for (int firstMatrixIndex = 0; firstMatrixIndex < size; ++firstMatrixIndex)
+                for (int RowIndex = 0; RowIndex < size; ++RowIndex)
                 {
-                    Console.Write("{0,4}", firstMatrix.Matrix[rowIndex, firstMatrixIndex]);
+                    Console.Write("{0,4}", FirstMatrix.Matrix[ColIndex, RowIndex]);
                 }
 
-                if (rowIndex == (int)size / 2)
+                if (ColIndex == (int)size / 2)
                 {
-                    Console.Write("{0,4}", operation);
+                    Console.Write("{0,4}", Operation);
                 }
                 else
                 {
                     Console.Write("{0,4}", "");
                 }
 
-                for (int SecondMatrixIndex = 0; SecondMatrixIndex < size; ++SecondMatrixIndex)
+                for (int RowIndex = 0; RowIndex < size; ++RowIndex)
                 {
-                    Console.Write("{0,4}", secondMatrix.Matrix[rowIndex, SecondMatrixIndex]);
+                    Console.Write("{0,4}", SecondMatrix.Matrix[ColIndex, RowIndex]);
                 }
 
-                if (rowIndex == (int)size / 2)
+                if (ColIndex == (int)size / 2)
                 {
                     Console.Write("{0,4}", "=");
                 }
@@ -58,9 +59,9 @@ namespace Task3OverloadingOperations
                     Console.Write("{0,4}", "");
                 }
 
-                for (int ResultMatrixIndex = 0; ResultMatrixIndex < size; ++ResultMatrixIndex)
+                for (int RowIndex = 0; RowIndex < size; ++RowIndex)
                 {
-                    Console.Write("{0,4}", result.Matrix[rowIndex, ResultMatrixIndex]);
+                    Console.Write("{0,4}", Result.Matrix[ColIndex, RowIndex]);
                 }
 
                 Console.WriteLine();
@@ -69,46 +70,197 @@ namespace Task3OverloadingOperations
         }
 
         protected static void PrintOperations(
-            SquareMatrix firstMatrix,
-            SquareMatrix secondMatrix,
-            string operation,
-            bool result,
+            SquareMatrix FirstMatrix,
+            SquareMatrix SecondMatrix,
+            string Operation,
+            bool Result,
             int size
         )
         {
-            for (int rowIndex = 0; rowIndex < size; ++rowIndex)
+            for (int ColIndex = 0; ColIndex < size; ++ColIndex)
             {
                 Console.Write("|");
-                for (int firstMatrixIndex = 0; firstMatrixIndex < size; ++firstMatrixIndex)
+                for (int RowIndex = 0; RowIndex < size; ++RowIndex)
                 {
-                    Console.Write("{0,4}", firstMatrix.Matrix[rowIndex, firstMatrixIndex]);
+                    Console.Write("{0,4}", FirstMatrix.Matrix[ColIndex, RowIndex]);
                 }
 
-                if (rowIndex == (int)size / 2)
+                if (ColIndex == (int)size / 2)
                 {
-                    Console.Write("{0,4}", operation);
+                    Console.Write("{0,4}", Operation);
                 }
                 else
                 {
                     Console.Write("{0,4}", "");
                 }
 
-                for (int SecondMatrixIndex = 0; SecondMatrixIndex < size; ++SecondMatrixIndex)
+                for (int RowIndex = 0; RowIndex < size; ++RowIndex)
                 {
-                    Console.Write("{0,4}", secondMatrix.Matrix[rowIndex, SecondMatrixIndex]);
+                    Console.Write("{0,4}", SecondMatrix.Matrix[ColIndex, RowIndex]);
                 }
 
                 Console.Write("{0,4}", "|");
 
-                if (rowIndex == (int)size / 2)
+                if (ColIndex == (int)size / 2)
                 {
                     Console.Write("{0,2}", "=");
-                    Console.Write("{0,6}", result);
+                    Console.Write("{0,6}", Result);
                 }
 
                 Console.WriteLine();
             }
             Console.WriteLine();
+        }
+        protected static void PrintOperations(int[,] MainMatrix, int Result, string Operation)
+        {
+            int MatrixSize = MainMatrix.GetLength(0);
+            if (Operation == "FindDeterminant")
+            {
+                for (int ColIndex = 0; ColIndex < MatrixSize; ++ColIndex)
+                {
+                    if (ColIndex == (int)MatrixSize / 2)
+                    {
+                        Console.Write("{0,10}", "|A|(det) =");
+                    }
+                    else
+                    {
+                        Console.Write("{0,10}", "");
+                    }
+                    Console.Write("|");
+                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
+                    {
+                        Console.Write("{0,4}", MainMatrix[ColIndex, RowIndex]);
+                    }
+                    Console.Write("{0,4}", "|");
+
+                    if (ColIndex == (int)MatrixSize / 2)
+                    {
+                        Console.Write($" = {Result}");
+                    }
+
+                    Console.WriteLine();
+                }
+            }
+        }
+        protected static void PrintOperations(int[,] MainMatrix, int[,] SecondMatrix, string Operation)
+        {
+            int MatrixSize = MainMatrix.GetLength(0);
+            if (Operation == "FindTranspose")
+            {
+                for (int ColIndex = 0; ColIndex < MatrixSize; ++ColIndex)
+                {
+                    if (ColIndex == (int)MatrixSize / 2)
+                    {
+                        Console.Write("{0,4}", "A =");
+                    }
+                    else
+                    {
+                        Console.Write("{0,4}", "");
+                    }
+                    Console.Write("|");
+                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
+                    {
+                        Console.Write("{0,4}", MainMatrix[ColIndex, RowIndex]);
+                    }
+                    Console.Write("{0,4}", "|");
+
+                    if (ColIndex == (int)MatrixSize / 2)
+                    {
+                        Console.Write("{0,17}", "; Transpose(A) = ");
+                    }
+                    else
+                    {
+                        Console.Write("{0,17}", "");
+                    }
+                    Console.Write("|");
+                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
+                    {
+                        Console.Write("{0,4}", SecondMatrix[ColIndex, RowIndex]);
+                    }
+
+                    Console.Write("{0,4}", "|");
+                    Console.WriteLine();
+                }
+            }
+            else if (Operation == "FindMinor")
+            {
+                for (int ColIndex = 0; ColIndex < MatrixSize; ++ColIndex)
+                {
+                    if (ColIndex == (int)MatrixSize / 2)
+                    {
+                        Console.Write("{0,4}", "A =");
+                    }
+                    else
+                    {
+                        Console.Write("{0,4}", "");
+                    }
+                    Console.Write("|");
+                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
+                    {
+                        Console.Write("{0,4}", MainMatrix[ColIndex, RowIndex]);
+                    }
+                    Console.Write("{0,4}", "|");
+
+                    if (ColIndex == (int)MatrixSize / 2)
+                    {
+                        Console.Write("{0,13}", "; Minor(A) = ");
+                    }
+                    else
+                    {
+                        Console.Write("{0,13}", "");
+                    }
+                    Console.Write("|");
+                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
+                    {
+                        Console.Write("{0,4}", SecondMatrix[ColIndex, RowIndex]);
+                    }
+
+                    Console.Write("{0,4}", "|");
+                    Console.WriteLine();
+                }
+            }
+        }
+        protected static void PrintOperations(int[,] MainMatrix, Double[,] Inverse, string Operation)
+        {
+
+            int MatrixSize = MainMatrix.GetLength(0);
+            if (Operation == "FindInverseMatrix")
+            {
+
+                for (int ColIndex = 0; ColIndex < MatrixSize; ++ColIndex)
+                {
+                    if (ColIndex == (int)MatrixSize / 2)
+                    {
+                        Console.Write("{0,4}", "A =");
+                    }
+                    else
+                    {
+                        Console.Write("{0,4}", "");
+                    }
+                    Console.Write("|");
+                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
+                    {
+                        Console.Write("{0,4}", MainMatrix[ColIndex, RowIndex]);
+                    }
+                    Console.Write("{0,4}", "|");
+
+                    if (ColIndex == (int)MatrixSize / 2)
+                    {
+                        Console.Write("{0,16}", "; Inverse(A) = ");
+                    }
+                    else
+                    {
+                        Console.Write("{0,16}", "");
+                    }
+                    Console.Write("|");
+                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
+                    {
+                        Console.Write("{0,6}", Inverse[ColIndex, RowIndex]);
+                    }
+                    Console.Write("{0,2}", "|");
+                    Console.WriteLine();
+                }
+            }
         }
     }
 }
