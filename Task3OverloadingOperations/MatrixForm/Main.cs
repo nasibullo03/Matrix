@@ -19,7 +19,12 @@ namespace Task3OverloadingOperations.MatrixForm
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            ShowForm.FormAdd();
+            ShowForm.PerformOperation("Add");
+        }
+
+        private void ButtonChange_Click(object sender, EventArgs e)
+        {
+            ShowForm.PerformOperation("Change");
         }
     }
 }

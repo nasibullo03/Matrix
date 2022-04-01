@@ -7,22 +7,65 @@ using System.Windows.Forms;
 
 namespace Task3OverloadingOperations
 {
-    internal class ShowForm
+    public class ShowForm
     {
-        #region metods
+        public static Form1 form1 { get; set; }
 
-        public static void FormMain()
+        private delegate void OperationDelegate();
+
+        //private Form1 Form1 { get; set; }
+
+        private static Dictionary<string, OperationDelegate> _operations { get; set; }
+
+        public ShowForm()
         {
-            Form1 Form1 = new Form1();
-            Form1.ShowFormMain();
         }
 
-        public static void FormAdd()
+        private static void showForm(Form form)
         {
-            Form1 Form1 = new Form1();
-            Form1.ShowFormAdd();
+            form.TopLevel = false;
+            form.AutoScroll = false;
+            form.Dock = DockStyle.Fill;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form1.PanelForms.Controls.Add(form);
+            form.Show();
         }
 
-        #endregion metods
+        private static void ClearPannelFormValue()
+        {
+            form1.ClearPannelFormValue();
+        }
+
+        private static void FormAdd()
+        {
+            ClearPannelFormValue();
+            showForm(new MatrixForm.Add());
+        }
+
+        private static void FormMain()
+        {
+            ClearPannelFormValue();
+            showForm(new MatrixForm.Main());
+        }
+
+        private static void FormChange()
+        {
+            ClearPannelFormValue();
+            showForm(new MatrixForm.Change());
+        }
+
+        public static void PerformOperation(string op)
+        {
+            _operations =
+       new Dictionary<string, OperationDelegate>
+       {
+            { "Add", FormAdd },
+            { "Main", FormMain },
+            { "Change", FormChange }
+       };
+            if (!_operations.ContainsKey(op))
+                throw new ArgumentException(string.Format("Operation {0} is invalid", op), "op");
+            _operations[op]();
+        }
     }
 }

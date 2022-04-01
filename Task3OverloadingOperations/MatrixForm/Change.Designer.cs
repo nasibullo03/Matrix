@@ -39,9 +39,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonPlus = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.PanelControllButtons = new System.Windows.Forms.Panel();
-            this.ButtonClear = new System.Windows.Forms.Button();
-            this.ButtonChange = new System.Windows.Forms.Button();
-            this.ButtonAdd = new System.Windows.Forms.Button();
+            this.ButtonBack = new System.Windows.Forms.Button();
             this.PanelOperationButtons.SuspendLayout();
             this.PanelControllButtons.SuspendLayout();
             this.SuspendLayout();
@@ -185,64 +183,33 @@ namespace Task3OverloadingOperations.MatrixForm
             // PanelControllButtons
             // 
             this.PanelControllButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
-            this.PanelControllButtons.Controls.Add(this.ButtonClear);
-            this.PanelControllButtons.Controls.Add(this.ButtonChange);
-            this.PanelControllButtons.Controls.Add(this.ButtonAdd);
+            this.PanelControllButtons.Controls.Add(this.ButtonBack);
             this.PanelControllButtons.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelControllButtons.Location = new System.Drawing.Point(0, 0);
             this.PanelControllButtons.Name = "PanelControllButtons";
             this.PanelControllButtons.Size = new System.Drawing.Size(463, 40);
             this.PanelControllButtons.TabIndex = 19;
             // 
-            // ButtonClear
+            // ButtonBack
             // 
-            this.ButtonClear.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ButtonClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
-            this.ButtonClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
-            this.ButtonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ButtonClear.ForeColor = System.Drawing.Color.White;
-            this.ButtonClear.Location = new System.Drawing.Point(279, 4);
-            this.ButtonClear.Name = "ButtonClear";
-            this.ButtonClear.Size = new System.Drawing.Size(90, 31);
-            this.ButtonClear.TabIndex = 0;
-            this.ButtonClear.Text = "Отчистить";
-            this.ButtonClear.UseVisualStyleBackColor = false;
-            // 
-            // ButtonChange
-            // 
-            this.ButtonChange.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ButtonChange.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
-            this.ButtonChange.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
-            this.ButtonChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ButtonChange.ForeColor = System.Drawing.Color.White;
-            this.ButtonChange.Location = new System.Drawing.Point(183, 4);
-            this.ButtonChange.Name = "ButtonChange";
-            this.ButtonChange.Size = new System.Drawing.Size(90, 31);
-            this.ButtonChange.TabIndex = 0;
-            this.ButtonChange.Text = "Изменить";
-            this.ButtonChange.UseVisualStyleBackColor = false;
-            // 
-            // ButtonAdd
-            // 
-            this.ButtonAdd.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ButtonAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
-            this.ButtonAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
-            this.ButtonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ButtonAdd.ForeColor = System.Drawing.Color.White;
-            this.ButtonAdd.Location = new System.Drawing.Point(87, 4);
-            this.ButtonAdd.Name = "ButtonAdd";
-            this.ButtonAdd.Size = new System.Drawing.Size(90, 31);
-            this.ButtonAdd.TabIndex = 0;
-            this.ButtonAdd.Text = "Добавить";
-            this.ButtonAdd.UseVisualStyleBackColor = false;
+            this.ButtonBack.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.back_image_20px20px;
+            this.ButtonBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ButtonBack.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ButtonBack.FlatAppearance.BorderSize = 0;
+            this.ButtonBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
+            this.ButtonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonBack.Location = new System.Drawing.Point(0, 0);
+            this.ButtonBack.Name = "ButtonBack";
+            this.ButtonBack.Size = new System.Drawing.Size(40, 40);
+            this.ButtonBack.TabIndex = 1;
+            this.ButtonBack.UseVisualStyleBackColor = true;
+            this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
             // 
             // Change
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.ClientSize = new System.Drawing.Size(463, 284);
             this.Controls.Add(this.PanelOperationButtons);
             this.Controls.Add(this.richTextBox1);
@@ -268,8 +235,6 @@ namespace Task3OverloadingOperations.MatrixForm
         private System.Windows.Forms.Button ButtonPlus;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Panel PanelControllButtons;
-        private System.Windows.Forms.Button ButtonClear;
-        private System.Windows.Forms.Button ButtonChange;
-        private System.Windows.Forms.Button ButtonAdd;
+        private System.Windows.Forms.Button ButtonBack;
     }
 }

@@ -16,5 +16,10 @@ namespace Task3OverloadingOperations.MatrixForm
         {
             InitializeComponent();
         }
+
+        private void ButtonBack_Click(object sender, EventArgs e)
+        {
+            ShowForm.PerformOperation("Main");
+        }
     }
 }

@@ -13,10 +13,15 @@ namespace Task3OverloadingOperations
 {
     public partial class Form1 : Form
     {
+        #region Constructors
+
         public Form1()
         {
             InitializeComponent();
+            ShowForm.form1 = this;
         }
+
+        #endregion Constructors
 
         #region Metods
 
@@ -27,34 +32,12 @@ namespace Task3OverloadingOperations
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ShowFormMain();
+            ShowForm.PerformOperation("Main");
         }
 
-        private void ShowForm(Form form)
+        public void ClearPannelFormValue()
         {
-            form.TopLevel = false;
-            form.AutoScroll = false;
-            form.Dock = DockStyle.Fill;
-            form.FormBorderStyle = FormBorderStyle.None;
-            PanelForms.Controls.Add(form);
-            form.Show();
-        }
-
-        private void ClearPannelFormValue()
-        {
-            PanelForms.Controls.Clear();
-        }
-
-        public void ShowFormAdd()
-        {
-            ClearPannelFormValue();
-            ShowForm(new MatrixForm.Add());
-        }
-
-        public void ShowFormMain()
-        {
-            ClearPannelFormValue();
-            ShowForm(new MatrixForm.Main());
+            this.PanelForms.Controls.Clear();
         }
 
         #endregion Metods
@@ -74,5 +57,20 @@ namespace Task3OverloadingOperations
             ReleaseCapture();
             PostMessage(this.Handle, WM_SYSCOMMAND, DOMOVE, 0);
         }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (Form1.ActiveForm.Size.Width >= 595 || Form1.ActiveForm.Size.Height >= 330)
+            {
+                ReleaseCapture();
+                PostMessage(this.Handle, WM_SYSCOMMAND, DOSIZE, 0);
+            }
+            else
+            {
+                Form1.ActiveForm.Size = new Size(596, 331);
+            }
+        }
+
+        
     }
 }

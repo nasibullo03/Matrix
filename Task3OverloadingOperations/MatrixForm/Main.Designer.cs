@@ -37,7 +37,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonMultiply = new System.Windows.Forms.Button();
             this.ButtonMinus = new System.Windows.Forms.Button();
             this.ButtonPlus = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.ResultRTextBox = new System.Windows.Forms.RichTextBox();
             this.PanelControllButtons = new System.Windows.Forms.Panel();
             this.ButtonClear = new System.Windows.Forms.Button();
             this.ButtonChange = new System.Windows.Forms.Button();
@@ -167,20 +167,20 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonPlus.Text = "+";
             this.ButtonPlus.UseVisualStyleBackColor = false;
             // 
-            // richTextBox1
+            // ResultRTextBox
             // 
-            this.richTextBox1.AcceptsTab = true;
-            this.richTextBox1.AutoWordSelection = true;
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 40);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(474, 272);
-            this.richTextBox1.TabIndex = 12;
-            this.richTextBox1.Text = "";
+            this.ResultRTextBox.AcceptsTab = true;
+            this.ResultRTextBox.AutoWordSelection = true;
+            this.ResultRTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
+            this.ResultRTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ResultRTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ResultRTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ResultRTextBox.Location = new System.Drawing.Point(0, 40);
+            this.ResultRTextBox.Name = "ResultRTextBox";
+            this.ResultRTextBox.ReadOnly = true;
+            this.ResultRTextBox.Size = new System.Drawing.Size(474, 272);
+            this.ResultRTextBox.TabIndex = 12;
+            this.ResultRTextBox.Text = "";
             // 
             // PanelControllButtons
             // 
@@ -223,6 +223,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonChange.TabIndex = 0;
             this.ButtonChange.Text = "Изменить";
             this.ButtonChange.UseVisualStyleBackColor = false;
+            this.ButtonChange.Click += new System.EventHandler(this.ButtonChange_Click);
             // 
             // ButtonAdd
             // 
@@ -244,9 +245,10 @@ namespace Task3OverloadingOperations.MatrixForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.ClientSize = new System.Drawing.Size(474, 312);
             this.Controls.Add(this.PanelOperationButtons);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.ResultRTextBox);
             this.Controls.Add(this.PanelControllButtons);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Main";
@@ -267,7 +269,7 @@ namespace Task3OverloadingOperations.MatrixForm
         private System.Windows.Forms.Button ButtonMultiply;
         private System.Windows.Forms.Button ButtonMinus;
         private System.Windows.Forms.Button ButtonPlus;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox ResultRTextBox;
         private System.Windows.Forms.Panel PanelControllButtons;
         private System.Windows.Forms.Button ButtonClear;
         private System.Windows.Forms.Button ButtonChange;

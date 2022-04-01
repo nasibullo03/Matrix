@@ -36,9 +36,11 @@ namespace Task3OverloadingOperations
             this.PanelForms = new System.Windows.Forms.Panel();
             this.DownEmptyPanel = new System.Windows.Forms.Panel();
             this.RightEmptyPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.LeftEmptyPanel = new System.Windows.Forms.Panel();
             this.ControlPanel.SuspendLayout();
             this.panelMain.SuspendLayout();
+            this.RightEmptyPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ControlPanel
@@ -71,10 +73,7 @@ namespace Task3OverloadingOperations
             // 
             // lblProgramName
             // 
-            this.lblProgramName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblProgramName.AutoSize = true;
+            this.lblProgramName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblProgramName.Font = new System.Drawing.Font("Script MT Bold", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProgramName.Location = new System.Drawing.Point(236, 2);
             this.lblProgramName.Name = "lblProgramName";
@@ -97,6 +96,7 @@ namespace Task3OverloadingOperations
             // 
             // PanelForms
             // 
+            this.PanelForms.AutoScroll = true;
             this.PanelForms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelForms.Location = new System.Drawing.Point(20, 0);
             this.PanelForms.Name = "PanelForms";
@@ -115,11 +115,23 @@ namespace Task3OverloadingOperations
             // RightEmptyPanel
             // 
             this.RightEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
+            this.RightEmptyPanel.Controls.Add(this.panel1);
             this.RightEmptyPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.RightEmptyPanel.Location = new System.Drawing.Point(575, 0);
             this.RightEmptyPanel.Name = "RightEmptyPanel";
             this.RightEmptyPanel.Size = new System.Drawing.Size(20, 281);
             this.RightEmptyPanel.TabIndex = 8;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
+            this.panel1.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 261);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(20, 20);
+            this.panel1.TabIndex = 0;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // LeftEmptyPanel
             // 
@@ -134,6 +146,7 @@ namespace Task3OverloadingOperations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.ClientSize = new System.Drawing.Size(595, 330);
             this.ControlBox = false;
             this.Controls.Add(this.panelMain);
@@ -148,8 +161,8 @@ namespace Task3OverloadingOperations
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ControlPanel.ResumeLayout(false);
-            this.ControlPanel.PerformLayout();
             this.panelMain.ResumeLayout(false);
+            this.RightEmptyPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -158,12 +171,13 @@ namespace Task3OverloadingOperations
 
         private System.Windows.Forms.Panel ControlPanel;
         private System.Windows.Forms.Panel panelMain;
-        private System.Windows.Forms.Panel PanelForms;
+        public System.Windows.Forms.Panel PanelForms;
         private System.Windows.Forms.Panel LeftEmptyPanel;
         private System.Windows.Forms.Label lblProgramName;
         private System.Windows.Forms.Button CloseBtn;
         private System.Windows.Forms.Panel DownEmptyPanel;
         private System.Windows.Forms.Panel RightEmptyPanel;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
