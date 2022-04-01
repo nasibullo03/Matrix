@@ -1,45 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Task3OverloadingOperations
 {
-	class Program
-	{
-		static void Main(string[] args)
-		{
-			Console.Clear();
-			
-			SquareMatrix.Size = 3;
-			
-			SquareMatrix a = new SquareMatrix();
-			SquareMatrix.FillAuto (a);
-			Console.WriteLine();
-
-			SquareMatrix b = new SquareMatrix();
-			SquareMatrix.FillAuto (b);
-			Console.WriteLine();
-
-			// SquareMatrix c = a + b;
-			// c = a - b;
-			// c = a * b;
-			// c = a / b;
-			// bool eq;
-			// eq = a == b;
-			// eq = a != b;
-			// c = a > b;
-			// c = a < b;
-			// c = a >= b;
-			// c = a <= b;
-			// c = a <= b;
-			//int hhh = default;
-
-			// Console.WriteLine($"Det={SquareMatrix.Determinant (a)}");
-			// Console.WriteLine();
-			// Console.WriteLine(a >= b);
-			// hhh = SquareMatrix.FindDeterminant(a.Matrix);
-			// System.Console.WriteLine(hhh);
-			// int  iiii = SquareMatrix.FindDeterminant(a.Matrix);
-			System.Console.WriteLine();
-			Console.ReadLine();
-		}
-	}
+    internal static class Program
+    {
+        /// <summary>
+        /// Главная точка входа для приложения.
+        /// </summary>
+        [STAThread]
+        private static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+        }
+    }
 }

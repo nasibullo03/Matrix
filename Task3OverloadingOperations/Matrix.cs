@@ -1,22 +1,37 @@
-using System.IO.Enumeration;
 using System;
 
 namespace Task3OverloadingOperations
 {
-    interface IMatrix
+    internal abstract class Matrix
     {
-        static int Size { get; set; }
+        private static int Size { get; set; }
+
         protected static void FillMatrix(ref SquareMatrix matrix, int Size)
         {
             Random rand = new Random();
 
-            matrix.Matrix = new int[Size, Size];
+            matrix.MatrixValue = new int[Size, Size];
 
             for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
                 for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
                 {
-                    matrix.Matrix[ColIndex, RowIndex] = rand.Next(0, 9);
+                    matrix.MatrixValue[ColIndex, RowIndex] = rand.Next(0, 9);
+                }
+            }
+        }
+
+        protected static void FillMatrix(ref int[,] MatrixValue, int Size)
+        {
+            Random rand = new Random();
+
+            MatrixValue = new int[Size, Size];
+
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
+            {
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
+                {
+                    MatrixValue[ColIndex, RowIndex] = rand.Next(0, 9);
                 }
             }
         }
@@ -33,7 +48,7 @@ namespace Task3OverloadingOperations
             {
                 for (int RowIndex = 0; RowIndex < size; ++RowIndex)
                 {
-                    Console.Write("{0,4}", FirstMatrix.Matrix[ColIndex, RowIndex]);
+                    Console.Write("{0,4}", FirstMatrix.MatrixValue[ColIndex, RowIndex]);
                 }
 
                 if (ColIndex == (int)size / 2)
@@ -47,7 +62,7 @@ namespace Task3OverloadingOperations
 
                 for (int RowIndex = 0; RowIndex < size; ++RowIndex)
                 {
-                    Console.Write("{0,4}", SecondMatrix.Matrix[ColIndex, RowIndex]);
+                    Console.Write("{0,4}", SecondMatrix.MatrixValue[ColIndex, RowIndex]);
                 }
 
                 if (ColIndex == (int)size / 2)
@@ -61,7 +76,7 @@ namespace Task3OverloadingOperations
 
                 for (int RowIndex = 0; RowIndex < size; ++RowIndex)
                 {
-                    Console.Write("{0,4}", Result.Matrix[ColIndex, RowIndex]);
+                    Console.Write("{0,4}", Result.MatrixValue[ColIndex, RowIndex]);
                 }
 
                 Console.WriteLine();
@@ -82,7 +97,7 @@ namespace Task3OverloadingOperations
                 Console.Write("|");
                 for (int RowIndex = 0; RowIndex < size; ++RowIndex)
                 {
-                    Console.Write("{0,4}", FirstMatrix.Matrix[ColIndex, RowIndex]);
+                    Console.Write("{0,4}", FirstMatrix.MatrixValue[ColIndex, RowIndex]);
                 }
 
                 if (ColIndex == (int)size / 2)
@@ -96,7 +111,7 @@ namespace Task3OverloadingOperations
 
                 for (int RowIndex = 0; RowIndex < size; ++RowIndex)
                 {
-                    Console.Write("{0,4}", SecondMatrix.Matrix[ColIndex, RowIndex]);
+                    Console.Write("{0,4}", SecondMatrix.MatrixValue[ColIndex, RowIndex]);
                 }
 
                 Console.Write("{0,4}", "|");
@@ -111,6 +126,7 @@ namespace Task3OverloadingOperations
             }
             Console.WriteLine();
         }
+
         protected static void PrintOperations(int[,] MainMatrix, int Result, string Operation)
         {
             int MatrixSize = MainMatrix.GetLength(0);
@@ -142,6 +158,7 @@ namespace Task3OverloadingOperations
                 }
             }
         }
+
         protected static void PrintOperations(int[,] MainMatrix, int[,] SecondMatrix, string Operation)
         {
             int MatrixSize = MainMatrix.GetLength(0);
@@ -220,13 +237,12 @@ namespace Task3OverloadingOperations
                 }
             }
         }
+
         protected static void PrintOperations(int[,] MainMatrix, Double[,] Inverse, string Operation)
         {
-
             int MatrixSize = MainMatrix.GetLength(0);
             if (Operation == "FindInverseMatrix")
             {
-
                 for (int ColIndex = 0; ColIndex < MatrixSize; ++ColIndex)
                 {
                     if (ColIndex == (int)MatrixSize / 2)
