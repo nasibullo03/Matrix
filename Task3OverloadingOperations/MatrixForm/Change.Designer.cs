@@ -61,6 +61,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonAdd.TabIndex = 0;
             this.ButtonAdd.Text = "Добавить";
             this.ButtonAdd.UseVisualStyleBackColor = false;
+            this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // PanelOperationButtons
             // 

@@ -236,6 +236,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Add";
             this.Text = "Add";
+            this.Load += new System.EventHandler(this.Add_Load);
             this.PanelOperationButtons.ResumeLayout(false);
             this.PanelControllButtons.ResumeLayout(false);
             this.PanelControllButtons.PerformLayout();

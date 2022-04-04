@@ -45,6 +45,11 @@ namespace Task3OverloadingOperations.MatrixForm
         private void ButtonClear_Click(object sender, EventArgs e)
         {
             ResultRTextBox.Clear();
+            Matrix.MatrixA = new Matrix();
+            Matrix.MatrixB = new Matrix();
+            Matrix.MatrixAName = string.Empty;
+            Matrix.MatrixBName = string.Empty;
+            Matrix.LblMatrixName = new Label();
         }
     }
 }

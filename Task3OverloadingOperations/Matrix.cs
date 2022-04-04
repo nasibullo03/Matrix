@@ -17,11 +17,41 @@ namespace Task3OverloadingOperations
         public static string MatrixAName { get; set; }
         public static string MatrixBName { get; set; }
 
-        //public static string[] ResultText { get; set; }
         public static string[] ResultText { get; set; }
 
         public static Matrix MatrixA;
         public static Matrix MatrixB;
+
+        public static bool isMatrixAEmpty
+        {
+            get
+            {
+                if (MatrixA.MatrixValue == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static bool isMatrixBEmpty
+        {
+            get
+            {
+                if (MatrixB.MatrixValue == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public static MatrixForm.Add FormAdd { get; set; }
         public static MatrixForm.Main FormMain { get; set; }
         public static MatrixForm.Change FormChane { get; set; }
@@ -116,46 +146,151 @@ namespace Task3OverloadingOperations
             }
         }
 
+        public static void ClearMatrixResultPanel()
+        {
+            FormAdd.PanelMatrixValue.Controls.Clear();
+        }
+
         public static void ClearTextBoxes(bool ClearMatrixName = true)
         {
-            MatrixSize = 0;
-            CreateTextBoxes();
-            FormAdd.MatrixSizeComboBox.Text = "";
             if (ClearMatrixName)
             {
-                FormAdd.MatrixNameComboBox.Text = "";
+                CreateTextBoxes();
+
                 LblMatrixName.Text = "";
+                MatrixSize = 0;
+
+                MatrixForm.Add.onLoadDefaultParametrs();
+                ClearMatrixResultPanel();
+            }
+            else
+            {
+                if (textBoxes != null)
+                {
+                    foreach (TextBox textBox in textBoxes)
+                    {
+                        textBox.Text = "";
+                    }
+                }
             }
         }
 
-        public static void FillMatrixValues()
+        /// <summary>
+        /// Изменит фоновый цвет MatrixSizeComboBox при отличие размеры матрицы
+        /// </summary>
+        public static void MatrixSizeComboBox_ChangeColor()
         {
-            if (MatrixA.MatrixValue == null)
+            FormAdd.MatrixSizeComboBox.BackColor = Color.Red;
+            FormAdd.MatrixSizeComboBox.ForeColor = Color.White;
+        }
+
+        /// <summary>
+        /// Востановить цвет MatrixSizeComboBox по умолчанию
+        /// </summary>
+
+        public static void MatrixSizeComboBox_DefaultColor()
+        {
+            FormAdd.MatrixSizeComboBox.BackColor = Color.White;
+            FormAdd.MatrixSizeComboBox.ForeColor = Color.Black;
+        }
+
+        /// <summary>
+        /// Добавить значение текстового поля в MatrixA и MatrixB
+        /// </summary>
+        public static void AddingValues()
+        {
+            if (!isMatrixAEmpty && isMatrixBEmpty)
+            {
+                if (Matrix.MatrixA.MatrixValue.GetLength(0) == Matrix.MatrixSize)
+                {
+                    onEqualSizes();
+                }
+                else if (Matrix.MatrixA.MatrixValue.GetLength(0) != Matrix.MatrixSize)
+                {
+                    onDifferentSizes();
+                }
+            }
+            else if (isMatrixAEmpty && !isMatrixBEmpty)
+            {
+                if (Matrix.MatrixB.MatrixValue.GetLength(0) == Matrix.MatrixSize)
+                {
+                    onEqualSizes();
+                }
+                else if (Matrix.MatrixB.MatrixValue.GetLength(0) != Matrix.MatrixSize)
+                {
+                    onDifferentSizes();
+                }
+            }
+            else if (!isMatrixAEmpty && !isMatrixBEmpty)
+            {
+                ResultText = null;
+                onEqualSizes();
+            }
+            else if (isMatrixAEmpty && isMatrixBEmpty)
+            {
+                onEqualSizes();
+            }
+
+            //когда размер матрицы равен
+            void onEqualSizes()
+            {
+                Matrix.FillMatrixValues();
+                Matrix.ShowOnResultRechtextBox();
+            }
+            //когда размер матрицы отличается
+            void onDifferentSizes()
+            {
+                MessageBox.Show("Размеры матрицы в квадратной матрице не могут отличаться", "Ошибка!", MessageBoxButtons.OK);
+            }
+        }
+
+        /// <summary>
+        /// Добавить значение текстового поля в MatrixA и MatrixB
+        /// </summary>
+        private static void FillMatrixValues()
+        {
+            if (Matrix.isMatrixAEmpty)
             {
                 FillMatrix.Fill(ref MatrixA);
                 MatrixAName = MatrixForm.Add.MatrixName;
             }
-            else
+            else if (Matrix.isMatrixBEmpty)
             {
                 FillMatrix.Fill(ref MatrixB);
-                MatrixAName = MatrixForm.Add.MatrixName;
+                MatrixBName = MatrixForm.Add.MatrixName;
+            }
+            else if (!Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
+            {
+                MatrixA.MatrixValue = null;
+                MatrixB.MatrixValue = null;
+                FillMatrixValues();
             }
         }
 
+        /// <summary>
+        /// Заполнить значения текстовых полей
+        /// </summary>
         public static void FillTextBoxes()
         {
             FillMatrix.FillTextBoxesAuto();
         }
 
+        /// <summary>
+        /// Показать значение матрицы в главной страницы программа
+        /// </summary>
         public static void ShowOnResultRechtextBox()
         {
-            if (MatrixA.MatrixValue == null || MatrixB.MatrixValue == null)
+            /* try
+             {*/
+            FormMain.ResultRTextBox.Text = string.Empty;
+            ResultText = null;
+            if (isMatrixAEmpty || isMatrixBEmpty)
             {
-                if (MatrixA.MatrixValue == null)
+                if (isMatrixAEmpty)
                 {
                     ShowForm.ShowOneMartix(MatrixB, MatrixBName);
                 }
-                else
+                else if (isMatrixBEmpty)
                 {
                     ShowForm.ShowOneMartix(MatrixA, MatrixAName);
                 }
@@ -164,6 +299,12 @@ namespace Task3OverloadingOperations
             {
                 ShowForm.ShowBothMartixs();
             }
+            /*}
+            catch (System.IndexOutOfRangeException)
+            {
+                Matrix.ClearMatrixResultPanel();
+                //MatrixForm.Add.onLoadDefaultParametrs();
+            }*/
         }
 
         private static bool isNeedToRezise(int Row)
@@ -239,5 +380,7 @@ namespace Task3OverloadingOperations
 
             ChangeTextBoxColumnSize(DictForResizing);
         }
+
+        
     }
 }

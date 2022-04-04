@@ -1,4 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Task3OverloadingOperations
 {
@@ -305,11 +313,13 @@ namespace Task3OverloadingOperations
                     Matrix.ResultText[ColIndex] += "  ";
                 }
             }
+            ShowForm.PerformOperation("Main");
         }
 
         public static void PrintBothMatrix()
         {
             Matrix.ResultText = new string[Matrix.MatrixSize];
+            Matrix.FormMain.ResultRTextBox.Text = string.Empty;
 
             for (int ColIndex = 0; ColIndex < Matrix.MatrixSize; ++ColIndex)
             {
@@ -345,6 +355,7 @@ namespace Task3OverloadingOperations
                     Matrix.ResultText[ColIndex] += "  ";
                 }
             }
+            ShowForm.PerformOperation("Main");
         }
     }
 }

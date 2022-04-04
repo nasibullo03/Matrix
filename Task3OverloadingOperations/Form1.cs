@@ -20,6 +20,8 @@ namespace Task3OverloadingOperations
         {
             InitializeComponent();
             ShowForm.form1 = this;
+            Matrix.MatrixA = new Matrix();
+            Matrix.MatrixB = new Matrix();
         }
 
         #endregion Constructors
