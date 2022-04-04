@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Task3OverloadingOperations
 {
-    public class ShowForm
+    internal class ShowForm
     {
         public static Form1 form1 { get; set; }
 
@@ -57,15 +57,25 @@ namespace Task3OverloadingOperations
         public static void PerformOperation(string op)
         {
             _operations =
-       new Dictionary<string, OperationDelegate>
-       {
-            { "Add", FormAdd },
-            { "Main", FormMain },
-            { "Change", FormChange }
-       };
+             new Dictionary<string, OperationDelegate>
+            {
+                { "Add", FormAdd },
+                { "Main", FormMain },
+                { "Change", FormChange }
+            };
             if (!_operations.ContainsKey(op))
                 throw new ArgumentException(string.Format("Operation {0} is invalid", op), "op");
             _operations[op]();
+        }
+
+        public static void ShowOneMartix(Matrix matrix, String MatrixName)
+        {
+            PrintValue.PrintOneMatrix(matrix.MatrixValue, MatrixName);
+        }
+
+        public static void ShowBothMartixs()
+        {
+            PrintValue.PrintBothMatrix();
         }
     }
 }

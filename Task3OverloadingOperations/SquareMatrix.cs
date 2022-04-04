@@ -2,27 +2,23 @@
 
 namespace Task3OverloadingOperations
 {
-    internal class SquareMatrix : Matrix
+    internal class SquareMatrix : PrintValue
     {
         private static int size { get; set; }
 
         public static int Size
         {
             get { return size; }
+
             set
             {
-                if (value < 1)
-                {
-                    size = 1;
-                }
-                else
-                {
-                    size = value;
-                }
+                size = value;
             }
         }
 
         public int[,] MatrixValue;
+
+        //public int[,] MatrixValue;
 
         public SquareMatrix()
         {
@@ -30,12 +26,7 @@ namespace Task3OverloadingOperations
 
         public static void FillAuto(SquareMatrix matrix)
         {
-            FillMatrix(ref matrix, Size);
-        }
-
-        public void FillAuto()
-        {
-            FillMatrix(ref MatrixValue, Size);
+            FillMatrix.Fill(ref matrix, Size);
         }
 
         public SquareMatrix DeepCopy()
@@ -296,13 +287,13 @@ namespace Task3OverloadingOperations
         private static int DeterminantOver3(int[,] MainMatrix)
         {
             /*
-			a  b  c
-			d  e  f
-			g  h  i
+            a  b  c
+            d  e  f
+            g  h  i
 
-			|A| = a(ei − fh) − b(di − fg) + c(dh − eg)
+            |A| = a(ei − fh) − b(di − fg) + c(dh − eg)
 
-			*/
+            */
             if (MainMatrix.GetLength(0) == 3)
             {
                 return Determinant3x3(MainMatrix);
@@ -353,16 +344,16 @@ namespace Task3OverloadingOperations
         public static int FindDeterminant(int[,] MainMatrix, bool Print = true)
         {
             int det = default;
-            int MatrixSize = MainMatrix.GetLength(0);
-            if (MatrixSize == 2)
+            int Size = MainMatrix.GetLength(0);
+            if (Size == 2)
             {
                 det = MainMatrix[0, 0] * MainMatrix[1, 1] - MainMatrix[1, 0] * MainMatrix[0, 1];
             }
-            else if (MatrixSize == 3)
+            else if (Size == 3)
             {
                 det = Determinant3x3(MainMatrix);
             }
-            else if (MatrixSize > 3)
+            else if (Size > 3)
             {
                 det = DeterminantOver3(MainMatrix);
             }
@@ -375,12 +366,12 @@ namespace Task3OverloadingOperations
 
         public static int[,] FindTranspose(int[,] MainMatrix, bool Print = true)
         {
-            int MatrixSize = MainMatrix.GetLength(0);
-            int[,] Transpose = new int[MatrixSize, MatrixSize];
+            int Size = MainMatrix.GetLength(0);
+            int[,] Transpose = new int[Size, Size];
 
-            for (int i = 0; i < MatrixSize; ++i)
+            for (int i = 0; i < Size; ++i)
             {
-                for (int j = 0; j < MatrixSize; ++j)
+                for (int j = 0; j < Size; ++j)
                 {
                     Transpose[i, j] = MainMatrix[j, i];
                 }
@@ -397,14 +388,14 @@ namespace Task3OverloadingOperations
         private static int[,] MinorOf3x3(int[,] MainMatrix)
         {
             /*
-				| a11 a12 a13 |
-			A =	| a21 a22 a23 |
-				| a31 a32 a33 |
+                | a11 a12 a13 |
+            A =	| a21 a22 a23 |
+                | a31 a32 a33 |
 
-						| a22 a23 |
-			a11 = M11 =	| a32 a33 | = a22*a33 - a23*a32
-			*/
-            int MatrixSize = MainMatrix.GetLength(0);
+                        | a22 a23 |
+            a11 = M11 =	| a32 a33 | = a22*a33 - a23*a32
+            */
+            int Size = MainMatrix.GetLength(0);
 
             int a11 = MainMatrix[0, 0],
                 a12 = MainMatrix[0, 1],
@@ -434,36 +425,36 @@ namespace Task3OverloadingOperations
         private static int[,] MinorOf4x4(int[,] MainMatrix)
         {
             /*
-				| a11 a12 a13 |
-			A =	| a21 a22 a23 |
-				| a31 a32 a33 |
+                | a11 a12 a13 |
+            A =	| a21 a22 a23 |
+                | a31 a32 a33 |
 
-						| a22 a23 |
-			a11 = M11 =	| a32 a33 | = a22*a33 - a23*a32
-			*/
-            int MatrixSize = MainMatrix.GetLength(0);
-            int[,] MinorMatrix = new int[MatrixSize, MatrixSize];
+                        | a22 a23 |
+            a11 = M11 =	| a32 a33 | = a22*a33 - a23*a32
+            */
+            int Size = MainMatrix.GetLength(0);
+            int[,] MinorMatrix = new int[Size, Size];
 
             return MinorMatrix;
         }
 
         public static int[,] FindMinor(int[,] MainMatrix, bool Print = true)
         {
-            int MatrixSize = MainMatrix.GetLength(0);
-            int[,] Minor = new int[MatrixSize, MatrixSize];
+            int Size = MainMatrix.GetLength(0);
+            int[,] Minor = new int[Size, Size];
 
-            if (MatrixSize == 2)
+            if (Size == 2)
             {
                 Minor[0, 0] = MainMatrix[1, 1];
                 Minor[0, 1] = MainMatrix[1, 0];
                 Minor[1, 0] = MainMatrix[0, 1];
                 Minor[1, 1] = MainMatrix[0, 0];
             }
-            else if (MatrixSize == 3)
+            else if (Size == 3)
             {
                 Minor = MinorOf3x3(MainMatrix);
             }
-            else if (MatrixSize > 3)
+            else if (Size > 3)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -476,15 +467,15 @@ namespace Task3OverloadingOperations
 
         public static double[,] FindInverseMatrix(int[,] MainMatrix, bool Print = true)
         {
-            int MatrixSize = MainMatrix.GetLength(0);
-            double[,] Inverse = new double[MatrixSize, MatrixSize];
+            int Size = MainMatrix.GetLength(0);
+            double[,] Inverse = new double[Size, Size];
             int[,] Transpose = FindTranspose(MainMatrix, Print: false);
             int Determinant = FindDeterminant(MainMatrix, Print: false);
             double rr = Math.Round(1 / Convert.ToDouble(Determinant), 2);
 
-            for (int ColIndex = 0; ColIndex < MatrixSize; ++ColIndex)
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
-                for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
                 {
                     Inverse[ColIndex, RowIndex] = Math.Round(Convert.ToDouble(Transpose[ColIndex, RowIndex]) * rr, 2);
                 }

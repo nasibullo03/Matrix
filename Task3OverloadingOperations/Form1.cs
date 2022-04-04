@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Task3OverloadingOperations
 {
@@ -60,17 +61,27 @@ namespace Task3OverloadingOperations
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Form1.ActiveForm.Size.Width >= 595 || Form1.ActiveForm.Size.Height >= 330)
+            ReleaseCapture();
+            if (this.Size.Width >= 595 || this.Size.Height >= 330)
             {
-                ReleaseCapture();
                 PostMessage(this.Handle, WM_SYSCOMMAND, DOSIZE, 0);
-            }
-            else
-            {
-                Form1.ActiveForm.Size = new Size(596, 331);
             }
         }
 
-        
+        private void panel1_MouseLeave(object sender, EventArgs e)
+        {
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (this.Size.Width < 595)
+            {
+                this.Size = new Size(596, this.Size.Height);
+            }
+            if (this.Size.Height < 330)
+            {
+                this.Size = new Size(this.Size.Width, 330);
+            }
+        }
     }
 }

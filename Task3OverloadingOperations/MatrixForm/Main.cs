@@ -15,6 +15,8 @@ namespace Task3OverloadingOperations.MatrixForm
         public Main()
         {
             InitializeComponent();
+            Matrix.FormMain = this;
+            OnLoad();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -25,6 +27,24 @@ namespace Task3OverloadingOperations.MatrixForm
         private void ButtonChange_Click(object sender, EventArgs e)
         {
             ShowForm.PerformOperation("Change");
+        }
+
+        private void ButtonPlus_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void OnLoad()
+        {
+            Matrix.FormMain.ResultRTextBox.Lines = Matrix.ResultText != null ? Matrix.ResultText : null;
+        }
+
+        private void ButtonClear_Click(object sender, EventArgs e)
+        {
+            ResultRTextBox.Clear();
         }
     }
 }

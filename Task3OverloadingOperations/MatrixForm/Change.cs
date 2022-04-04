@@ -15,6 +15,7 @@ namespace Task3OverloadingOperations.MatrixForm
         public Change()
         {
             InitializeComponent();
+            Matrix.FormChane = this;
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)

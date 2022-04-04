@@ -1,282 +1,243 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Task3OverloadingOperations
 {
-    internal abstract class Matrix
+    internal class Matrix : SquareMatrix
     {
-        private static int Size { get; set; }
+        #region Fields
 
-        protected static void FillMatrix(ref SquareMatrix matrix, int Size)
+        public static string MatrixAName { get; set; }
+        public static string MatrixBName { get; set; }
+
+        //public static string[] ResultText { get; set; }
+        public static string[] ResultText { get; set; }
+
+        public static Matrix MatrixA;
+        public static Matrix MatrixB;
+        public static MatrixForm.Add FormAdd { get; set; }
+        public static MatrixForm.Main FormMain { get; set; }
+        public static MatrixForm.Change FormChane { get; set; }
+        public static PictureBox BrecketOpenPicture { get; set; }
+        public static PictureBox BrecketClosePicture { get; set; }
+
+        public static Label LblMatrixName { get; set; }
+
+        public static int MatrixSize
         {
-            Random rand = new Random();
-
-            matrix.MatrixValue = new int[Size, Size];
-
-            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
+            get { return SquareMatrix.Size; }
+            set
             {
-                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
+                if (value < 0)
                 {
-                    matrix.MatrixValue[ColIndex, RowIndex] = rand.Next(0, 9);
-                }
-            }
-        }
-
-        protected static void FillMatrix(ref int[,] MatrixValue, int Size)
-        {
-            Random rand = new Random();
-
-            MatrixValue = new int[Size, Size];
-
-            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
-            {
-                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
-                {
-                    MatrixValue[ColIndex, RowIndex] = rand.Next(0, 9);
-                }
-            }
-        }
-
-        protected static void PrintOperations(
-            SquareMatrix FirstMatrix,
-            SquareMatrix SecondMatrix,
-            string Operation,
-            SquareMatrix Result,
-            int size
-        )
-        {
-            for (int ColIndex = 0; ColIndex < size; ++ColIndex)
-            {
-                for (int RowIndex = 0; RowIndex < size; ++RowIndex)
-                {
-                    Console.Write("{0,4}", FirstMatrix.MatrixValue[ColIndex, RowIndex]);
-                }
-
-                if (ColIndex == (int)size / 2)
-                {
-                    Console.Write("{0,4}", Operation);
+                    SquareMatrix.Size = 0;
                 }
                 else
                 {
-                    Console.Write("{0,4}", "");
+                    SquareMatrix.Size = value;
                 }
+            }
+        }
 
-                for (int RowIndex = 0; RowIndex < size; ++RowIndex)
+        public static TextBox[,] textBoxes;
+
+        #endregion Fields
+
+        #region constructors
+
+        public Matrix()
+        { }
+
+        public Matrix(int MatrixSize)
+        {
+            Matrix.MatrixSize = MatrixSize;
+        }
+
+        #endregion constructors
+
+        public static void CreateTextBoxes()
+        {
+            textBoxes = new TextBox[MatrixSize, MatrixSize];
+
+            FormAdd.PanelMatrixValue.Controls.Clear();
+
+            Matrix.LblMatrixName.Visible = true;
+            Matrix.BrecketClosePicture.Visible = true;
+            Matrix.BrecketOpenPicture.Visible = true;
+
+            LblMatrixName.Location = new Point(0, 0);
+            Point brecketOpenLocation = new Point(0, 0);
+            brecketOpenLocation.X = LblMatrixName.Location.X + LblMatrixName.Size.Width;
+            LblMatrixName.Text = FormAdd.MatrixNameComboBox.Text + "=";
+            Point TextBoxPoint = new Point(0, 3);
+            TextBoxPoint.X = brecketOpenLocation.X + 22;
+
+            Point brecketCloseLocation = new Point(0, 0);
+
+            Size brecketSize = new Size(20, 0);
+
+            if (FormAdd.MatrixSizeComboBox.Text != "")
+            {
+                for (int i = 0; i < MatrixSize; ++i)
                 {
-                    Console.Write("{0,4}", SecondMatrix.MatrixValue[ColIndex, RowIndex]);
+                    for (int j = 0; j < MatrixSize; ++j)
+                    {
+                        textBoxes[i, j] = new TextBox();
+                        textBoxes[i, j].Location = new System.Drawing.Point(TextBoxPoint.X, TextBoxPoint.Y);
+                        textBoxes[i, j].Size = new System.Drawing.Size(20, 20);
+                        textBoxes[i, j].TextChanged += new System.EventHandler(FormAdd.MatrixTextBoxes_TextChanged);
+                        FormAdd.PanelMatrixValue.Controls.Add(textBoxes[i, j]);
+                        TextBoxPoint.X += 25;
+                    }
+
+                    brecketCloseLocation.X = TextBoxPoint.X - 2;
+                    TextBoxPoint.X = brecketOpenLocation.X + 22;
+                    TextBoxPoint.Y += 25;
                 }
+                brecketSize.Height += TextBoxPoint.Y;
 
-                if (ColIndex == (int)size / 2)
+                BrecketOpenPicture.Size = brecketSize;
+                BrecketClosePicture.Size = brecketSize;
+                LblMatrixName.Location = new Point(0, brecketSize.Height / 2 - LblMatrixName.Size.Height / 2);
+
+                BrecketClosePicture.Location = brecketCloseLocation;
+                BrecketOpenPicture.Location = brecketOpenLocation;
+
+                FormAdd.PanelMatrixValue.Controls.Add(BrecketOpenPicture);
+                FormAdd.PanelMatrixValue.Controls.Add(BrecketClosePicture);
+                FormAdd.PanelMatrixValue.Controls.Add(LblMatrixName);
+            }
+        }
+
+        public static void ClearTextBoxes(bool ClearMatrixName = true)
+        {
+            MatrixSize = 0;
+            CreateTextBoxes();
+            FormAdd.MatrixSizeComboBox.Text = "";
+            if (ClearMatrixName)
+            {
+                FormAdd.MatrixNameComboBox.Text = "";
+                LblMatrixName.Text = "";
+            }
+        }
+
+        public static void FillMatrixValues()
+        {
+            if (MatrixA.MatrixValue == null)
+            {
+                FillMatrix.Fill(ref MatrixA);
+                MatrixAName = MatrixForm.Add.MatrixName;
+            }
+            else
+            {
+                FillMatrix.Fill(ref MatrixB);
+                MatrixAName = MatrixForm.Add.MatrixName;
+            }
+        }
+
+        public static void FillTextBoxes()
+        {
+            FillMatrix.FillTextBoxesAuto();
+        }
+
+        public static void ShowOnResultRechtextBox()
+        {
+            if (MatrixA.MatrixValue == null || MatrixB.MatrixValue == null)
+            {
+                if (MatrixA.MatrixValue == null)
                 {
-                    Console.Write("{0,4}", "=");
+                    ShowForm.ShowOneMartix(MatrixB, MatrixBName);
                 }
                 else
                 {
-                    Console.Write("{0,4}", "");
+                    ShowForm.ShowOneMartix(MatrixA, MatrixAName);
                 }
-
-                for (int RowIndex = 0; RowIndex < size; ++RowIndex)
-                {
-                    Console.Write("{0,4}", Result.MatrixValue[ColIndex, RowIndex]);
-                }
-
-                Console.WriteLine();
             }
-            Console.WriteLine();
-        }
-
-        protected static void PrintOperations(
-            SquareMatrix FirstMatrix,
-            SquareMatrix SecondMatrix,
-            string Operation,
-            bool Result,
-            int size
-        )
-        {
-            for (int ColIndex = 0; ColIndex < size; ++ColIndex)
+            else
             {
-                Console.Write("|");
-                for (int RowIndex = 0; RowIndex < size; ++RowIndex)
-                {
-                    Console.Write("{0,4}", FirstMatrix.MatrixValue[ColIndex, RowIndex]);
-                }
-
-                if (ColIndex == (int)size / 2)
-                {
-                    Console.Write("{0,4}", Operation);
-                }
-                else
-                {
-                    Console.Write("{0,4}", "");
-                }
-
-                for (int RowIndex = 0; RowIndex < size; ++RowIndex)
-                {
-                    Console.Write("{0,4}", SecondMatrix.MatrixValue[ColIndex, RowIndex]);
-                }
-
-                Console.Write("{0,4}", "|");
-
-                if (ColIndex == (int)size / 2)
-                {
-                    Console.Write("{0,2}", "=");
-                    Console.Write("{0,6}", Result);
-                }
-
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-        }
-
-        protected static void PrintOperations(int[,] MainMatrix, int Result, string Operation)
-        {
-            int MatrixSize = MainMatrix.GetLength(0);
-            if (Operation == "FindDeterminant")
-            {
-                for (int ColIndex = 0; ColIndex < MatrixSize; ++ColIndex)
-                {
-                    if (ColIndex == (int)MatrixSize / 2)
-                    {
-                        Console.Write("{0,10}", "|A|(det) =");
-                    }
-                    else
-                    {
-                        Console.Write("{0,10}", "");
-                    }
-                    Console.Write("|");
-                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
-                    {
-                        Console.Write("{0,4}", MainMatrix[ColIndex, RowIndex]);
-                    }
-                    Console.Write("{0,4}", "|");
-
-                    if (ColIndex == (int)MatrixSize / 2)
-                    {
-                        Console.Write($" = {Result}");
-                    }
-
-                    Console.WriteLine();
-                }
+                ShowForm.ShowBothMartixs();
             }
         }
 
-        protected static void PrintOperations(int[,] MainMatrix, int[,] SecondMatrix, string Operation)
+        private static bool isNeedToRezise(int Row)
         {
-            int MatrixSize = MainMatrix.GetLength(0);
-            if (Operation == "FindTranspose")
+            for (int i = 0; i < MatrixSize; ++i)
             {
-                for (int ColIndex = 0; ColIndex < MatrixSize; ++ColIndex)
+                if (textBoxes[i, Row].Text.Length > 1)
                 {
-                    if (ColIndex == (int)MatrixSize / 2)
-                    {
-                        Console.Write("{0,4}", "A =");
-                    }
-                    else
-                    {
-                        Console.Write("{0,4}", "");
-                    }
-                    Console.Write("|");
-                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
-                    {
-                        Console.Write("{0,4}", MainMatrix[ColIndex, RowIndex]);
-                    }
-                    Console.Write("{0,4}", "|");
-
-                    if (ColIndex == (int)MatrixSize / 2)
-                    {
-                        Console.Write("{0,17}", "; Transpose(A) = ");
-                    }
-                    else
-                    {
-                        Console.Write("{0,17}", "");
-                    }
-                    Console.Write("|");
-                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
-                    {
-                        Console.Write("{0,4}", SecondMatrix[ColIndex, RowIndex]);
-                    }
-
-                    Console.Write("{0,4}", "|");
-                    Console.WriteLine();
+                    return true;
                 }
             }
-            else if (Operation == "FindMinor")
+            return false;
+        }
+
+        public static int MaxLenghtofColumn(int Row)
+        {
+            int max = Convert.ToInt32(textBoxes[0, Row].Text.Length);
+            for (int i = 0; i < MatrixSize; ++i)
             {
-                for (int ColIndex = 0; ColIndex < MatrixSize; ++ColIndex)
+                if (Convert.ToInt32(textBoxes[i, Row].Text.Length) > max)
                 {
-                    if (ColIndex == (int)MatrixSize / 2)
-                    {
-                        Console.Write("{0,4}", "A =");
-                    }
-                    else
-                    {
-                        Console.Write("{0,4}", "");
-                    }
-                    Console.Write("|");
-                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
-                    {
-                        Console.Write("{0,4}", MainMatrix[ColIndex, RowIndex]);
-                    }
-                    Console.Write("{0,4}", "|");
-
-                    if (ColIndex == (int)MatrixSize / 2)
-                    {
-                        Console.Write("{0,13}", "; Minor(A) = ");
-                    }
-                    else
-                    {
-                        Console.Write("{0,13}", "");
-                    }
-                    Console.Write("|");
-                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
-                    {
-                        Console.Write("{0,4}", SecondMatrix[ColIndex, RowIndex]);
-                    }
-
-                    Console.Write("{0,4}", "|");
-                    Console.WriteLine();
+                    max = Convert.ToInt32(textBoxes[i, Row].Text.Length);
                 }
+            }
+            return max;
+        }
+
+        private static void ChangeTextBoxColumnSize(Dictionary<int, int> ParametrsForResizing)
+        {
+            Point TextBoxPoint = new Point(LblMatrixName.Location.X + LblMatrixName.Size.Width + 22, 3);
+
+            Size textBoxSize = new Size();
+
+            for (int i = 0; i < MatrixSize; ++i)
+            {
+                for (int j = 0; j < MatrixSize; ++j)
+                {
+                    if (ParametrsForResizing.ContainsKey(j))
+                    {
+                        textBoxSize.Width = 12 + 6 * ParametrsForResizing[j];
+                        textBoxSize.Height = 20;
+                        textBoxes[i, j].Location = new System.Drawing.Point(TextBoxPoint.X, TextBoxPoint.Y);
+                        textBoxes[i, j].Size = textBoxSize;
+                        TextBoxPoint.X += 12 + 6 * ParametrsForResizing[j] + 5;
+                    }
+                    else
+                    {
+                        textBoxes[i, j].Location = new System.Drawing.Point(TextBoxPoint.X, TextBoxPoint.Y);
+                        textBoxes[i, j].Size = new System.Drawing.Size(20, 20);
+                        TextBoxPoint.X += 25;
+                    }
+
+                    //FormAdd.PanelMatrixValue.Controls.Add(textBoxes[i, j]);
+                }
+
+                TextBoxPoint.X = LblMatrixName.Location.X + LblMatrixName.Size.Width + 22;
+                TextBoxPoint.Y += 25;
             }
         }
 
-        protected static void PrintOperations(int[,] MainMatrix, Double[,] Inverse, string Operation)
-        {
-            int MatrixSize = MainMatrix.GetLength(0);
-            if (Operation == "FindInverseMatrix")
-            {
-                for (int ColIndex = 0; ColIndex < MatrixSize; ++ColIndex)
-                {
-                    if (ColIndex == (int)MatrixSize / 2)
-                    {
-                        Console.Write("{0,4}", "A =");
-                    }
-                    else
-                    {
-                        Console.Write("{0,4}", "");
-                    }
-                    Console.Write("|");
-                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
-                    {
-                        Console.Write("{0,4}", MainMatrix[ColIndex, RowIndex]);
-                    }
-                    Console.Write("{0,4}", "|");
+        public static void ResizeTextBoxes()
 
-                    if (ColIndex == (int)MatrixSize / 2)
-                    {
-                        Console.Write("{0,16}", "; Inverse(A) = ");
-                    }
-                    else
-                    {
-                        Console.Write("{0,16}", "");
-                    }
-                    Console.Write("|");
-                    for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
-                    {
-                        Console.Write("{0,6}", Inverse[ColIndex, RowIndex]);
-                    }
-                    Console.Write("{0,2}", "|");
-                    Console.WriteLine();
+        {
+            Dictionary<int, int> DictForResizing = new Dictionary<int, int>();
+
+            for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
+            {
+                if (isNeedToRezise(RowIndex))
+                {
+                    DictForResizing.Add(RowIndex, MaxLenghtofColumn(RowIndex));
                 }
             }
+
+            ChangeTextBoxColumnSize(DictForResizing);
         }
     }
 }

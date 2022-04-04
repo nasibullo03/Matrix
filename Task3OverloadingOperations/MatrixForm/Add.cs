@@ -12,9 +12,36 @@ namespace Task3OverloadingOperations.MatrixForm
 {
     public partial class Add : Form
     {
+        public static string MatrixName { get; set; }
+
         public Add()
         {
             InitializeComponent();
+            Matrix.FormAdd = this;
+            Matrix.MatrixA = new Matrix();
+            Matrix.MatrixB = new Matrix();
+            OnLoad();
+        }
+
+        private static void OnLoad()
+        {
+            Matrix.BrecketOpenPicture = new PictureBox();
+            Matrix.BrecketOpenPicture.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Open;
+            Matrix.BrecketOpenPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Matrix.BrecketOpenPicture.Size = new System.Drawing.Size(20, 68);
+
+            Matrix.BrecketClosePicture = new PictureBox();
+            Matrix.BrecketClosePicture.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Close;
+            Matrix.BrecketClosePicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Matrix.BrecketClosePicture.Size = new System.Drawing.Size(20, 68);
+
+            Matrix.LblMatrixName = new Label();
+            Matrix.LblMatrixName.AutoSize = true;
+            Matrix.LblMatrixName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            Matrix.LblMatrixName.ForeColor = System.Drawing.Color.Black;
+            Matrix.LblMatrixName.Size = new System.Drawing.Size(42, 29);
+            Matrix.LblMatrixName.Location = new Point(3, 3);
+            Matrix.LblMatrixName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         }
 
         private void CloseBtn_Click(object sender, EventArgs e)
@@ -31,65 +58,95 @@ namespace Task3OverloadingOperations.MatrixForm
             ShowForm.PerformOperation("Main");
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void MatrixNameComboBox_TextChanged(object sender, EventArgs e)
         {
-        }
-
-        private void comboBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (comboBox1.Text == "A")
+            if (MatrixNameComboBox.Text != "")
             {
-                lblMatrixName.Text = "A=";
-                comboBox1.BackColor = default;
-                comboBox1.ForeColor = default;
-            }
-            else if (comboBox1.Text == "B")
-            {
-                lblMatrixName.Text = "B=";
+                MatrixName = MatrixNameComboBox.Text;
+                lblTextOfCBNameOFMatrix.BackColor = Color.Transparent;
             }
             else
             {
-                lblMatrixName.Text = "";
-                comboBox1.BackColor = Color.Red;
-                comboBox1.ForeColor = Color.White;
+                MatrixName = "";
+                lblTextOfCBNameOFMatrix.BackColor = Color.Red;
             }
+            MatrixSizeComboBox_TextChanged(sender, e);
         }
 
-        private void CreateTextBox(Point point)
-        {
-        }
         //TODO надо создать отдельный клас для обработки и создание матрицы
-        private void MatrixSizeTextBox_TextChanged(object sender, EventArgs e)
+        private void MatrixSizeComboBox_TextChanged(object sender, EventArgs e)
         {
-            PanelMatrixValue.Controls.Clear();
-            if (MatrixSizeTextBox.Text != "")
+            OnLoad();
+            if (MatrixNameComboBox.Text != "")
             {
-                Point point = new Point();
-                point.X = 3;
-                point.Y = 3;
-                /*try
-                {*/
-                for (int i = 0; i < Convert.ToInt32(MatrixSizeTextBox.Text); ++i)
+                lblTextOfCBNameOFMatrix.BackColor = Color.Transparent;
+                if (MatrixSizeComboBox.Text != "" && MatrixSizeComboBox.Text != "1")
                 {
-                    for (int j = 0; j < Convert.ToInt32(MatrixSizeTextBox.Text); ++j)
-                    {
-                        TextBox text = new TextBox();
+                    lblSizeOfMatrixName.BackColor = Color.Transparent;
 
-                        text.Name = "el" + point.X.ToString();
-                        text.Location = new System.Drawing.Point(point.X, point.Y);
-                        text.Size = new System.Drawing.Size(20, 20);
-                        PanelMatrixValue.Controls.Add(text);
-                        point.X += 25;
+                    try
+                    {
+                        Matrix.MatrixSize = Convert.ToInt32(MatrixSizeComboBox.Text) > 0 ? Convert.ToInt32(MatrixSizeComboBox.Text) : 0;
                     }
-                    point.X = 3;
-                    point.Y += 25;
+                    catch
+                    {
+                        MatrixSizeComboBox.Text = "1";
+                        Matrix.MatrixSize = 1;
+                    }
+                    finally
+                    {
+                        Matrix.CreateTextBoxes();
+                    }
                 }
-                /*}
-                catch
+                else if (MatrixSizeComboBox.Text == "1")
                 {
-                    throw new Exception("Error convert");
-                }*/
+                    lblSizeOfMatrixName.BackColor = Color.Red;
+                    Matrix.MatrixSize = 0;
+                    Matrix.CreateTextBoxes();
+                    Matrix.LblMatrixName.Visible = false;
+                    Matrix.BrecketClosePicture.Visible = false;
+                    Matrix.BrecketOpenPicture.Visible = false;
+                }
+                else
+                {
+                    Matrix.ClearTextBoxes(ClearMatrixName: false);
+                }
             }
+            else
+            {
+                lblTextOfCBNameOFMatrix.BackColor = Color.Red;
+            }
+        }
+
+        private void FillAutoButton_Click(object sender, EventArgs e)
+        {
+            Matrix.FillTextBoxes();
+            OnLoad();
+        }
+
+        private void ButtonAdd_Click(object sender, EventArgs e)
+        {
+            Matrix.FillMatrixValues();
+            Matrix.ShowOnResultRechtextBox();
+        }
+
+        private void ButtonClear_Click(object sender, EventArgs e)
+        {
+            Matrix.ClearTextBoxes();
+        }
+
+        public void MatrixTextBoxes_TextChanged(object sender, EventArgs e)
+        {
+            Matrix.ResizeTextBoxes();
+        }
+
+        private void PanelMatrixValue_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void ClearMatrixValuesButton_Click(object sender, EventArgs e)
+        {
+            Matrix.ClearTextBoxes(false);
         }
     }
 }

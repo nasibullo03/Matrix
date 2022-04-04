@@ -132,6 +132,7 @@ namespace Task3OverloadingOperations
             this.panel1.Size = new System.Drawing.Size(20, 20);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.panel1.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
             // 
             // LeftEmptyPanel
             // 
@@ -148,18 +149,14 @@ namespace Task3OverloadingOperations
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.ClientSize = new System.Drawing.Size(595, 330);
-            this.ControlBox = false;
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.ControlPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "Form1";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.Text = "Form1";
+            this.Text = "Matrix";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ControlPanel.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
             this.RightEmptyPanel.ResumeLayout(false);
