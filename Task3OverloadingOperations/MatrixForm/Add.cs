@@ -12,15 +12,32 @@ namespace Task3OverloadingOperations.MatrixForm
 {
     public partial class Add : Form
     {
+        #region Fields
+
+        /// <summary>
+        /// Хранит значение имя матрицы
+        /// </summary>
+        public static string MatrixName { get; set; }
+
+        #endregion Fields
+
+        #region Сonstructor
+
         public Add()
         {
             InitializeComponent();
         }
 
-        public static string MatrixName { get; set; }
+        #endregion Сonstructor
 
+        #region Metods
+
+        /// <summary>
+        /// Параметры по умолчанию при открытии формы
+        /// </summary>
         public static void onLoadDefaultParametrs()
         {
+            //Если заполнена только Первая матрица
             if (!Matrix.isMatrixAEmpty && Matrix.isMatrixBEmpty)
             {
                 if (Matrix.MatrixA.Name == "A")
@@ -35,7 +52,7 @@ namespace Task3OverloadingOperations.MatrixForm
 
                 Matrix.FormAdd.MatrixSizeComboBox.Text = Matrix.MatrixA.MatrixValue.GetLength(0).ToString();
             }
-            else if (Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
+            else if (Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty) // если заполнена только значение второй матрицы
             {
                 Matrix.FormAdd.MatrixNameComboBox.Text = Matrix.MatrixA.Name;
                 if (Matrix.MatrixB.Name == "B")
@@ -48,7 +65,7 @@ namespace Task3OverloadingOperations.MatrixForm
                 }
                 Matrix.MatrixSizeComboBox_ClearItems();
                 Matrix.FormAdd.MatrixSizeComboBox.Text = Matrix.MatrixB.MatrixValue.GetLength(0).ToString();
-            }
+            } // если оба матрицы заполнена/не заполнена
             else if (Matrix.isMatrixAEmpty && Matrix.isMatrixBEmpty
               || !Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
             {
@@ -57,20 +74,19 @@ namespace Task3OverloadingOperations.MatrixForm
             }
         }
 
+        /// <summary>
+        /// При загрузки формы
+        /// </summary>
         private static void OnLoad()
         {
             onLoadDefaultParametrs();
         }
 
-        private void CloseBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void PanelForms_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
+        /// <summary>
+        /// Кнопка назад
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonBack_Click(object sender, EventArgs e)
         {
             if (Matrix.textBoxes == null)
@@ -89,6 +105,11 @@ namespace Task3OverloadingOperations.MatrixForm
             }
         }
 
+        /// <summary>
+        /// Поля со списком имя матрицы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MatrixNameComboBox_TextChanged(object sender, EventArgs e)
         {
             if (MatrixNameComboBox.Text != "")
@@ -104,6 +125,11 @@ namespace Task3OverloadingOperations.MatrixForm
             MatrixSizeComboBox_TextChanged(sender, e);
         }
 
+        /// <summary>
+        /// Поля со списки размеры матрицы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MatrixSizeComboBox_TextChanged(object sender, EventArgs e)
         {
             if (MatrixNameComboBox.Text != string.Empty)
@@ -152,6 +178,11 @@ namespace Task3OverloadingOperations.MatrixForm
             }
         }
 
+        /// <summary>
+        /// Автоматически заполняет текстовые поля матрицы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FillAutoButton_Click(object sender, EventArgs e)
         {
             if (MatrixSizeComboBox.Text == string.Empty || MatrixSizeComboBox.Text == "0")
@@ -168,14 +199,19 @@ namespace Task3OverloadingOperations.MatrixForm
             }
         }
 
+        /// <summary>
+        /// Заполняет значение матрицы в перменах чтобы из
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            ///*****TODO********///
-            // надо доработать кноки BackButton чтобы при выход из форма Add отслеживал что матрица заполнена и добавлена в главную форму
-            // в обратном случае надо сообщить что пользователь действительно хочет ли выйти из режим добавление матрицы
+            ///*****TODO
+            ///Надо доработать форму Change (там пока нечего не работает)
             // надо убрать RichTextBox из главной формы и вместо его создать метод который показывает значение матрицы
             // с помощью label в главной матрицы p.s просто надо скопировать значение textboxes и добавить в новий метод
             // надо еще подумать в дольнейшие обновление программы
+            // надо добавить класс делегат чтобы выпольнит опреции с матрицами
 
             Matrix.AddingValues();
         }
@@ -204,5 +240,7 @@ namespace Task3OverloadingOperations.MatrixForm
             Matrix.FormAdd = this;
             OnLoad();
         }
+
+        #endregion Metods
     }
 }

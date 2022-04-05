@@ -100,5 +100,9 @@ namespace Task3OverloadingOperations.MatrixForm
             Matrix.FormChange = this;
             OnLoad();
         }
+
+        private void MatrixSizeComboBox_TextChanged(object sender, EventArgs e)
+        {
+        }
     }
 }

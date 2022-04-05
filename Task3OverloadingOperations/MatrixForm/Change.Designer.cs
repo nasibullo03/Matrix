@@ -137,6 +137,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.MatrixSizeComboBox.Name = "MatrixSizeComboBox";
             this.MatrixSizeComboBox.Size = new System.Drawing.Size(51, 21);
             this.MatrixSizeComboBox.TabIndex = 4;
+            this.MatrixSizeComboBox.TextChanged += new System.EventHandler(this.MatrixSizeComboBox_TextChanged);
             // 
             // lblTextOfCBNameOFMatrix
             // 
