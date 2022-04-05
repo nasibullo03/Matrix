@@ -152,13 +152,11 @@ namespace Task3OverloadingOperations.MatrixForm
             // MatrixNameComboBox
             // 
             this.MatrixNameComboBox.FormattingEnabled = true;
-            this.MatrixNameComboBox.Items.AddRange(new object[] {
-            "A",
-            "B"});
             this.MatrixNameComboBox.Location = new System.Drawing.Point(193, 11);
             this.MatrixNameComboBox.Name = "MatrixNameComboBox";
             this.MatrixNameComboBox.Size = new System.Drawing.Size(51, 21);
             this.MatrixNameComboBox.TabIndex = 4;
+            this.MatrixNameComboBox.TextChanged += new System.EventHandler(this.MatrixNameComboBox_TextChanged);
             // 
             // FillAutoButton
             // 
@@ -231,6 +229,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Change";
             this.Text = "Change";
+            this.Load += new System.EventHandler(this.Change_Load);
             this.PanelOperationButtons.ResumeLayout(false);
             this.PanelControllButtons.ResumeLayout(false);
             this.PanelControllButtons.PerformLayout();

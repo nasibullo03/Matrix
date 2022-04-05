@@ -14,12 +14,10 @@ namespace Task3OverloadingOperations
     {
         #region Fields
 
-        public static string MatrixAName { get; set; }
-        public static string MatrixBName { get; set; }
-
         public static string[] ResultText { get; set; }
 
         public static Matrix MatrixA;
+
         public static Matrix MatrixB;
 
         public static bool isMatrixAEmpty
@@ -54,7 +52,7 @@ namespace Task3OverloadingOperations
 
         public static MatrixForm.Add FormAdd { get; set; }
         public static MatrixForm.Main FormMain { get; set; }
-        public static MatrixForm.Change FormChane { get; set; }
+        public static MatrixForm.Change FormChange { get; set; }
         public static PictureBox BrecketOpenPicture { get; set; }
         public static PictureBox BrecketClosePicture { get; set; }
 
@@ -195,6 +193,15 @@ namespace Task3OverloadingOperations
         }
 
         /// <summary>
+        /// Убрать все элементы MatrixSizeComboBox
+        /// </summary>
+
+        public static void MatrixSizeComboBox_ClearItems()
+        {
+            FormAdd.MatrixSizeComboBox.Items.Clear();
+        }
+
+        /// <summary>
         /// Добавить значение текстового поля в MatrixA и MatrixB
         /// </summary>
         public static void AddingValues()
@@ -252,12 +259,12 @@ namespace Task3OverloadingOperations
             if (Matrix.isMatrixAEmpty)
             {
                 FillMatrix.Fill(ref MatrixA);
-                MatrixAName = MatrixForm.Add.MatrixName;
+                MatrixA.Name = MatrixForm.Add.MatrixName;
             }
             else if (Matrix.isMatrixBEmpty)
             {
                 FillMatrix.Fill(ref MatrixB);
-                MatrixBName = MatrixForm.Add.MatrixName;
+                MatrixB.Name = MatrixForm.Add.MatrixName;
             }
             else if (!Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
             {
@@ -288,11 +295,11 @@ namespace Task3OverloadingOperations
             {
                 if (isMatrixAEmpty)
                 {
-                    ShowForm.ShowOneMartix(MatrixB, MatrixBName);
+                    ShowForm.ShowOneMartix(MatrixB, MatrixB.Name);
                 }
                 else if (isMatrixBEmpty)
                 {
-                    ShowForm.ShowOneMartix(MatrixA, MatrixAName);
+                    ShowForm.ShowOneMartix(MatrixA, MatrixA.Name);
                 }
             }
             else
@@ -380,7 +387,5 @@ namespace Task3OverloadingOperations
 
             ChangeTextBoxColumnSize(DictForResizing);
         }
-
-        
     }
 }

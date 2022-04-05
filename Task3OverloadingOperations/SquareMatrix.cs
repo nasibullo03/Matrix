@@ -4,6 +4,7 @@ namespace Task3OverloadingOperations
 {
     internal class SquareMatrix : PrintValue
     {
+        public string Name { get; set; }
         private static int size { get; set; }
 
         public static int Size
@@ -16,9 +17,15 @@ namespace Task3OverloadingOperations
             }
         }
 
-        public int[,] MatrixValue;
+        public int GetMatrixSize
+        {
+            get
+            {
+                return MatrixValue.GetLength(0);
+            }
+        }
 
-        //public int[,] MatrixValue;
+        public int[,] MatrixValue;
 
         public SquareMatrix()
         {

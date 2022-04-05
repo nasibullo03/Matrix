@@ -47,8 +47,8 @@ namespace Task3OverloadingOperations.MatrixForm
             ResultRTextBox.Clear();
             Matrix.MatrixA = new Matrix();
             Matrix.MatrixB = new Matrix();
-            Matrix.MatrixAName = string.Empty;
-            Matrix.MatrixBName = string.Empty;
+            Matrix.MatrixA.Name = string.Empty;
+            Matrix.MatrixB.Name = string.Empty;
             Matrix.LblMatrixName = new Label();
         }
     }

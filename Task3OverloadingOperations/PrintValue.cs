@@ -325,11 +325,11 @@ namespace Task3OverloadingOperations
             {
                 if (ColIndex == (int)Matrix.MatrixSize / 2)
                 {
-                    Matrix.ResultText[ColIndex] += OutputWithAdditionallySpace(Matrix.MatrixAName + "=", Matrix.MatrixAName.Length + 4);
+                    Matrix.ResultText[ColIndex] += OutputWithAdditionallySpace(Matrix.MatrixA.Name + "=", Matrix.MatrixA.Name.Length + 4);
                 }
                 else
                 {
-                    Matrix.ResultText[ColIndex] += OutputWithAdditionallySpace(" ", Matrix.MatrixAName.Length + 7);
+                    Matrix.ResultText[ColIndex] += OutputWithAdditionallySpace(" ", Matrix.MatrixA.Name.Length + 7);
                 }
 
                 for (int RowIndex = 0; RowIndex < Matrix.MatrixSize; ++RowIndex)
@@ -341,11 +341,11 @@ namespace Task3OverloadingOperations
 
                 if (ColIndex == (int)Matrix.MatrixSize / 2)
                 {
-                    Matrix.ResultText[ColIndex] += OutputWithAdditionallySpace("; " + Matrix.MatrixBName + "=", Matrix.MatrixAName.Length + 6);
+                    Matrix.ResultText[ColIndex] += OutputWithAdditionallySpace("; " + Matrix.MatrixB.Name + "=", Matrix.MatrixA.Name.Length + 6);
                 }
                 else
                 {
-                    Matrix.ResultText[ColIndex] += OutputWithAdditionallySpace(" ", Matrix.MatrixAName.Length + 9);
+                    Matrix.ResultText[ColIndex] += OutputWithAdditionallySpace(" ", Matrix.MatrixA.Name.Length + 9);
                 }
 
                 for (int RowIndex = 0; RowIndex < Matrix.MatrixSize; ++RowIndex)

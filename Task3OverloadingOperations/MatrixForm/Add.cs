@@ -12,39 +12,18 @@ namespace Task3OverloadingOperations.MatrixForm
 {
     public partial class Add : Form
     {
-        public static string MatrixName { get; set; }
-
         public Add()
         {
             InitializeComponent();
         }
 
-        private static void PanelValuesElementsParametrs()
-        {
-            Matrix.BrecketOpenPicture = new PictureBox();
-            Matrix.BrecketOpenPicture.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Open;
-            Matrix.BrecketOpenPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            Matrix.BrecketOpenPicture.Size = new System.Drawing.Size(20, 68);
-
-            Matrix.BrecketClosePicture = new PictureBox();
-            Matrix.BrecketClosePicture.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Close;
-            Matrix.BrecketClosePicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            Matrix.BrecketClosePicture.Size = new System.Drawing.Size(20, 68);
-
-            Matrix.LblMatrixName = new Label();
-            Matrix.LblMatrixName.AutoSize = true;
-            Matrix.LblMatrixName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            Matrix.LblMatrixName.ForeColor = System.Drawing.Color.Black;
-            Matrix.LblMatrixName.Size = new System.Drawing.Size(42, 29);
-            Matrix.LblMatrixName.Location = new Point(3, 3);
-            Matrix.LblMatrixName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        }
+        public static string MatrixName { get; set; }
 
         public static void onLoadDefaultParametrs()
         {
             if (!Matrix.isMatrixAEmpty && Matrix.isMatrixBEmpty)
             {
-                if (Matrix.MatrixAName == "A")
+                if (Matrix.MatrixA.Name == "A")
                 {
                     Matrix.FormAdd.MatrixNameComboBox.Text = "B";
                 }
@@ -52,13 +31,14 @@ namespace Task3OverloadingOperations.MatrixForm
                 {
                     Matrix.FormAdd.MatrixNameComboBox.Text = "A";
                 }
+                Matrix.MatrixSizeComboBox_ClearItems();
 
                 Matrix.FormAdd.MatrixSizeComboBox.Text = Matrix.MatrixA.MatrixValue.GetLength(0).ToString();
             }
             else if (Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
             {
-                Matrix.FormAdd.MatrixNameComboBox.Text = Matrix.MatrixAName;
-                if (Matrix.MatrixBName == "B")
+                Matrix.FormAdd.MatrixNameComboBox.Text = Matrix.MatrixA.Name;
+                if (Matrix.MatrixB.Name == "B")
                 {
                     Matrix.FormAdd.MatrixNameComboBox.Text = "A";
                 }
@@ -66,6 +46,7 @@ namespace Task3OverloadingOperations.MatrixForm
                 {
                     Matrix.FormAdd.MatrixNameComboBox.Text = "B";
                 }
+                Matrix.MatrixSizeComboBox_ClearItems();
                 Matrix.FormAdd.MatrixSizeComboBox.Text = Matrix.MatrixB.MatrixValue.GetLength(0).ToString();
             }
             else if (Matrix.isMatrixAEmpty && Matrix.isMatrixBEmpty
@@ -78,8 +59,6 @@ namespace Task3OverloadingOperations.MatrixForm
 
         private static void OnLoad()
         {
-            PanelValuesElementsParametrs();
-
             onLoadDefaultParametrs();
         }
 

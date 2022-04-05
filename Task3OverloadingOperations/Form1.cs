@@ -36,6 +36,28 @@ namespace Task3OverloadingOperations
         private void Form1_Load(object sender, EventArgs e)
         {
             ShowForm.PerformOperation("Main");
+            PanelValuesElementsParametrs();
+        }
+
+        private static void PanelValuesElementsParametrs()
+        {
+            Matrix.BrecketOpenPicture = new PictureBox();
+            Matrix.BrecketOpenPicture.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Open;
+            Matrix.BrecketOpenPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Matrix.BrecketOpenPicture.Size = new System.Drawing.Size(20, 68);
+
+            Matrix.BrecketClosePicture = new PictureBox();
+            Matrix.BrecketClosePicture.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Close;
+            Matrix.BrecketClosePicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Matrix.BrecketClosePicture.Size = new System.Drawing.Size(20, 68);
+
+            Matrix.LblMatrixName = new Label();
+            Matrix.LblMatrixName.AutoSize = true;
+            Matrix.LblMatrixName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            Matrix.LblMatrixName.ForeColor = System.Drawing.Color.Black;
+            Matrix.LblMatrixName.Size = new System.Drawing.Size(42, 29);
+            Matrix.LblMatrixName.Location = new Point(3, 3);
+            Matrix.LblMatrixName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         }
 
         public void ClearPannelFormValue()
