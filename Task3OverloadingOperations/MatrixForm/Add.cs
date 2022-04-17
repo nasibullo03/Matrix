@@ -51,6 +51,7 @@ namespace Task3OverloadingOperations.MatrixForm
                 Matrix.MatrixSizeComboBox_ClearItems();
 
                 Matrix.FormAdd.MatrixSizeComboBox.Text = Matrix.MatrixA.MatrixValue.GetLength(0).ToString();
+                Matrix.FormAdd.MatrixSizeComboBox.Enabled = false;
             }
             else if (Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty) // если заполнена только значение второй матрицы
             {
@@ -71,6 +72,7 @@ namespace Task3OverloadingOperations.MatrixForm
             {
                 Matrix.FormAdd.MatrixNameComboBox.Text = "A";
                 Matrix.FormAdd.MatrixSizeComboBox.Text = string.Empty;
+                Matrix.FormAdd.MatrixSizeComboBox.Enabled = true;
             }
         }
 
@@ -140,27 +142,27 @@ namespace Task3OverloadingOperations.MatrixForm
                 }
 
                 lblTextOfCBNameOFMatrix.BackColor = Color.Transparent;
-                if (MatrixSizeComboBox.Text != "" && MatrixSizeComboBox.Text != "1")
+                if (MatrixSizeComboBox.Text != "" && MatrixSizeComboBox.Text != "1" && MatrixSizeComboBox.Text != "0")
                 {
                     lblSizeOfMatrixName.BackColor = Color.Transparent;
 
                     try
                     {
-                        Matrix.MatrixSize = Convert.ToInt32(MatrixSizeComboBox.Text) > 0 ? Convert.ToInt32(MatrixSizeComboBox.Text) : 0;
+                        Matrix.MatrixSize = Convert.ToInt32(MatrixSizeComboBox.Text) > 1 ? Convert.ToInt32(MatrixSizeComboBox.Text) : 0;
                     }
                     catch
                     {
-                        MatrixSizeComboBox.Text = "1";
-                        Matrix.MatrixSize = 1;
+                        MatrixSizeComboBox.Text = "2";
+                        Matrix.MatrixSize = 2;
                     }
                     finally
                     {
                         Matrix.CreateTextBoxes();
                     }
                 }
-                else if (MatrixSizeComboBox.Text == "1")
+                else if (MatrixSizeComboBox.Text == "1" || MatrixSizeComboBox.Text == "0")
                 {
-                    lblSizeOfMatrixName.BackColor = Color.Red;
+                    Matrix.MatrixSizeComboBox_ChangeColor();
                     Matrix.MatrixSize = 0;
                     Matrix.CreateTextBoxes();
                     Matrix.LblMatrixName.Visible = false;
@@ -183,8 +185,12 @@ namespace Task3OverloadingOperations.MatrixForm
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void FillAutoButton_Click(object sender, EventArgs e)
+        public void FillAutoButton_Click(object sender, EventArgs e)
         {
+            if (MatrixSizeComboBox.Text == string.Empty)
+            {
+                MatrixSizeComboBox.Text = new Random().Next(2, 10).ToString();
+            }
             if (MatrixSizeComboBox.Text == string.Empty || MatrixSizeComboBox.Text == "0")
             {
                 Matrix.MatrixSizeComboBox_ChangeColor();
@@ -206,13 +212,6 @@ namespace Task3OverloadingOperations.MatrixForm
         /// <param name="e"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            ///*****TODO
-            ///Надо доработать форму Change (там пока нечего не работает)
-            // надо убрать RichTextBox из главной формы и вместо его создать метод который показывает значение матрицы
-            // с помощью label в главной матрицы p.s просто надо скопировать значение textboxes и добавить в новий метод
-            // надо еще подумать в дольнейшие обновление программы
-            // надо добавить класс делегат чтобы выпольнит опреции с матрицами
-
             Matrix.AddingValues();
         }
 

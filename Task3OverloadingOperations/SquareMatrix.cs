@@ -254,8 +254,10 @@ namespace Task3OverloadingOperations
 
         public static SquareMatrix operator <=(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
         {
-            SquareMatrix TemproraryMatrix = new SquareMatrix();
-            TemproraryMatrix.MatrixValue = new int[Size, Size];
+            SquareMatrix TemproraryMatrix = new SquareMatrix()
+            {
+                MatrixValue = new int[Size, Size],
+            };
             for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
                 for (int RowIndex = 0; RowIndex < Size; ++RowIndex)

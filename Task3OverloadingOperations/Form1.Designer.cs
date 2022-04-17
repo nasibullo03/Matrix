@@ -80,6 +80,7 @@ namespace Task3OverloadingOperations
             this.lblProgramName.Size = new System.Drawing.Size(130, 44);
             this.lblProgramName.TabIndex = 0;
             this.lblProgramName.Text = "Matrix";
+            this.lblProgramName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblProgramName_MouseDown);
             // 
             // panelMain
             // 

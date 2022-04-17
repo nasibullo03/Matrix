@@ -90,66 +90,105 @@ namespace Task3OverloadingOperations
 
         #endregion constructors
 
-        public static void CreateTextBoxes()
+        public static void CreateTextBoxes(string FormName = "Add", int[,] matrix = null)
         {
-            textBoxes = new TextBox[MatrixSize, MatrixSize];
-
-            FormAdd.PanelMatrixValue.Controls.Clear();
-
-            Matrix.LblMatrixName.Visible = true;
-            Matrix.BrecketClosePicture.Visible = true;
-            Matrix.BrecketOpenPicture.Visible = true;
-
-            LblMatrixName.Location = new Point(0, 0);
-            Point brecketOpenLocation = new Point(0, 0);
-            brecketOpenLocation.X = LblMatrixName.Location.X + LblMatrixName.Size.Width;
-            LblMatrixName.Text = FormAdd.MatrixNameComboBox.Text + "=";
-            Point TextBoxPoint = new Point(0, 3);
-            TextBoxPoint.X = brecketOpenLocation.X + 22;
-
-            Point brecketCloseLocation = new Point(0, 0);
-
-            Size brecketSize = new Size(20, 0);
-
-            if (FormAdd.MatrixSizeComboBox.Text != "")
+            try
             {
-                for (int i = 0; i < MatrixSize; ++i)
+                textBoxes = new TextBox[MatrixSize, MatrixSize];
+                if (FormName == "Add")
                 {
-                    for (int j = 0; j < MatrixSize; ++j)
-                    {
-                        textBoxes[i, j] = new TextBox();
-                        textBoxes[i, j].Location = new System.Drawing.Point(TextBoxPoint.X, TextBoxPoint.Y);
-                        textBoxes[i, j].Size = new System.Drawing.Size(20, 20);
-                        textBoxes[i, j].TextChanged += new System.EventHandler(FormAdd.MatrixTextBoxes_TextChanged);
-                        FormAdd.PanelMatrixValue.Controls.Add(textBoxes[i, j]);
-                        TextBoxPoint.X += 25;
-                    }
-
-                    brecketCloseLocation.X = TextBoxPoint.X - 2;
-                    TextBoxPoint.X = brecketOpenLocation.X + 22;
-                    TextBoxPoint.Y += 25;
+                    FormAdd.PanelMatrixValue.Controls.Clear();
                 }
-                brecketSize.Height += TextBoxPoint.Y;
+                else if (FormName == "Change")
+                {
+                    FormChange.PanelMatrixValue.Controls.Clear();
+                }
+                Matrix.LblMatrixName.Visible = true;
+                Matrix.BrecketClosePicture.Visible = true;
+                Matrix.BrecketOpenPicture.Visible = true;
 
-                BrecketOpenPicture.Size = brecketSize;
-                BrecketClosePicture.Size = brecketSize;
-                LblMatrixName.Location = new Point(0, brecketSize.Height / 2 - LblMatrixName.Size.Height / 2);
+                LblMatrixName.Location = new Point(0, 0);
+                Point brecketOpenLocation = new Point(0, 0);
+                brecketOpenLocation.X = LblMatrixName.Location.X + LblMatrixName.Size.Width;
 
-                BrecketClosePicture.Location = brecketCloseLocation;
-                BrecketOpenPicture.Location = brecketOpenLocation;
+                Point TextBoxPoint = new Point(0, 3);
+                TextBoxPoint.X = brecketOpenLocation.X + 22;
 
-                FormAdd.PanelMatrixValue.Controls.Add(BrecketOpenPicture);
-                FormAdd.PanelMatrixValue.Controls.Add(BrecketClosePicture);
-                FormAdd.PanelMatrixValue.Controls.Add(LblMatrixName);
+                Point brecketCloseLocation = new Point(0, 0);
+
+                Size brecketSize = new Size(20, 0);
+
+                if (FormName == "Add" && FormAdd.MatrixSizeComboBox.Text != ""
+                    || FormName == "Change" && FormChange.MatrixSizeComboBox.Text != "")
+                {
+                    for (int i = 0; i < MatrixSize; ++i)
+                    {
+                        for (int j = 0; j < MatrixSize; ++j)
+                        {
+                            textBoxes[i, j] = new TextBox();
+                            textBoxes[i, j].Location = new System.Drawing.Point(TextBoxPoint.X, TextBoxPoint.Y);
+                            textBoxes[i, j].Size = new System.Drawing.Size(20, 20);
+
+                            if (FormName == "Add")
+                            {
+                                textBoxes[i, j].TextChanged += new System.EventHandler(FormAdd.MatrixTextBoxes_TextChanged);
+                                FormAdd.PanelMatrixValue.Controls.Add(textBoxes[i, j]);
+                            }
+                            else if (FormName == "Change")
+                            {
+                                textBoxes[i, j].Text = matrix[i, j].ToString();
+                                textBoxes[i, j].TextChanged += new System.EventHandler(FormAdd.MatrixTextBoxes_TextChanged);
+                                FormChange.PanelMatrixValue.Controls.Add(textBoxes[i, j]);
+                            }
+
+                            TextBoxPoint.X += 25;
+                        }
+
+                        brecketCloseLocation.X = TextBoxPoint.X - 2;
+                        TextBoxPoint.X = brecketOpenLocation.X + 22;
+                        TextBoxPoint.Y += 25;
+                    }
+                    brecketSize.Height += TextBoxPoint.Y;
+
+                    BrecketOpenPicture.Size = brecketSize;
+                    BrecketClosePicture.Size = brecketSize;
+                    LblMatrixName.Location = new Point(0, brecketSize.Height / 2 - LblMatrixName.Size.Height / 2);
+
+                    BrecketClosePicture.Location = brecketCloseLocation;
+                    BrecketOpenPicture.Location = brecketOpenLocation;
+                    if (FormName == "Add")
+                    {
+                        LblMatrixName.Text = FormAdd.MatrixNameComboBox.Text + "=";
+                        FormAdd.PanelMatrixValue.Controls.Add(BrecketOpenPicture);
+                        FormAdd.PanelMatrixValue.Controls.Add(BrecketClosePicture);
+                        FormAdd.PanelMatrixValue.Controls.Add(LblMatrixName);
+                    }
+                    else if (FormName == "Change")
+                    {
+                        LblMatrixName.Text = FormChange.MatrixNameComboBox.Text + "=";
+                        FormChange.PanelMatrixValue.Controls.Add(BrecketOpenPicture);
+                        FormChange.PanelMatrixValue.Controls.Add(BrecketClosePicture);
+                        FormChange.PanelMatrixValue.Controls.Add(LblMatrixName);
+
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Программа вернул ощибку", "Квадратная матрица", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+                FormAdd.MatrixSizeComboBox.Text = "0";
             }
         }
 
-        public static void ClearMatrixResultPanel()
+        public static void ClearMatrixResultPanel(string FormName = "Add")
         {
-            FormAdd.PanelMatrixValue.Controls.Clear();
+            if (FormName == "Add")
+                FormAdd.PanelMatrixValue.Controls.Clear();
+            else if (FormName == "Change")
+                FormChange.PanelMatrixValue.Controls.Clear();
         }
 
-        public static void ClearTextBoxes(bool ClearMatrixName = true)
+        public static void ClearTextBoxes(bool ClearMatrixName = true, string FormName = "Add")
         {
             if (ClearMatrixName)
             {
@@ -158,8 +197,16 @@ namespace Task3OverloadingOperations
                 LblMatrixName.Text = "";
                 MatrixSize = 0;
 
-                MatrixForm.Add.onLoadDefaultParametrs();
-                ClearMatrixResultPanel();
+                if (FormName == "Add")
+                {
+                    MatrixForm.Add.onLoadDefaultParametrs();
+                    ClearMatrixResultPanel();
+                }
+                else if (FormName == "Change")
+                {
+                    MatrixForm.Change.onLoadDefaultParametrs();
+                    ClearMatrixResultPanel("Change");
+                }
             }
             else
             {
@@ -251,7 +298,22 @@ namespace Task3OverloadingOperations
             }
         }
 
+        public static void ChangeValues(string MatrixName = "A")
+        {
+            if (Matrix.MatrixA.Name == MatrixName)
+            {
+                FillMatrix.Fill(ref MatrixA);
+                Matrix.ShowOnResultRechtextBox();
+            }
+            else if (Matrix.MatrixB.Name == MatrixName)
+            {
+                FillMatrix.Fill(ref MatrixB);
+                Matrix.ShowOnResultRechtextBox();
+            }
+        }
+
         /// <summary>
+
         /// Добавить значение текстового поля в MatrixA и MatrixB
         /// </summary>
         private static void FillMatrixValues()
@@ -363,10 +425,9 @@ namespace Task3OverloadingOperations
                         textBoxes[i, j].Size = new System.Drawing.Size(20, 20);
                         TextBoxPoint.X += 25;
                     }
-
-                    //FormAdd.PanelMatrixValue.Controls.Add(textBoxes[i, j]);
                 }
 
+                BrecketClosePicture.Location = new Point(TextBoxPoint.X, 0);
                 TextBoxPoint.X = LblMatrixName.Location.X + LblMatrixName.Size.Width + 22;
                 TextBoxPoint.Y += 25;
             }

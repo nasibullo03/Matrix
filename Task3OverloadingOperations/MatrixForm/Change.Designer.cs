@@ -32,7 +32,6 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonAdd = new System.Windows.Forms.Button();
             this.PanelOperationButtons = new System.Windows.Forms.Panel();
             this.ClearMatrixValuesButton = new System.Windows.Forms.Button();
-            this.ButtonClear = new System.Windows.Forms.Button();
             this.PanelControllButtons = new System.Windows.Forms.Panel();
             this.MatrixSizeComboBox = new System.Windows.Forms.ComboBox();
             this.lblTextOfCBNameOFMatrix = new System.Windows.Forms.Label();
@@ -40,11 +39,9 @@ namespace Task3OverloadingOperations.MatrixForm
             this.FillAutoButton = new System.Windows.Forms.Button();
             this.lblSizeOfMatrixName = new System.Windows.Forms.Label();
             this.ButtonBack = new System.Windows.Forms.Button();
-            this.PanelFillingMatrixs = new System.Windows.Forms.Panel();
             this.PanelMatrixValue = new System.Windows.Forms.Panel();
             this.PanelOperationButtons.SuspendLayout();
             this.PanelControllButtons.SuspendLayout();
-            this.PanelFillingMatrixs.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonAdd
@@ -55,11 +52,11 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonAdd.ForeColor = System.Drawing.Color.White;
-            this.ButtonAdd.Location = new System.Drawing.Point(70, 3);
+            this.ButtonAdd.Location = new System.Drawing.Point(129, 3);
             this.ButtonAdd.Name = "ButtonAdd";
-            this.ButtonAdd.Size = new System.Drawing.Size(143, 31);
+            this.ButtonAdd.Size = new System.Drawing.Size(135, 31);
             this.ButtonAdd.TabIndex = 0;
-            this.ButtonAdd.Text = "Добавить";
+            this.ButtonAdd.Text = "Изменить";
             this.ButtonAdd.UseVisualStyleBackColor = false;
             this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
@@ -67,7 +64,6 @@ namespace Task3OverloadingOperations.MatrixForm
             // 
             this.PanelOperationButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.PanelOperationButtons.Controls.Add(this.ClearMatrixValuesButton);
-            this.PanelOperationButtons.Controls.Add(this.ButtonClear);
             this.PanelOperationButtons.Controls.Add(this.ButtonAdd);
             this.PanelOperationButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PanelOperationButtons.Location = new System.Drawing.Point(0, 276);
@@ -83,27 +79,13 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ClearMatrixValuesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClearMatrixValuesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ClearMatrixValuesButton.ForeColor = System.Drawing.Color.White;
-            this.ClearMatrixValuesButton.Location = new System.Drawing.Point(219, 3);
+            this.ClearMatrixValuesButton.Location = new System.Drawing.Point(312, 3);
             this.ClearMatrixValuesButton.Name = "ClearMatrixValuesButton";
-            this.ClearMatrixValuesButton.Size = new System.Drawing.Size(143, 31);
+            this.ClearMatrixValuesButton.Size = new System.Drawing.Size(135, 31);
             this.ClearMatrixValuesButton.TabIndex = 0;
             this.ClearMatrixValuesButton.Text = "Очистить матрицу";
             this.ClearMatrixValuesButton.UseVisualStyleBackColor = false;
-            // 
-            // ButtonClear
-            // 
-            this.ButtonClear.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ButtonClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
-            this.ButtonClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
-            this.ButtonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ButtonClear.ForeColor = System.Drawing.Color.White;
-            this.ButtonClear.Location = new System.Drawing.Point(368, 3);
-            this.ButtonClear.Name = "ButtonClear";
-            this.ButtonClear.Size = new System.Drawing.Size(143, 31);
-            this.ButtonClear.TabIndex = 0;
-            this.ButtonClear.Text = "Очистить все";
-            this.ButtonClear.UseVisualStyleBackColor = false;
+            this.ClearMatrixValuesButton.Click += new System.EventHandler(this.ClearMatrixValuesButton_Click);
             // 
             // PanelControllButtons
             // 
@@ -122,8 +104,10 @@ namespace Task3OverloadingOperations.MatrixForm
             // 
             // MatrixSizeComboBox
             // 
+            this.MatrixSizeComboBox.Enabled = false;
             this.MatrixSizeComboBox.FormattingEnabled = true;
             this.MatrixSizeComboBox.Items.AddRange(new object[] {
+            "10",
             "2",
             "3",
             "4",
@@ -131,13 +115,13 @@ namespace Task3OverloadingOperations.MatrixForm
             "6",
             "7",
             "8",
-            "9",
-            "10"});
+            "9"});
             this.MatrixSizeComboBox.Location = new System.Drawing.Point(361, 11);
             this.MatrixSizeComboBox.Name = "MatrixSizeComboBox";
             this.MatrixSizeComboBox.Size = new System.Drawing.Size(51, 21);
+            this.MatrixSizeComboBox.Sorted = true;
             this.MatrixSizeComboBox.TabIndex = 4;
-            this.MatrixSizeComboBox.TextChanged += new System.EventHandler(this.MatrixSizeComboBox_TextChanged);
+
             // 
             // lblTextOfCBNameOFMatrix
             // 
@@ -157,6 +141,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.MatrixNameComboBox.Name = "MatrixNameComboBox";
             this.MatrixNameComboBox.Size = new System.Drawing.Size(51, 21);
             this.MatrixNameComboBox.TabIndex = 4;
+            this.MatrixNameComboBox.SelectedIndexChanged += new System.EventHandler(this.MatrixNameComboBox_SelectedIndexChanged);
             this.MatrixNameComboBox.TextChanged += new System.EventHandler(this.MatrixNameComboBox_TextChanged);
             // 
             // FillAutoButton
@@ -168,10 +153,11 @@ namespace Task3OverloadingOperations.MatrixForm
             this.FillAutoButton.ForeColor = System.Drawing.Color.White;
             this.FillAutoButton.Location = new System.Drawing.Point(418, 5);
             this.FillAutoButton.Name = "FillAutoButton";
-            this.FillAutoButton.Size = new System.Drawing.Size(125, 31);
+            this.FillAutoButton.Size = new System.Drawing.Size(135, 31);
             this.FillAutoButton.TabIndex = 3;
             this.FillAutoButton.Text = "Автозаполнение";
             this.FillAutoButton.UseVisualStyleBackColor = false;
+            this.FillAutoButton.Click += new System.EventHandler(this.FillAutoButton_Click);
             // 
             // lblSizeOfMatrixName
             // 
@@ -199,24 +185,13 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonBack.UseVisualStyleBackColor = true;
             this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
             // 
-            // PanelFillingMatrixs
-            // 
-            this.PanelFillingMatrixs.AutoScroll = true;
-            this.PanelFillingMatrixs.Controls.Add(this.PanelMatrixValue);
-            this.PanelFillingMatrixs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelFillingMatrixs.Location = new System.Drawing.Point(0, 0);
-            this.PanelFillingMatrixs.Name = "PanelFillingMatrixs";
-            this.PanelFillingMatrixs.Size = new System.Drawing.Size(578, 316);
-            this.PanelFillingMatrixs.TabIndex = 21;
-            // 
             // PanelMatrixValue
             // 
-            this.PanelMatrixValue.AutoScroll = true;
             this.PanelMatrixValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelMatrixValue.Location = new System.Drawing.Point(0, 0);
+            this.PanelMatrixValue.Location = new System.Drawing.Point(0, 40);
             this.PanelMatrixValue.Name = "PanelMatrixValue";
-            this.PanelMatrixValue.Size = new System.Drawing.Size(578, 316);
-            this.PanelMatrixValue.TabIndex = 6;
+            this.PanelMatrixValue.Size = new System.Drawing.Size(578, 236);
+            this.PanelMatrixValue.TabIndex = 21;
             // 
             // Change
             // 
@@ -224,9 +199,9 @@ namespace Task3OverloadingOperations.MatrixForm
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.ClientSize = new System.Drawing.Size(578, 316);
+            this.Controls.Add(this.PanelMatrixValue);
             this.Controls.Add(this.PanelOperationButtons);
             this.Controls.Add(this.PanelControllButtons);
-            this.Controls.Add(this.PanelFillingMatrixs);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Change";
             this.Text = "Change";
@@ -234,7 +209,6 @@ namespace Task3OverloadingOperations.MatrixForm
             this.PanelOperationButtons.ResumeLayout(false);
             this.PanelControllButtons.ResumeLayout(false);
             this.PanelControllButtons.PerformLayout();
-            this.PanelFillingMatrixs.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -244,7 +218,6 @@ namespace Task3OverloadingOperations.MatrixForm
         private System.Windows.Forms.Button ButtonAdd;
         private System.Windows.Forms.Panel PanelOperationButtons;
         private System.Windows.Forms.Button ClearMatrixValuesButton;
-        private System.Windows.Forms.Button ButtonClear;
         private System.Windows.Forms.Panel PanelControllButtons;
         public System.Windows.Forms.ComboBox MatrixSizeComboBox;
         private System.Windows.Forms.Label lblTextOfCBNameOFMatrix;
@@ -252,7 +225,6 @@ namespace Task3OverloadingOperations.MatrixForm
         private System.Windows.Forms.Button FillAutoButton;
         private System.Windows.Forms.Label lblSizeOfMatrixName;
         private System.Windows.Forms.Button ButtonBack;
-        public System.Windows.Forms.Panel PanelFillingMatrixs;
         public System.Windows.Forms.Panel PanelMatrixValue;
     }
 }

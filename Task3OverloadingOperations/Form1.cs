@@ -41,23 +41,29 @@ namespace Task3OverloadingOperations
 
         private static void PanelValuesElementsParametrs()
         {
-            Matrix.BrecketOpenPicture = new PictureBox();
-            Matrix.BrecketOpenPicture.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Open;
-            Matrix.BrecketOpenPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            Matrix.BrecketOpenPicture.Size = new System.Drawing.Size(20, 68);
+            Matrix.BrecketOpenPicture = new PictureBox()
+            {
+                BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Open,
+                BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch,
+                Size = new System.Drawing.Size(20, 68),
+            };
 
-            Matrix.BrecketClosePicture = new PictureBox();
-            Matrix.BrecketClosePicture.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Close;
-            Matrix.BrecketClosePicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            Matrix.BrecketClosePicture.Size = new System.Drawing.Size(20, 68);
+            Matrix.BrecketClosePicture = new PictureBox()
+            {
+                BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Close,
+                BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch,
+                Size = new System.Drawing.Size(20, 68),
+            };
 
-            Matrix.LblMatrixName = new Label();
-            Matrix.LblMatrixName.AutoSize = true;
-            Matrix.LblMatrixName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            Matrix.LblMatrixName.ForeColor = System.Drawing.Color.Black;
-            Matrix.LblMatrixName.Size = new System.Drawing.Size(42, 29);
-            Matrix.LblMatrixName.Location = new Point(3, 3);
-            Matrix.LblMatrixName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Matrix.LblMatrixName = new Label()
+            {
+                AutoSize = true,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))),
+                ForeColor = System.Drawing.Color.Black,
+                Size = new System.Drawing.Size(42, 29),
+                Location = new Point(3, 3),
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+            };
         }
 
         public void ClearPannelFormValue()
@@ -106,6 +112,12 @@ namespace Task3OverloadingOperations
             {
                 this.Size = new Size(this.Size.Width, 330);
             }
+        }
+
+        private void lblProgramName_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            PostMessage(this.Handle, WM_SYSCOMMAND, DOMOVE, 0);
         }
     }
 }

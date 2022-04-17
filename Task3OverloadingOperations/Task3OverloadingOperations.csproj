@@ -54,7 +54,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IMatrix.cs" />
     <Compile Include="PrintValue.cs" />
     <Compile Include="MatrixForm\Add.cs">
       <SubType>Form</SubType>
@@ -82,6 +81,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ShowForm.cs" />
+    <Compile Include="ShowMatrix.cs" />
     <Compile Include="SquareMatrix.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

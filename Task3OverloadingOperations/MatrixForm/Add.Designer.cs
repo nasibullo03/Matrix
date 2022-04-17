@@ -253,12 +253,12 @@ namespace Task3OverloadingOperations.MatrixForm
         private System.Windows.Forms.Button ButtonAdd;
         private System.Windows.Forms.Button ButtonBack;
         private System.Windows.Forms.Label lblSizeOfMatrixName;
-        private System.Windows.Forms.Button FillAutoButton;
         public System.Windows.Forms.ComboBox MatrixNameComboBox;
         private System.Windows.Forms.Label lblTextOfCBNameOFMatrix;
         public System.Windows.Forms.Panel PanelFillingMatrixs;
         public System.Windows.Forms.ComboBox MatrixSizeComboBox;
         private System.Windows.Forms.Button ClearMatrixValuesButton;
         public System.Windows.Forms.Panel PanelMatrixValue;
+        private System.Windows.Forms.Button FillAutoButton;
     }
 }

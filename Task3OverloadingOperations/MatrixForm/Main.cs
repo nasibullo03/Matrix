@@ -39,7 +39,7 @@ namespace Task3OverloadingOperations.MatrixForm
 
         private void OnLoad()
         {
-            Matrix.FormMain.ResultRTextBox.Lines = Matrix.ResultText != null ? Matrix.ResultText : null;
+            Matrix.FormMain.ResultRTextBox.Lines = Matrix.ResultText ?? null;
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
