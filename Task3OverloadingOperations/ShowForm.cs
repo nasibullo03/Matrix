@@ -13,8 +13,6 @@ namespace Task3OverloadingOperations
 
         private delegate void OperationDelegate();
 
-        //private Form1 Form1 { get; set; }
-
         private static Dictionary<string, OperationDelegate> _operations { get; set; }
 
         public ShowForm()

@@ -2,7 +2,7 @@
 
 namespace Task3OverloadingOperations
 {
-    internal class SquareMatrix : PrintValue
+    public class SquareMatrix : PrintValue
     {
         public string Name { get; set; }
         private static int size { get; set; }

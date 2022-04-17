@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Task3OverloadingOperations
 {
-    internal class PrintValue
+    public class PrintValue
     {
         internal static void PrintOperations(
             SquareMatrix FirstMatrix,

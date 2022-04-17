@@ -77,6 +77,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonTranspose.TabIndex = 6;
             this.ButtonTranspose.Text = "Transpose";
             this.ButtonTranspose.UseVisualStyleBackColor = false;
+            this.ButtonTranspose.Click += new System.EventHandler(this.ButtonTranspose_Click);
             // 
             // ButtonMinor
             // 
@@ -92,6 +93,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonMinor.TabIndex = 5;
             this.ButtonMinor.Text = "Minor";
             this.ButtonMinor.UseVisualStyleBackColor = false;
+            this.ButtonMinor.Click += new System.EventHandler(this.ButtonMinor_Click);
             // 
             // ButtonDeterminant
             // 
@@ -107,6 +109,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonDeterminant.TabIndex = 4;
             this.ButtonDeterminant.Text = "Det";
             this.ButtonDeterminant.UseVisualStyleBackColor = false;
+            this.ButtonDeterminant.Click += new System.EventHandler(this.ButtonDeterminant_Click);
             // 
             // ButtonDivision
             // 
@@ -122,6 +125,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonDivision.TabIndex = 4;
             this.ButtonDivision.Text = "/";
             this.ButtonDivision.UseVisualStyleBackColor = false;
+            this.ButtonDivision.Click += new System.EventHandler(this.ButtonDivision_Click);
             // 
             // ButtonMultiply
             // 
@@ -137,6 +141,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonMultiply.TabIndex = 1;
             this.ButtonMultiply.Text = "*";
             this.ButtonMultiply.UseVisualStyleBackColor = false;
+            this.ButtonMultiply.Click += new System.EventHandler(this.ButtonMultiply_Click);
             // 
             // ButtonMinus
             // 
@@ -152,6 +157,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonMinus.TabIndex = 2;
             this.ButtonMinus.Text = "-";
             this.ButtonMinus.UseVisualStyleBackColor = false;
+            this.ButtonMinus.Click += new System.EventHandler(this.ButtonMinus_Click);
             // 
             // ButtonPlus
             // 
@@ -289,6 +295,6 @@ namespace Task3OverloadingOperations.MatrixForm
         private System.Windows.Forms.Button ButtonChange;
         private System.Windows.Forms.Button ButtonAdd;
         public System.Windows.Forms.RichTextBox ResultRTextBox;
-        private System.Windows.Forms.Panel PanelResult;
+        public System.Windows.Forms.Panel PanelResult;
     }
 }

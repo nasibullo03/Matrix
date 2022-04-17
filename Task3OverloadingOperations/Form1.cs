@@ -19,9 +19,6 @@ namespace Task3OverloadingOperations
         public Form1()
         {
             InitializeComponent();
-            ShowForm.form1 = this;
-            Matrix.MatrixA = new Matrix();
-            Matrix.MatrixB = new Matrix();
         }
 
         #endregion Constructors
@@ -35,7 +32,12 @@ namespace Task3OverloadingOperations
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Matrix.MatrixA = new Matrix();
+            Matrix.MatrixB = new Matrix();
+            ShowForm.form1 = this;
             ShowForm.PerformOperation("Main");
+            MatrixForm.Main.FillOperations();
+
             PanelValuesElementsParametrs();
         }
 
@@ -62,6 +64,24 @@ namespace Task3OverloadingOperations
                 ForeColor = System.Drawing.Color.Black,
                 Size = new System.Drawing.Size(42, 29),
                 Location = new Point(3, 3),
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+            };
+
+            ShowMatrix.MatrixA_LblName = new Label()
+            {
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))),
+                ForeColor = System.Drawing.Color.Black,
+                Size = new Size(0, 0),
+                AutoSize = true,
+                Visible = false,
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+            };
+
+            ShowMatrix.MatrixB_LblName = new Label()
+            {
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))),
+                ForeColor = System.Drawing.Color.Black,
+                Visible = false,
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
             };
         }

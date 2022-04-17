@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Task3OverloadingOperations
 {
-    internal class Matrix : SquareMatrix
+    public class Matrix : SquareMatrix
     {
         #region Fields
 
@@ -169,7 +169,6 @@ namespace Task3OverloadingOperations
                         FormChange.PanelMatrixValue.Controls.Add(BrecketOpenPicture);
                         FormChange.PanelMatrixValue.Controls.Add(BrecketClosePicture);
                         FormChange.PanelMatrixValue.Controls.Add(LblMatrixName);
-
                     }
                 }
             }

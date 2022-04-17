@@ -125,6 +125,8 @@
     <Content Include="Images\bracket_Close.png" />
     <Content Include="Images\bracket_Open.png" />
     <Content Include="Images\circle-arrow-left-solid %282%29 %281%29 %281%29.png" />
+    <Content Include="Resources\bracket_Close.png" />
+    <Content Include="Resources\bracket_Open.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
