@@ -35,10 +35,10 @@ namespace Task3OverloadingOperations.MatrixForm
         /// <summary>
         /// Параметры по умолчанию при открытии формы
         /// </summary>
-        public static void onLoadDefaultParametrs()
+        public static void OnLoadDefaultParametrs()
         {
             //Если заполнена только Первая матрица
-            if (!Matrix.isMatrixAEmpty && Matrix.isMatrixBEmpty)
+            if (!Matrix.IsMatrixAEmpty && Matrix.IsMatrixBEmpty)
             {
                 if (Matrix.MatrixA.Name == "A")
                 {
@@ -53,7 +53,7 @@ namespace Task3OverloadingOperations.MatrixForm
                 Matrix.FormAdd.MatrixSizeComboBox.Text = Matrix.MatrixA.MatrixValue.GetLength(0).ToString();
                 Matrix.FormAdd.MatrixSizeComboBox.Enabled = false;
             }
-            else if (Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty) // если заполнена только значение второй матрицы
+            else if (Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty) // если заполнена только значение второй матрицы
             {
                 Matrix.FormAdd.MatrixNameComboBox.Text = Matrix.MatrixA.Name;
                 if (Matrix.MatrixB.Name == "B")
@@ -67,8 +67,8 @@ namespace Task3OverloadingOperations.MatrixForm
                 Matrix.MatrixSizeComboBox_ClearItems();
                 Matrix.FormAdd.MatrixSizeComboBox.Text = Matrix.MatrixB.MatrixValue.GetLength(0).ToString();
             } // если оба матрицы заполнена/не заполнена
-            else if (Matrix.isMatrixAEmpty && Matrix.isMatrixBEmpty
-              || !Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
+            else if (Matrix.IsMatrixAEmpty && Matrix.IsMatrixBEmpty
+              || !Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
             {
                 Matrix.FormAdd.MatrixNameComboBox.Text = "A";
                 Matrix.FormAdd.MatrixSizeComboBox.Text = string.Empty;
@@ -81,7 +81,7 @@ namespace Task3OverloadingOperations.MatrixForm
         /// </summary>
         private static void OnLoad()
         {
-            onLoadDefaultParametrs();
+            OnLoadDefaultParametrs();
         }
 
         /// <summary>

@@ -9,61 +9,61 @@ namespace Task3OverloadingOperations
 {
     internal class ShowForm
     {
-        public static Form1 form1 { get; set; }
+        public static Form1 Form1 { get; set; }
 
         private delegate void OperationDelegate();
 
-        private static Dictionary<string, OperationDelegate> _operations { get; set; }
+        private static Dictionary<string, OperationDelegate> Operations { get; set; }
 
         public ShowForm()
         {
         }
 
-        private static void showForm(Form form)
+        private static void OpenForm(Form form)
         {
             form.TopLevel = false;
             form.AutoScroll = false;
             form.Dock = DockStyle.Fill;
             form.FormBorderStyle = FormBorderStyle.None;
-            form1.PanelForms.Controls.Add(form);
+            Form1.PanelForms.Controls.Add(form);
             form.Show();
         }
 
         private static void ClearPannelFormValue()
         {
-            form1.ClearPannelFormValue();
+            Form1.ClearPannelFormValue();
         }
 
         private static void FormAdd()
         {
             ClearPannelFormValue();
-            showForm(new MatrixForm.Add());
+            OpenForm(new MatrixForm.Add());
         }
 
         private static void FormMain()
         {
             ClearPannelFormValue();
-            showForm(new MatrixForm.Main());
+            OpenForm(new MatrixForm.Main());
         }
 
         private static void FormChange()
         {
             ClearPannelFormValue();
-            showForm(new MatrixForm.Change());
+            OpenForm(new MatrixForm.Change());
         }
 
         public static void PerformOperation(string op)
         {
-            _operations =
+            Operations =
              new Dictionary<string, OperationDelegate>
             {
                 { "Add", FormAdd },
                 { "Main", FormMain },
                 { "Change", FormChange }
             };
-            if (!_operations.ContainsKey(op))
+            if (!Operations.ContainsKey(op))
                 throw new ArgumentException(string.Format("Operation {0} is invalid", op), "op");
-            _operations[op]();
+            Operations[op]();
         }
 
         public static void ShowOneMartix(Matrix matrix, String MatrixName)

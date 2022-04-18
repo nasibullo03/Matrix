@@ -23,7 +23,6 @@ namespace Task3OverloadingOperations
                 for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
                 {
                     matrix.MatrixValue[ColIndex, RowIndex] = rand.Next(0, 9);
-                    //textBoxes[ColIndex, RowIndex].Text = matrix.MatrixValue[ColIndex, RowIndex].ToString();
                 }
             }
         }

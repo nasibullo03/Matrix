@@ -20,7 +20,7 @@ namespace Task3OverloadingOperations
 
         public static Matrix MatrixB;
 
-        public static bool isMatrixAEmpty
+        public static bool IsMatrixAEmpty
         {
             get
             {
@@ -35,7 +35,7 @@ namespace Task3OverloadingOperations
             }
         }
 
-        public static bool isMatrixBEmpty
+        public static bool IsMatrixBEmpty
         {
             get
             {
@@ -53,8 +53,8 @@ namespace Task3OverloadingOperations
         public static MatrixForm.Add FormAdd { get; set; }
         public static MatrixForm.Main FormMain { get; set; }
         public static MatrixForm.Change FormChange { get; set; }
-        public static PictureBox BrecketOpenPicture { get; set; }
-        public static PictureBox BrecketClosePicture { get; set; }
+        public static PictureBox BrecketOpenPicture;
+        public static PictureBox BrecketClosePicture;
 
         public static Label LblMatrixName { get; set; }
 
@@ -108,11 +108,17 @@ namespace Task3OverloadingOperations
                 Matrix.BrecketOpenPicture.Visible = true;
 
                 LblMatrixName.Location = new Point(0, 0);
-                Point brecketOpenLocation = new Point(0, 0);
-                brecketOpenLocation.X = LblMatrixName.Location.X + LblMatrixName.Size.Width;
+                var brecketOpenLocation = new Point()
+                {
+                    X = LblMatrixName.Location.X + LblMatrixName.Size.Width,
+                    Y = 0
+                };
 
-                Point TextBoxPoint = new Point(0, 3);
-                TextBoxPoint.X = brecketOpenLocation.X + 22;
+                var TextBoxPoint = new Point()
+                {
+                    X = brecketOpenLocation.X + 22,
+                    Y = 3
+                };
 
                 Point brecketCloseLocation = new Point(0, 0);
 
@@ -125,9 +131,11 @@ namespace Task3OverloadingOperations
                     {
                         for (int j = 0; j < MatrixSize; ++j)
                         {
-                            textBoxes[i, j] = new TextBox();
-                            textBoxes[i, j].Location = new System.Drawing.Point(TextBoxPoint.X, TextBoxPoint.Y);
-                            textBoxes[i, j].Size = new System.Drawing.Size(20, 20);
+                            textBoxes[i, j] = new TextBox()
+                            {
+                                Location = new System.Drawing.Point(TextBoxPoint.X, TextBoxPoint.Y),
+                                Size = new System.Drawing.Size(20, 20)
+                            };
 
                             if (FormName == "Add")
                             {
@@ -198,7 +206,7 @@ namespace Task3OverloadingOperations
 
                 if (FormName == "Add")
                 {
-                    MatrixForm.Add.onLoadDefaultParametrs();
+                    MatrixForm.Add.OnLoadDefaultParametrs();
                     ClearMatrixResultPanel();
                 }
                 else if (FormName == "Change")
@@ -252,7 +260,7 @@ namespace Task3OverloadingOperations
         /// </summary>
         public static void AddingValues()
         {
-            if (!isMatrixAEmpty && isMatrixBEmpty)
+            if (!IsMatrixAEmpty && IsMatrixBEmpty)
             {
                 if (Matrix.MatrixA.MatrixValue.GetLength(0) == Matrix.MatrixSize)
                 {
@@ -263,7 +271,7 @@ namespace Task3OverloadingOperations
                     onDifferentSizes();
                 }
             }
-            else if (isMatrixAEmpty && !isMatrixBEmpty)
+            else if (IsMatrixAEmpty && !IsMatrixBEmpty)
             {
                 if (Matrix.MatrixB.MatrixValue.GetLength(0) == Matrix.MatrixSize)
                 {
@@ -274,12 +282,12 @@ namespace Task3OverloadingOperations
                     onDifferentSizes();
                 }
             }
-            else if (!isMatrixAEmpty && !isMatrixBEmpty)
+            else if (!IsMatrixAEmpty && !IsMatrixBEmpty)
             {
                 ResultText = null;
                 onEqualSizes();
             }
-            else if (isMatrixAEmpty && isMatrixBEmpty)
+            else if (IsMatrixAEmpty && IsMatrixBEmpty)
             {
                 onEqualSizes();
             }
@@ -317,17 +325,17 @@ namespace Task3OverloadingOperations
         /// </summary>
         private static void FillMatrixValues()
         {
-            if (Matrix.isMatrixAEmpty)
+            if (Matrix.IsMatrixAEmpty)
             {
                 FillMatrix.Fill(ref MatrixA);
                 MatrixA.Name = MatrixForm.Add.MatrixName;
             }
-            else if (Matrix.isMatrixBEmpty)
+            else if (Matrix.IsMatrixBEmpty)
             {
                 FillMatrix.Fill(ref MatrixB);
                 MatrixB.Name = MatrixForm.Add.MatrixName;
             }
-            else if (!Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
+            else if (!Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
             {
                 MatrixA.MatrixValue = null;
                 MatrixB.MatrixValue = null;
@@ -352,13 +360,13 @@ namespace Task3OverloadingOperations
              {*/
             FormMain.ResultRTextBox.Text = string.Empty;
             ResultText = null;
-            if (isMatrixAEmpty || isMatrixBEmpty)
+            if (IsMatrixAEmpty || IsMatrixBEmpty)
             {
-                if (isMatrixAEmpty)
+                if (IsMatrixAEmpty)
                 {
                     ShowForm.ShowOneMartix(MatrixB, MatrixB.Name);
                 }
-                else if (isMatrixBEmpty)
+                else if (IsMatrixBEmpty)
                 {
                     ShowForm.ShowOneMartix(MatrixA, MatrixA.Name);
                 }
@@ -375,7 +383,7 @@ namespace Task3OverloadingOperations
             }*/
         }
 
-        private static bool isNeedToRezise(int Row)
+        private static bool IsNeedToRezise(int Row)
         {
             for (int i = 0; i < MatrixSize; ++i)
             {
@@ -439,7 +447,7 @@ namespace Task3OverloadingOperations
 
             for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
             {
-                if (isNeedToRezise(RowIndex))
+                if (IsNeedToRezise(RowIndex))
                 {
                     DictForResizing.Add(RowIndex, MaxLenghtofColumn(RowIndex));
                 }

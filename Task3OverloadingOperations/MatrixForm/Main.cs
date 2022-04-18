@@ -13,7 +13,6 @@ namespace Task3OverloadingOperations.MatrixForm
     public partial class Main : Form
     {
         #region Fields
-
         public enum Operation
         { Plus, Minus, Multiply, Divide, Determinant, Minor, Transpose, ShowMatrixs }
 
@@ -78,8 +77,6 @@ namespace Task3OverloadingOperations.MatrixForm
             Matrix.LblMatrixName = new Label();
         }
 
-        #endregion Metods
-
         private void ButtonMinus_Click(object sender, EventArgs e)
         {
             Operations[Operation.Minus]();
@@ -109,5 +106,6 @@ namespace Task3OverloadingOperations.MatrixForm
         {
             Operations[Operation.Transpose]();
         }
+        #endregion Metods
     }
 }

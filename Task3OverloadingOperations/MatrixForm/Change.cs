@@ -25,7 +25,7 @@ namespace Task3OverloadingOperations.MatrixForm
         {
             Matrix.FormChange.MatrixNameComboBox.Items.Clear();
             Matrix.FormChange.MatrixSizeComboBox.Items.Clear();
-            if (!Matrix.isMatrixAEmpty && Matrix.isMatrixBEmpty)
+            if (!Matrix.IsMatrixAEmpty && Matrix.IsMatrixBEmpty)
             {
                 Matrix.FormChange.MatrixNameComboBox.Text = Matrix.MatrixA.Name;
                 Matrix.FormChange.MatrixNameComboBox.Items.Add(Matrix.MatrixA.Name);
@@ -34,7 +34,7 @@ namespace Task3OverloadingOperations.MatrixForm
 
                 Matrix.CreateTextBoxes(FormName: "Change", matrix: Matrix.MatrixA.MatrixValue);
             }
-            else if (Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
+            else if (Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
             {
                 Matrix.FormChange.MatrixNameComboBox.Text = Matrix.MatrixB.Name;
                 Matrix.FormChange.MatrixNameComboBox.Items.Add(Matrix.MatrixB.Name);
@@ -43,7 +43,7 @@ namespace Task3OverloadingOperations.MatrixForm
                 Matrix.FormChange.MatrixSizeComboBox.Items.Add(Matrix.MatrixB.MatrixValue.GetLength(0).ToString());
                 Matrix.CreateTextBoxes(FormName: "Change", matrix: Matrix.MatrixB.MatrixValue);
             }
-            else if (!Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
+            else if (!Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
             {
                 Matrix.FormChange.MatrixNameComboBox.Text = Matrix.MatrixA.Name;
                 Matrix.FormChange.MatrixSizeComboBox.Text = Matrix.MatrixA.MatrixValue.GetLength(0).ToString();

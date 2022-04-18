@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Reflection;
 
 namespace Task3OverloadingOperations
 {
@@ -18,33 +19,38 @@ namespace Task3OverloadingOperations
 
         //public static Label[,] Matrix_Labels;
         public static Label[,] MatrixA_Labels;
-
         public static Label[,] MatrixB_Labels;
-        public static Label MatrixA_LblName { get; set; }
-        public static Label MatrixB_LblName { get; set; }
-
-        private static void OneMatrix(Matrix matrix)
+        public static Label MatrixA_LblName;
+        public static Label MatrixB_LblName;
+        #endregion
+        #region Metods
+        private static void OneMatrix(Matrix matrix, Label lblMatrixName, Label[,] MatrixLabels, PictureBox BrecketClosePicture, PictureBox BrecketOpenPicture)
         {
-            //int MatrixSize = matrix.MatrixValue.GetLength(0);
+            int MatrixSize = matrix.MatrixValue.GetLength(0);
             try
             {
-                MatrixA_Labels = new Label[MatrixSize, MatrixSize];
-                FormMain.PanelResult.Controls.Clear();
+                MatrixLabels = new Label[MatrixSize, MatrixSize];
 
-                Matrix.BrecketClosePicture.Visible = true;
-                Matrix.BrecketOpenPicture.Visible = true;
+                
+
+                BrecketClosePicture.Visible = true;
+                BrecketOpenPicture.Visible = true;
 
                 Point brecketOpenLocation = new Point(0, 0);
-                MatrixA_LblName.Text = matrix.Name;
-                MessageBox.Show(MatrixA_LblName.Size.Height.ToString());
-                MatrixA_LblName.AutoSize = true;
-                MessageBox.Show(MatrixA_LblName.Size.Width.ToString());
-                brecketOpenLocation.X = MatrixA_LblName.Location.X + MatrixA_LblName.Size.Width;
+
+                lblMatrixName.Text = $"{matrix.Name}=";
+                lblMatrixName.AutoSize = true;
+                lblMatrixName.Visible = true;
+
+                brecketOpenLocation.X = lblMatrixName.Location.X + lblMatrixName.Size.Width;
 
                 Point brecketCloseLocation = new Point(0, 0);
 
-                Point LabelPoint = new Point(0, 3);
-                LabelPoint.X = brecketOpenLocation.X + 22;
+                Point LabelPoint = new Point()
+                {
+                    X = brecketOpenLocation.X + 22,
+                    Y = 3
+                };
 
                 Size brecketSize = new Size(20, 0);
 
@@ -52,15 +58,16 @@ namespace Task3OverloadingOperations
                 {
                     for (int j = 0; j < MatrixSize; ++j)
                     {
-                        MatrixA_Labels[i, j] = new Label();
-                        MatrixA_Labels[i, j].Location = new System.Drawing.Point(LabelPoint.X, LabelPoint.Y);
-                        MatrixA_Labels[i, j].AutoSize = true;
+                        MatrixLabels[i, j] = new Label() {
+                            Location = new System.Drawing.Point(LabelPoint.X, LabelPoint.Y),
+                            AutoSize = true,
+                            Text = matrix.MatrixValue[i, j].ToString()
+                         };
+                        MatrixLabels[i, j].TextChanged += new System.EventHandler(FormAdd.MatrixTextBoxes_TextChanged);
+                        
+                        FormMain.PanelResult.Controls.Add(MatrixLabels[i, j]);
 
-                        MatrixA_Labels[i, j].Text = matrix.MatrixValue[i, j].ToString();
-                        MatrixA_Labels[i, j].TextChanged += new System.EventHandler(FormAdd.MatrixTextBoxes_TextChanged);
-                        FormMain.PanelResult.Controls.Add(MatrixA_Labels[i, j]);
-
-                        LabelPoint.X += MatrixA_Labels[i, j].Size.Width + 5;
+                        LabelPoint.X += MatrixLabels[i, j].Size.Width + 5;
                     }
 
                     brecketCloseLocation.X = LabelPoint.X;
@@ -72,16 +79,16 @@ namespace Task3OverloadingOperations
 
                 BrecketOpenPicture.Size = brecketSize;
                 BrecketClosePicture.Size = brecketSize;
-                MatrixA_LblName.Location = new Point(0, brecketSize.Height / 2 - MatrixA_LblName.Size.Height / 2);
+                lblMatrixName.Location = new Point(lblMatrixName.Location.X, brecketSize.Height / 2 - lblMatrixName.Size.Height/2);
 
                 BrecketClosePicture.Location = brecketCloseLocation;
                 BrecketOpenPicture.Location = brecketOpenLocation;
 
-                ResizeLabels(MatrixA_Labels, MatrixA_LblName);
+                ResizeLabels(MatrixLabels, lblMatrixName);
 
                 FormMain.PanelResult.Controls.Add(BrecketOpenPicture);
                 FormMain.PanelResult.Controls.Add(BrecketClosePicture);
-                FormMain.PanelResult.Controls.Add(LblMatrixName);
+                FormMain.PanelResult.Controls.Add(lblMatrixName);
             }
             catch
             {
@@ -91,9 +98,18 @@ namespace Task3OverloadingOperations
         }
 
         private static void BothMatrixs()
-        { }
+        {
+            OneMatrix(MatrixA, MatrixA_LblName,MatrixA_Labels, BrecketClosePicture, BrecketOpenPicture);
+            MatrixB_LblName.Location = new Point()
+            {
+                X = BrecketClosePicture.Location.X + 22,
+                Y = BrecketClosePicture.Location.Y
+            };
+            OneMatrix(MatrixB, MatrixB_LblName, MatrixB_Labels ,, BrecketOpenPicture);
 
-        private static bool isNeedToRezise(int Row, Label[,] labels)
+        }
+
+        private static bool IsNeedToRezise(int Row, Label[,] labels)
         {
             int minSize = labels[0, Row].Size.Width;
             for (int i = 0; i < MatrixSize; ++i)
@@ -126,7 +142,7 @@ namespace Task3OverloadingOperations
 
             for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
             {
-                if (isNeedToRezise(RowIndex, labels))
+                if (IsNeedToRezise(RowIndex, labels))
                 {
                     DictForResizing.Add(RowIndex, MaxWidthofColumn(RowIndex));
                 }
@@ -138,7 +154,7 @@ namespace Task3OverloadingOperations
         private static void ChangeLabelColumnSize(Dictionary<int, int> ParametrsForResizing, Label[,] labels, Label LblMatrixName)
         {
             Point LabelPoint = new Point(LblMatrixName.Location.X + LblMatrixName.Size.Width + 22, 3);
-            MessageBox.Show($"{MatrixA_LblName.Location.X}/n {LblMatrixName.Size.Width}");
+            MessageBox.Show($"{LblMatrixName.Location.X}/n {LblMatrixName.Size.Width}");
             Size LabelSize = new Size();
 
             for (int i = 0; i < MatrixSize; ++i)
@@ -169,16 +185,19 @@ namespace Task3OverloadingOperations
         public static void Show()
 
         {
-            if (!Matrix.isMatrixAEmpty && Matrix.isMatrixBEmpty)
+            if (!Matrix.IsMatrixAEmpty && Matrix.IsMatrixBEmpty)
             {
-                OneMatrix(MatrixA);
+                FormMain.PanelResult.Controls.Clear();
+                OneMatrix(MatrixA,MatrixA_LblName, MatrixA_Labels , BrecketClosePicture,BrecketOpenPicture);
             }
-            else if (Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
+            else if (Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
             {
-                OneMatrix(MatrixB);
+                FormMain.PanelResult.Controls.Clear();
+                OneMatrix(MatrixB,MatrixB_LblName, MatrixB_Labels, BrecketClosePicture, BrecketOpenPicture);
             }
-            else if (!Matrix.isMatrixAEmpty && !Matrix.isMatrixBEmpty)
+            else if (!Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
             {
+                FormMain.PanelResult.Controls.Clear();
                 BothMatrixs();
             }
         }
@@ -218,6 +237,6 @@ namespace Task3OverloadingOperations
             throw new NotImplementedException();
         }
 
-        #endregion Fields
+        #endregion Metods
     }
 }

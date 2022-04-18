@@ -5,18 +5,9 @@ namespace Task3OverloadingOperations
     public class SquareMatrix : PrintValue
     {
         public string Name { get; set; }
-        private static int size { get; set; }
-
-        public static int Size
-        {
-            get { return size; }
-
-            set
-            {
-                size = value;
-            }
-        }
-
+        
+        public static int Size { get; set; }
+        
         public int GetMatrixSize
         {
             get
@@ -59,8 +50,10 @@ namespace Task3OverloadingOperations
 
         public static SquareMatrix operator +(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
         {
-            SquareMatrix TemproraryMatrix = new SquareMatrix();
-            TemproraryMatrix.MatrixValue = new int[Size, Size];
+            SquareMatrix TemproraryMatrix = new SquareMatrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
             for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
                 for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
@@ -74,8 +67,10 @@ namespace Task3OverloadingOperations
 
         public static SquareMatrix operator *(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
         {
-            SquareMatrix TemproraryMatrix = new SquareMatrix();
-            TemproraryMatrix.MatrixValue = new int[Size, Size];
+            SquareMatrix TemproraryMatrix = new SquareMatrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
             for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
                 for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
@@ -89,8 +84,10 @@ namespace Task3OverloadingOperations
 
         public static SquareMatrix operator -(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
         {
-            SquareMatrix TemproraryMatrix = new SquareMatrix();
-            TemproraryMatrix.MatrixValue = new int[Size, Size];
+            SquareMatrix TemproraryMatrix = new SquareMatrix() {
+                MatrixValue = new int[Size, Size],
+            };
+
             for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
                 for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
@@ -104,8 +101,11 @@ namespace Task3OverloadingOperations
 
         public static SquareMatrix operator /(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
         {
-            SquareMatrix TemproraryMatrix = new SquareMatrix();
-            TemproraryMatrix.MatrixValue = new int[Size, Size];
+            SquareMatrix TemproraryMatrix = new SquareMatrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
+
             for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
                 for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
@@ -188,8 +188,10 @@ namespace Task3OverloadingOperations
 
         public static SquareMatrix operator >(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
         {
-            SquareMatrix TemproraryMatrix = new SquareMatrix();
-            TemproraryMatrix.MatrixValue = new int[Size, Size];
+            SquareMatrix TemproraryMatrix = new SquareMatrix() {
+                MatrixValue = new int[Size, Size]
+            };
+
             for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
                 for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
@@ -210,8 +212,11 @@ namespace Task3OverloadingOperations
 
         public static SquareMatrix operator <(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
         {
-            SquareMatrix TemproraryMatrix = new SquareMatrix();
-            TemproraryMatrix.MatrixValue = new int[Size, Size];
+            SquareMatrix TemproraryMatrix = new SquareMatrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
+
             for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
                 for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
@@ -232,8 +237,11 @@ namespace Task3OverloadingOperations
 
         public static SquareMatrix operator >=(SquareMatrix FirstMatrix, SquareMatrix SecondMAtrix)
         {
-            SquareMatrix TemporaryMatrix = new SquareMatrix();
-            TemporaryMatrix.MatrixValue = new int[Size, Size];
+            SquareMatrix TemporaryMatrix = new SquareMatrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
+
             for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
             {
                 for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
@@ -278,7 +286,7 @@ namespace Task3OverloadingOperations
 
         private static int Determinant3x3(int[,] MainMatrix)
         {
-            int det = default;
+            
             int a = MainMatrix[0, 0],
                 b = MainMatrix[0, 1],
                 c = MainMatrix[0, 2],
@@ -289,8 +297,8 @@ namespace Task3OverloadingOperations
                 h = MainMatrix[2, 1],
                 i = MainMatrix[2, 2];
 
-            det = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
-            return det;
+             
+            return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
         }
 
         private static int DeterminantOver3(int[,] MainMatrix)
@@ -404,8 +412,6 @@ namespace Task3OverloadingOperations
                         | a22 a23 |
             a11 = M11 =	| a32 a33 | = a22*a33 - a23*a32
             */
-            int Size = MainMatrix.GetLength(0);
-
             int a11 = MainMatrix[0, 0],
                 a12 = MainMatrix[0, 1],
                 a13 = MainMatrix[0, 2],

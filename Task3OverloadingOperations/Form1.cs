@@ -34,7 +34,7 @@ namespace Task3OverloadingOperations
         {
             Matrix.MatrixA = new Matrix();
             Matrix.MatrixB = new Matrix();
-            ShowForm.form1 = this;
+            ShowForm.Form1 = this;
             ShowForm.PerformOperation("Main");
             MatrixForm.Main.FillOperations();
 
@@ -71,18 +71,20 @@ namespace Task3OverloadingOperations
             {
                 Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))),
                 ForeColor = System.Drawing.Color.Black,
-                Size = new Size(0, 0),
-                AutoSize = true,
-                Visible = false,
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+                Size = new System.Drawing.Size(35, 29),
+                Location = new Point(3, 3),
+                Text = "",
+                Visible= false
             };
 
             ShowMatrix.MatrixB_LblName = new Label()
             {
                 Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))),
                 ForeColor = System.Drawing.Color.Black,
-                Visible = false,
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+                Size = new System.Drawing.Size(35, 29),
+                Location = new Point(3, 3),
+                Text = "",
+                Visible = false
             };
         }
 
@@ -91,7 +93,7 @@ namespace Task3OverloadingOperations
             this.PanelForms.Controls.Clear();
         }
 
-        #endregion Metods
+
 
         [DllImport("user32", CharSet = CharSet.Auto)]
         internal static extern bool PostMessage(IntPtr hWnd, uint Msg, uint WParam, uint LParam);
@@ -109,7 +111,7 @@ namespace Task3OverloadingOperations
             PostMessage(this.Handle, WM_SYSCOMMAND, DOMOVE, 0);
         }
 
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void Panel1_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             if (this.Size.Width >= 595 || this.Size.Height >= 330)
@@ -118,7 +120,7 @@ namespace Task3OverloadingOperations
             }
         }
 
-        private void panel1_MouseLeave(object sender, EventArgs e)
+        private void Panel1_MouseLeave(object sender, EventArgs e)
         {
         }
 
@@ -134,10 +136,11 @@ namespace Task3OverloadingOperations
             }
         }
 
-        private void lblProgramName_MouseDown(object sender, MouseEventArgs e)
+        private void LblProgramName_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             PostMessage(this.Handle, WM_SYSCOMMAND, DOMOVE, 0);
         }
+        #endregion Metods
     }
 }
