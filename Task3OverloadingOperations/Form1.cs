@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using System.Threading;
+using System.Windows.Forms;
 
 namespace Task3OverloadingOperations
 {
@@ -43,57 +36,21 @@ namespace Task3OverloadingOperations
 
         private static void PanelValuesElementsParametrs()
         {
-            Matrix.BrecketOpenPicture = new PictureBox()
-            {
-                BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Open,
-                BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch,
-                Size = new System.Drawing.Size(20, 68),
-            };
+            Matrix.BrecketOpenPicture = Resources.brecketOpen();
 
-            Matrix.BrecketClosePicture = new PictureBox()
-            {
-                BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.bracket_Close,
-                BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch,
-                Size = new System.Drawing.Size(20, 68),
-            };
+            Matrix.BrecketClosePicture = Resources.brecketClose();
 
-            Matrix.LblMatrixName = new Label()
-            {
-                AutoSize = true,
-                Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))),
-                ForeColor = System.Drawing.Color.Black,
-                Size = new System.Drawing.Size(42, 29),
-                Location = new Point(3, 3),
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
-            };
+            Matrix.LblMatrixName = Resources.lblMatrixName();
 
-            ShowMatrix.MatrixA_LblName = new Label()
-            {
-                Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))),
-                ForeColor = System.Drawing.Color.Black,
-                Size = new System.Drawing.Size(35, 29),
-                Location = new Point(3, 3),
-                Text = "",
-                Visible= false
-            };
+            ShowMatrixs.MatrixA_LblName = Resources.lblMatrixName();
 
-            ShowMatrix.MatrixB_LblName = new Label()
-            {
-                Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))),
-                ForeColor = System.Drawing.Color.Black,
-                Size = new System.Drawing.Size(35, 29),
-                Location = new Point(3, 3),
-                Text = "",
-                Visible = false
-            };
+            ShowMatrixs.MatrixB_LblName = Resources.lblMatrixName();
         }
 
         public void ClearPannelFormValue()
         {
             this.PanelForms.Controls.Clear();
         }
-
-
 
         [DllImport("user32", CharSet = CharSet.Auto)]
         internal static extern bool PostMessage(IntPtr hWnd, uint Msg, uint WParam, uint LParam);
@@ -141,6 +98,7 @@ namespace Task3OverloadingOperations
             ReleaseCapture();
             PostMessage(this.Handle, WM_SYSCOMMAND, DOMOVE, 0);
         }
+
         #endregion Metods
     }
 }

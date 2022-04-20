@@ -68,12 +68,10 @@ namespace Task3OverloadingOperations
 
         public static void ShowOneMartix(Matrix matrix, String MatrixName)
         {
-            PrintValue.PrintOneMatrix(matrix.MatrixValue, MatrixName);
         }
 
         public static void ShowBothMartixs()
         {
-            PrintValue.PrintBothMatrix();
         }
     }
 }

@@ -296,7 +296,6 @@ namespace Task3OverloadingOperations
             void onEqualSizes()
             {
                 Matrix.FillMatrixValues();
-                Matrix.ShowOnResultRechtextBox();
             }
             //когда размер матрицы отличается
             void onDifferentSizes()
@@ -310,12 +309,10 @@ namespace Task3OverloadingOperations
             if (Matrix.MatrixA.Name == MatrixName)
             {
                 FillMatrix.Fill(ref MatrixA);
-                Matrix.ShowOnResultRechtextBox();
             }
             else if (Matrix.MatrixB.Name == MatrixName)
             {
                 FillMatrix.Fill(ref MatrixB);
-                Matrix.ShowOnResultRechtextBox();
             }
         }
 
@@ -354,34 +351,6 @@ namespace Task3OverloadingOperations
         /// <summary>
         /// Показать значение матрицы в главной страницы программа
         /// </summary>
-        public static void ShowOnResultRechtextBox()
-        {
-            /* try
-             {*/
-            FormMain.ResultRTextBox.Text = string.Empty;
-            ResultText = null;
-            if (IsMatrixAEmpty || IsMatrixBEmpty)
-            {
-                if (IsMatrixAEmpty)
-                {
-                    ShowForm.ShowOneMartix(MatrixB, MatrixB.Name);
-                }
-                else if (IsMatrixBEmpty)
-                {
-                    ShowForm.ShowOneMartix(MatrixA, MatrixA.Name);
-                }
-            }
-            else
-            {
-                ShowForm.ShowBothMartixs();
-            }
-            /*}
-            catch (System.IndexOutOfRangeException)
-            {
-                Matrix.ClearMatrixResultPanel();
-                //MatrixForm.Add.onLoadDefaultParametrs();
-            }*/
-        }
 
         private static bool IsNeedToRezise(int Row)
         {

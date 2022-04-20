@@ -213,6 +213,7 @@ namespace Task3OverloadingOperations.MatrixForm
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             Matrix.AddingValues();
+            ShowForm.PerformOperation("Main");
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)

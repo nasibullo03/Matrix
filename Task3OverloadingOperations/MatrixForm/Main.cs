@@ -13,6 +13,7 @@ namespace Task3OverloadingOperations.MatrixForm
     public partial class Main : Form
     {
         #region Fields
+
         public enum Operation
         { Plus, Minus, Multiply, Divide, Determinant, Minor, Transpose, ShowMatrixs }
 
@@ -27,14 +28,14 @@ namespace Task3OverloadingOperations.MatrixForm
         public static void FillOperations()
         {
             Operations = new Dictionary<Operation, operation> {
-                { Operation.Plus, ShowMatrix.Plus },
-                { Operation.Minus,ShowMatrix. Minus},
-                { Operation.Multiply, ShowMatrix.Multiply},
-                { Operation.Divide, ShowMatrix.Divide},
-                { Operation.Determinant, ShowMatrix.Determinant},
-                { Operation.Minor, ShowMatrix.Minor},
-                { Operation.Transpose, ShowMatrix.Transpose},
-                { Operation.ShowMatrixs, ShowMatrix.Show}
+                { Operation.Plus, ShowMatrixs.Plus },
+                { Operation.Minus,ShowMatrixs. Minus},
+                { Operation.Multiply, ShowMatrixs.Multiply},
+                { Operation.Divide, ShowMatrixs.Divide},
+                { Operation.Determinant, ShowMatrixs.Determinant},
+                { Operation.Minor, ShowMatrixs.Minor},
+                { Operation.Transpose, ShowMatrixs.Transpose},
+                { Operation.ShowMatrixs, ShowMatrixs.Show}
             };
         }
 
@@ -64,17 +65,14 @@ namespace Task3OverloadingOperations.MatrixForm
         private void OnLoad()
         {
             //Operations[Operation.ShowMatrixs]();
-            ShowMatrix.Show();
+            ShowMatrixs.Show();
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
         {
-            ResultRTextBox.Clear();
+            PanelResult.Controls.Clear();
             Matrix.MatrixA = new Matrix();
             Matrix.MatrixB = new Matrix();
-            Matrix.MatrixA.Name = string.Empty;
-            Matrix.MatrixB.Name = string.Empty;
-            Matrix.LblMatrixName = new Label();
         }
 
         private void ButtonMinus_Click(object sender, EventArgs e)
@@ -106,6 +104,7 @@ namespace Task3OverloadingOperations.MatrixForm
         {
             Operations[Operation.Transpose]();
         }
+
         #endregion Metods
     }
 }

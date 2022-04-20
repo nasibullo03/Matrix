@@ -41,7 +41,6 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonClear = new System.Windows.Forms.Button();
             this.ButtonChange = new System.Windows.Forms.Button();
             this.ButtonAdd = new System.Windows.Forms.Button();
-            this.ResultRTextBox = new System.Windows.Forms.RichTextBox();
             this.PanelResult = new System.Windows.Forms.Panel();
             this.PanelOperationButtons.SuspendLayout();
             this.PanelControllButtons.SuspendLayout();
@@ -235,24 +234,6 @@ namespace Task3OverloadingOperations.MatrixForm
             this.ButtonAdd.UseVisualStyleBackColor = false;
             this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
-            // ResultRTextBox
-            // 
-            this.ResultRTextBox.AcceptsTab = true;
-            this.ResultRTextBox.AutoWordSelection = true;
-            this.ResultRTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
-            this.ResultRTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ResultRTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ResultRTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ResultRTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
-            this.ResultRTextBox.Location = new System.Drawing.Point(180, 165);
-            this.ResultRTextBox.Name = "ResultRTextBox";
-            this.ResultRTextBox.ReadOnly = true;
-            this.ResultRTextBox.Size = new System.Drawing.Size(474, 101);
-            this.ResultRTextBox.TabIndex = 17;
-            this.ResultRTextBox.Text = "";
-            this.ResultRTextBox.Visible = false;
-            this.ResultRTextBox.WordWrap = false;
-            // 
             // PanelResult
             // 
             this.PanelResult.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -268,7 +249,6 @@ namespace Task3OverloadingOperations.MatrixForm
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.ClientSize = new System.Drawing.Size(474, 312);
             this.Controls.Add(this.PanelResult);
-            this.Controls.Add(this.ResultRTextBox);
             this.Controls.Add(this.PanelOperationButtons);
             this.Controls.Add(this.PanelControllButtons);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -294,7 +274,6 @@ namespace Task3OverloadingOperations.MatrixForm
         private System.Windows.Forms.Button ButtonClear;
         private System.Windows.Forms.Button ButtonChange;
         private System.Windows.Forms.Button ButtonAdd;
-        public System.Windows.Forms.RichTextBox ResultRTextBox;
         public System.Windows.Forms.Panel PanelResult;
     }
 }

@@ -2,12 +2,12 @@
 
 namespace Task3OverloadingOperations
 {
-    public class SquareMatrix : PrintValue
+    public class SquareMatrix
     {
         public string Name { get; set; }
-        
+
         public static int Size { get; set; }
-        
+
         public int GetMatrixSize
         {
             get
@@ -61,7 +61,6 @@ namespace Task3OverloadingOperations
                     TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] + SecondMatrix.MatrixValue[ColIndex, RowIndex];
                 }
             }
-            PrintOperations(FirstMatrix, SecondMatrix, "+", TemproraryMatrix, Size);
             return TemproraryMatrix;
         }
 
@@ -78,13 +77,14 @@ namespace Task3OverloadingOperations
                     TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] * SecondMatrix.MatrixValue[ColIndex, RowIndex];
                 }
             }
-            PrintOperations(FirstMatrix, SecondMatrix, "*", TemproraryMatrix, Size);
+
             return TemproraryMatrix;
         }
 
         public static SquareMatrix operator -(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
         {
-            SquareMatrix TemproraryMatrix = new SquareMatrix() {
+            SquareMatrix TemproraryMatrix = new SquareMatrix()
+            {
                 MatrixValue = new int[Size, Size],
             };
 
@@ -95,7 +95,7 @@ namespace Task3OverloadingOperations
                     TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] - SecondMatrix.MatrixValue[ColIndex, RowIndex];
                 }
             }
-            PrintOperations(FirstMatrix, SecondMatrix, "-", TemproraryMatrix, Size);
+
             return TemproraryMatrix;
         }
 
@@ -120,7 +120,7 @@ namespace Task3OverloadingOperations
                     }
                 }
             }
-            PrintOperations(FirstMatrix, SecondMatrix, "/", TemproraryMatrix, Size);
+
             return TemproraryMatrix;
         }
 
@@ -131,12 +131,10 @@ namespace Task3OverloadingOperations
 
             if (MatrixA.GetLength(0) != MatrixB.GetLength(0))
             {
-                PrintOperations(FirstMatrix, SecondMatrix, "==", false, Size);
                 return false;
             }
             if (MatrixA.GetLength(1) != MatrixB.GetLength(1))
             {
-                PrintOperations(FirstMatrix, SecondMatrix, "==", false, Size);
                 return false;
             }
 
@@ -146,12 +144,10 @@ namespace Task3OverloadingOperations
                 {
                     if (MatrixA[ColIndex, RowIndex] != MatrixB[ColIndex, RowIndex])
                     {
-                        PrintOperations(FirstMatrix, SecondMatrix, "==", false, Size);
                         return false;
                     }
                 }
             }
-            PrintOperations(FirstMatrix, SecondMatrix, "==", true, Size);
             return true;
         }
 
@@ -162,12 +158,10 @@ namespace Task3OverloadingOperations
 
             if (MatrixA.GetLength(0) != MatrixB.GetLength(0))
             {
-                PrintOperations(FirstMatrix, SecondMatrix, "!=", true, Size);
                 return true;
             }
             if (MatrixA.GetLength(1) != MatrixB.GetLength(1))
             {
-                PrintOperations(FirstMatrix, SecondMatrix, "!=", true, Size);
                 return true;
             }
 
@@ -177,18 +171,17 @@ namespace Task3OverloadingOperations
                 {
                     if (MatrixA[ColIndex, RowIndex] != MatrixB[ColIndex, RowIndex])
                     {
-                        PrintOperations(FirstMatrix, SecondMatrix, "!=", true, Size);
                         return true;
                     }
                 }
             }
-            PrintOperations(FirstMatrix, SecondMatrix, "!=", false, Size);
             return false;
         }
 
         public static SquareMatrix operator >(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
         {
-            SquareMatrix TemproraryMatrix = new SquareMatrix() {
+            SquareMatrix TemproraryMatrix = new SquareMatrix()
+            {
                 MatrixValue = new int[Size, Size]
             };
 
@@ -206,7 +199,6 @@ namespace Task3OverloadingOperations
                     }
                 }
             }
-            PrintOperations(FirstMatrix, SecondMatrix, ">", TemproraryMatrix, Size);
             return TemproraryMatrix;
         }
 
@@ -231,7 +223,6 @@ namespace Task3OverloadingOperations
                     }
                 }
             }
-            PrintOperations(FirstMatrix, SecondMatrix, "<", TemproraryMatrix, Size);
             return TemproraryMatrix;
         }
 
@@ -256,7 +247,6 @@ namespace Task3OverloadingOperations
                     }
                 }
             }
-            PrintOperations(FirstMatrix, SecondMAtrix, ">=", TemporaryMatrix, Size);
             return TemporaryMatrix;
         }
 
@@ -280,13 +270,12 @@ namespace Task3OverloadingOperations
                     }
                 }
             }
-            PrintOperations(FirstMatrix, SecondMatrix, "<=", TemproraryMatrix, Size);
+
             return TemproraryMatrix;
         }
 
         private static int Determinant3x3(int[,] MainMatrix)
         {
-            
             int a = MainMatrix[0, 0],
                 b = MainMatrix[0, 1],
                 c = MainMatrix[0, 2],
@@ -297,7 +286,6 @@ namespace Task3OverloadingOperations
                 h = MainMatrix[2, 1],
                 i = MainMatrix[2, 2];
 
-             
             return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
         }
 
@@ -374,10 +362,7 @@ namespace Task3OverloadingOperations
             {
                 det = DeterminantOver3(MainMatrix);
             }
-            if (Print)
-            {
-                PrintOperations(MainMatrix, det, "FindDeterminant");
-            }
+
             return det;
         }
 
@@ -392,11 +377,6 @@ namespace Task3OverloadingOperations
                 {
                     Transpose[i, j] = MainMatrix[j, i];
                 }
-            }
-
-            if (Print)
-            {
-                PrintOperations(MainMatrix, Transpose, "FindTranspose");
             }
 
             return Transpose;
@@ -473,10 +453,7 @@ namespace Task3OverloadingOperations
             {
                 throw new IndexOutOfRangeException();
             }
-            if (Print)
-            {
-                PrintOperations(MainMatrix, Minor, "FindMinor");
-            }
+
             return Minor;
         }
 
@@ -494,10 +471,6 @@ namespace Task3OverloadingOperations
                 {
                     Inverse[ColIndex, RowIndex] = Math.Round(Convert.ToDouble(Transpose[ColIndex, RowIndex]) * rr, 2);
                 }
-            }
-            if (Print)
-            {
-                PrintOperations(MainMatrix, Inverse, "FindInverseMatrix");
             }
 
             return Inverse;
