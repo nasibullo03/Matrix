@@ -12,39 +12,12 @@ namespace Task3OverloadingOperations.MatrixForm
 {
     public partial class Main : Form
     {
-        #region Fields
-
-        public enum Operation
-        { Plus, Minus, Multiply, Divide, Determinant, Minor, Transpose, ShowMatrixs }
-
-        private delegate void operation();
-
-        private static Dictionary<Operation, operation> Operations;
-
-        #endregion Fields
-
         #region Metods
-
-        public static void FillOperations()
-        {
-            Operations = new Dictionary<Operation, operation> {
-                { Operation.Plus, ShowMatrixs.Plus },
-                { Operation.Minus,ShowMatrixs. Minus},
-                { Operation.Multiply, ShowMatrixs.Multiply},
-                { Operation.Divide, ShowMatrixs.Divide},
-                { Operation.Determinant, ShowMatrixs.Determinant},
-                { Operation.Minor, ShowMatrixs.Minor},
-                { Operation.Transpose, ShowMatrixs.Transpose},
-                { Operation.ShowMatrixs, ShowMatrixs.Show}
-            };
-        }
 
         public Main()
 
         {
             InitializeComponent();
-            Matrix.FormMain = this;
-            OnLoad();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -59,13 +32,7 @@ namespace Task3OverloadingOperations.MatrixForm
 
         private void ButtonPlus_Click(object sender, EventArgs e)
         {
-            Operations[Operation.Plus]();
-        }
-
-        private void OnLoad()
-        {
-            //Operations[Operation.ShowMatrixs]();
-            ShowMatrixs.Show();
+            PerformOperation.Operations[PerformOperation.Operation.Plus]();
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
@@ -77,34 +44,40 @@ namespace Task3OverloadingOperations.MatrixForm
 
         private void ButtonMinus_Click(object sender, EventArgs e)
         {
-            Operations[Operation.Minus]();
+            PerformOperation.Operations[PerformOperation.Operation.Minus]();
         }
 
         private void ButtonMultiply_Click(object sender, EventArgs e)
         {
-            Operations[Operation.Multiply]();
+            PerformOperation.Operations[PerformOperation.Operation.Multiply]();
         }
 
         private void ButtonDivision_Click(object sender, EventArgs e)
         {
-            Operations[Operation.Divide]();
+            PerformOperation.Operations[PerformOperation.Operation.Divide]();
         }
 
         private void ButtonDeterminant_Click(object sender, EventArgs e)
         {
-            Operations[Operation.Determinant]();
+            PerformOperation.Operations[PerformOperation.Operation.Determinant]();
         }
 
         private void ButtonMinor_Click(object sender, EventArgs e)
         {
-            Operations[Operation.Minor]();
+            PerformOperation.Operations[PerformOperation.Operation.Minor]();
         }
 
         private void ButtonTranspose_Click(object sender, EventArgs e)
         {
-            Operations[Operation.Transpose]();
+            PerformOperation.Operations[PerformOperation.Operation.Transpose]();
         }
 
         #endregion Metods
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            Matrix.FormMain = this;
+            PerformOperation.Operations[PerformOperation.Operation.ShowMatrixs]();
+        }
     }
 }

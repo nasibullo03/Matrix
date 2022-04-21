@@ -30,6 +30,17 @@ namespace Task3OverloadingOperations
             };
         }
 
+        public static Label Label()
+        {
+            return new Label
+            {
+                AutoSize = true,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))),
+                ForeColor = System.Drawing.Color.Black,
+                Location = new Point(3, 3),
+            };
+        }
+
         public static PictureBox brecketOpen()
         {
             return new PictureBox

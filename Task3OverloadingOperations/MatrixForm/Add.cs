@@ -93,6 +93,7 @@ namespace Task3OverloadingOperations.MatrixForm
         {
             if (Matrix.textBoxes == null)
             {
+                Matrix.ClearTextBoxes();
                 ShowForm.PerformOperation("Main");
             }
             else
@@ -102,6 +103,7 @@ namespace Task3OverloadingOperations.MatrixForm
                 result = MessageBox.Show("При выходе из этого окно ваше действия не сохраняется!!\n\nХотите ли вы продолжать?", "Matrix", buttons, MessageBoxIcon.Exclamation);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
+                    Matrix.ClearTextBoxes();
                     ShowForm.PerformOperation("Main");
                 }
             }

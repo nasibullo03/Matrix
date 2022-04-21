@@ -236,6 +236,7 @@ namespace Task3OverloadingOperations.MatrixForm
             // 
             // PanelResult
             // 
+            this.PanelResult.AutoScroll = true;
             this.PanelResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelResult.Location = new System.Drawing.Point(0, 40);
             this.PanelResult.Name = "PanelResult";
@@ -254,6 +255,7 @@ namespace Task3OverloadingOperations.MatrixForm
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Main";
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.PanelOperationButtons.ResumeLayout(false);
             this.PanelControllButtons.ResumeLayout(false);
             this.ResumeLayout(false);

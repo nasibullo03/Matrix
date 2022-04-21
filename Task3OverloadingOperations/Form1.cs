@@ -25,11 +25,11 @@ namespace Task3OverloadingOperations
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            PerformOperation.FillOperations();
             Matrix.MatrixA = new Matrix();
             Matrix.MatrixB = new Matrix();
             ShowForm.Form1 = this;
             ShowForm.PerformOperation("Main");
-            MatrixForm.Main.FillOperations();
 
             PanelValuesElementsParametrs();
         }

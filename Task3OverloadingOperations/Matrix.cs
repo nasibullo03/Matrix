@@ -424,5 +424,248 @@ namespace Task3OverloadingOperations
 
             ChangeTextBoxColumnSize(DictForResizing);
         }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+        public static Matrix operator +(Matrix FirstMatrix, Matrix SecondMatrix)
+        {
+            Matrix TemproraryMatrix = new Matrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
+
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
+            {
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
+                {
+                    TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] + SecondMatrix.MatrixValue[ColIndex, RowIndex];
+                }
+            }
+
+            return TemproraryMatrix;
+        }
+
+        public static Matrix operator *(Matrix FirstMatrix, Matrix SecondMatrix)
+        {
+            Matrix TemproraryMatrix = new Matrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
+            {
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
+                {
+                    TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] * SecondMatrix.MatrixValue[ColIndex, RowIndex];
+                }
+            }
+
+            return TemproraryMatrix;
+        }
+
+        public static Matrix operator -(Matrix FirstMatrix, Matrix SecondMatrix)
+        {
+            Matrix TemproraryMatrix = new Matrix()
+            {
+                MatrixValue = new int[Size, Size],
+            };
+
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
+            {
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
+                {
+                    TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] - SecondMatrix.MatrixValue[ColIndex, RowIndex];
+                }
+            }
+
+            return TemproraryMatrix;
+        }
+
+        public static Matrix operator /(Matrix FirstMatrix, Matrix SecondMatrix)
+        {
+            Matrix TemproraryMatrix = new Matrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
+
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
+            {
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
+                {
+                    try
+                    {
+                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] / SecondMatrix.MatrixValue[ColIndex, RowIndex];
+                    }
+                    catch
+                    {
+                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 0;
+                    }
+                }
+            }
+
+            return TemproraryMatrix;
+        }
+
+        public static bool operator ==(Matrix FirstMatrix, Matrix SecondMatrix)
+        {
+            int[,] MatrixA = FirstMatrix.MatrixValue;
+            int[,] MatrixB = SecondMatrix.MatrixValue;
+
+            if (MatrixA.GetLength(0) != MatrixB.GetLength(0))
+            {
+                return false;
+            }
+            if (MatrixA.GetLength(1) != MatrixB.GetLength(1))
+            {
+                return false;
+            }
+
+            for (int ColIndex = 0; ColIndex < MatrixA.GetLength(0); ColIndex++)
+            {
+                for (int RowIndex = 0; RowIndex < MatrixA.GetLength(1); RowIndex++)
+                {
+                    if (MatrixA[ColIndex, RowIndex] != MatrixB[ColIndex, RowIndex])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public static bool operator !=(Matrix FirstMatrix, Matrix SecondMatrix)
+        {
+            int[,] MatrixA = FirstMatrix.MatrixValue;
+            int[,] MatrixB = SecondMatrix.MatrixValue;
+
+            if (MatrixA.GetLength(0) != MatrixB.GetLength(0))
+            {
+                return true;
+            }
+            if (MatrixA.GetLength(1) != MatrixB.GetLength(1))
+            {
+                return true;
+            }
+
+            for (int ColIndex = 0; ColIndex < MatrixA.GetLength(0); ColIndex++)
+            {
+                for (int RowIndex = 0; RowIndex < MatrixA.GetLength(1); RowIndex++)
+                {
+                    if (MatrixA[ColIndex, RowIndex] != MatrixB[ColIndex, RowIndex])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static Matrix operator >(Matrix FirstMatrix, Matrix SecondMatrix)
+        {
+            Matrix TemproraryMatrix = new Matrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
+
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
+            {
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
+                {
+                    if (FirstMatrix.MatrixValue[ColIndex, RowIndex] > SecondMatrix.MatrixValue[ColIndex, RowIndex])
+                    {
+                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 1;
+                    }
+                    else
+                    {
+                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 0;
+                    }
+                }
+            }
+            return TemproraryMatrix;
+        }
+
+        public static Matrix operator <(Matrix FirstMatrix, Matrix SecondMatrix)
+        {
+            Matrix TemproraryMatrix = new Matrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
+
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
+            {
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
+                {
+                    if (FirstMatrix.MatrixValue[ColIndex, RowIndex] < SecondMatrix.MatrixValue[ColIndex, RowIndex])
+                    {
+                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 1;
+                    }
+                    else
+                    {
+                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 0;
+                    }
+                }
+            }
+            return TemproraryMatrix;
+        }
+
+        public static Matrix operator >=(Matrix FirstMatrix, Matrix SecondMAtrix)
+        {
+            Matrix TemporaryMatrix = new Matrix()
+            {
+                MatrixValue = new int[Size, Size]
+            };
+
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
+            {
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
+                {
+                    if (FirstMatrix.MatrixValue[ColIndex, RowIndex] >= SecondMAtrix.MatrixValue[ColIndex, RowIndex])
+                    {
+                        TemporaryMatrix.MatrixValue[ColIndex, RowIndex] = 1;
+                    }
+                    else
+                    {
+                        TemporaryMatrix.MatrixValue[ColIndex, RowIndex] = 0;
+                    }
+                }
+            }
+            return TemporaryMatrix;
+        }
+
+        public static Matrix operator <=(Matrix FirstMatrix, Matrix SecondMatrix)
+        {
+            Matrix TemproraryMatrix = new Matrix()
+            {
+                MatrixValue = new int[Size, Size],
+            };
+            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
+            {
+                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
+                {
+                    if (FirstMatrix.MatrixValue[ColIndex, RowIndex] <= SecondMatrix.MatrixValue[ColIndex, RowIndex])
+                    {
+                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 1;
+                    }
+                    else
+                    {
+                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 0;
+                    }
+                }
+            }
+
+            return TemproraryMatrix;
+        }
     }
 }

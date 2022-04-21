@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PerformOperation.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="FillMatrix.cs" />
     <Compile Include="Matrix.cs" />

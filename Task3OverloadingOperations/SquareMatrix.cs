@@ -2,7 +2,7 @@
 
 namespace Task3OverloadingOperations
 {
-    public class SquareMatrix
+    public abstract class SquareMatrix
     {
         public string Name { get; set; }
 
@@ -31,247 +31,6 @@ namespace Task3OverloadingOperations
         {
             SquareMatrix clone = (SquareMatrix)this.MemberwiseClone();
             return clone;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-
-        public static SquareMatrix operator +(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
-        {
-            SquareMatrix TemproraryMatrix = new SquareMatrix()
-            {
-                MatrixValue = new int[Size, Size]
-            };
-            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
-            {
-                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
-                {
-                    TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] + SecondMatrix.MatrixValue[ColIndex, RowIndex];
-                }
-            }
-            return TemproraryMatrix;
-        }
-
-        public static SquareMatrix operator *(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
-        {
-            SquareMatrix TemproraryMatrix = new SquareMatrix()
-            {
-                MatrixValue = new int[Size, Size]
-            };
-            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
-            {
-                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
-                {
-                    TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] * SecondMatrix.MatrixValue[ColIndex, RowIndex];
-                }
-            }
-
-            return TemproraryMatrix;
-        }
-
-        public static SquareMatrix operator -(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
-        {
-            SquareMatrix TemproraryMatrix = new SquareMatrix()
-            {
-                MatrixValue = new int[Size, Size],
-            };
-
-            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
-            {
-                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
-                {
-                    TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] - SecondMatrix.MatrixValue[ColIndex, RowIndex];
-                }
-            }
-
-            return TemproraryMatrix;
-        }
-
-        public static SquareMatrix operator /(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
-        {
-            SquareMatrix TemproraryMatrix = new SquareMatrix()
-            {
-                MatrixValue = new int[Size, Size]
-            };
-
-            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
-            {
-                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
-                {
-                    try
-                    {
-                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = FirstMatrix.MatrixValue[ColIndex, RowIndex] / SecondMatrix.MatrixValue[ColIndex, RowIndex];
-                    }
-                    catch
-                    {
-                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 0;
-                    }
-                }
-            }
-
-            return TemproraryMatrix;
-        }
-
-        public static bool operator ==(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
-        {
-            int[,] MatrixA = FirstMatrix.MatrixValue;
-            int[,] MatrixB = SecondMatrix.MatrixValue;
-
-            if (MatrixA.GetLength(0) != MatrixB.GetLength(0))
-            {
-                return false;
-            }
-            if (MatrixA.GetLength(1) != MatrixB.GetLength(1))
-            {
-                return false;
-            }
-
-            for (int ColIndex = 0; ColIndex < MatrixA.GetLength(0); ColIndex++)
-            {
-                for (int RowIndex = 0; RowIndex < MatrixA.GetLength(1); RowIndex++)
-                {
-                    if (MatrixA[ColIndex, RowIndex] != MatrixB[ColIndex, RowIndex])
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        public static bool operator !=(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
-        {
-            int[,] MatrixA = FirstMatrix.MatrixValue;
-            int[,] MatrixB = SecondMatrix.MatrixValue;
-
-            if (MatrixA.GetLength(0) != MatrixB.GetLength(0))
-            {
-                return true;
-            }
-            if (MatrixA.GetLength(1) != MatrixB.GetLength(1))
-            {
-                return true;
-            }
-
-            for (int ColIndex = 0; ColIndex < MatrixA.GetLength(0); ColIndex++)
-            {
-                for (int RowIndex = 0; RowIndex < MatrixA.GetLength(1); RowIndex++)
-                {
-                    if (MatrixA[ColIndex, RowIndex] != MatrixB[ColIndex, RowIndex])
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        public static SquareMatrix operator >(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
-        {
-            SquareMatrix TemproraryMatrix = new SquareMatrix()
-            {
-                MatrixValue = new int[Size, Size]
-            };
-
-            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
-            {
-                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
-                {
-                    if (FirstMatrix.MatrixValue[ColIndex, RowIndex] > SecondMatrix.MatrixValue[ColIndex, RowIndex])
-                    {
-                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 1;
-                    }
-                    else
-                    {
-                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 0;
-                    }
-                }
-            }
-            return TemproraryMatrix;
-        }
-
-        public static SquareMatrix operator <(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
-        {
-            SquareMatrix TemproraryMatrix = new SquareMatrix()
-            {
-                MatrixValue = new int[Size, Size]
-            };
-
-            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
-            {
-                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
-                {
-                    if (FirstMatrix.MatrixValue[ColIndex, RowIndex] < SecondMatrix.MatrixValue[ColIndex, RowIndex])
-                    {
-                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 1;
-                    }
-                    else
-                    {
-                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 0;
-                    }
-                }
-            }
-            return TemproraryMatrix;
-        }
-
-        public static SquareMatrix operator >=(SquareMatrix FirstMatrix, SquareMatrix SecondMAtrix)
-        {
-            SquareMatrix TemporaryMatrix = new SquareMatrix()
-            {
-                MatrixValue = new int[Size, Size]
-            };
-
-            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
-            {
-                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
-                {
-                    if (FirstMatrix.MatrixValue[ColIndex, RowIndex] >= SecondMAtrix.MatrixValue[ColIndex, RowIndex])
-                    {
-                        TemporaryMatrix.MatrixValue[ColIndex, RowIndex] = 1;
-                    }
-                    else
-                    {
-                        TemporaryMatrix.MatrixValue[ColIndex, RowIndex] = 0;
-                    }
-                }
-            }
-            return TemporaryMatrix;
-        }
-
-        public static SquareMatrix operator <=(SquareMatrix FirstMatrix, SquareMatrix SecondMatrix)
-        {
-            SquareMatrix TemproraryMatrix = new SquareMatrix()
-            {
-                MatrixValue = new int[Size, Size],
-            };
-            for (int ColIndex = 0; ColIndex < Size; ++ColIndex)
-            {
-                for (int RowIndex = 0; RowIndex < Size; ++RowIndex)
-                {
-                    if (FirstMatrix.MatrixValue[ColIndex, RowIndex] <= SecondMatrix.MatrixValue[ColIndex, RowIndex])
-                    {
-                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 1;
-                    }
-                    else
-                    {
-                        TemproraryMatrix.MatrixValue[ColIndex, RowIndex] = 0;
-                    }
-                }
-            }
-
-            return TemproraryMatrix;
         }
 
         private static int Determinant3x3(int[,] MainMatrix)
@@ -366,7 +125,7 @@ namespace Task3OverloadingOperations
             return det;
         }
 
-        public static int[,] FindTranspose(int[,] MainMatrix, bool Print = true)
+        public static int[,] FindTranspose(int[,] MainMatrix)
         {
             int Size = MainMatrix.GetLength(0);
             int[,] Transpose = new int[Size, Size];
@@ -379,7 +138,7 @@ namespace Task3OverloadingOperations
                 }
             }
 
-            return Transpose;
+            return MainMatrix;
         }
 
         private static int[,] MinorOf3x3(int[,] MainMatrix)
@@ -433,7 +192,7 @@ namespace Task3OverloadingOperations
             return MinorMatrix;
         }
 
-        public static int[,] FindMinor(int[,] MainMatrix, bool Print = true)
+        public static int[,] FindMinor(int[,] MainMatrix)
         {
             int Size = MainMatrix.GetLength(0);
             int[,] Minor = new int[Size, Size];
@@ -461,7 +220,7 @@ namespace Task3OverloadingOperations
         {
             int Size = MainMatrix.GetLength(0);
             double[,] Inverse = new double[Size, Size];
-            int[,] Transpose = FindTranspose(MainMatrix, Print: false);
+            int[,] Transpose = FindTranspose(MainMatrix);
             int Determinant = FindDeterminant(MainMatrix, Print: false);
             double rr = Math.Round(1 / Convert.ToDouble(Determinant), 2);
 
