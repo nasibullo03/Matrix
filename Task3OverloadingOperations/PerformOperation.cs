@@ -26,7 +26,7 @@ namespace Task3OverloadingOperations
         для функции обратная марица еще не добавлена кнопка
         надо добавить кнопку
         надо добавить констант размер форму программы
-        d
+        
         Надо изменить картинку скобки
         надо добавлять квадратные скобки
 
@@ -139,7 +139,7 @@ namespace Task3OverloadingOperations
                 switch (operation)
                 {
                     case Operation.Minor:
-                        DoOperation_Minor(MatrixA, Matrix.FindMinor(MatrixA.MatrixValue), LblTwoOperationName);
+                        DoOperation_Minor(MatrixA, Matrix.FindMinor(MatrixA.MatrixValue), LblTwoOperationName, new Point(3,3));
                         break;
 
                     case Operation.Determinant:
@@ -151,7 +151,11 @@ namespace Task3OverloadingOperations
                         break;
 
                     default:
-                        MessageBox.Show("Чтобы выполнить эту операцию, добавьте вторую матрицу!", "Квадраная матрица", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if(Matrix.IsMatrixAEmpty && Matrix.IsMatrixBEmpty)
+                            MessageBox.Show("Сначала добавьте матрицу , чтобы выполнить эту операцию!", "Квадраная матрица", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        else 
+                            MessageBox.Show("Чтобы выполнить эту операцию, добавьте вторую матрицу!", "Квадраная матрица", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
                 }
             }
@@ -179,7 +183,7 @@ namespace Task3OverloadingOperations
                 Y = 3
             };
 
-            ShowMatrixs.OneMatrix(MatrixA, MatrixA_LblName, MatrixA_Labels, BrecketOpenPicture, BrecketClosePicture, false);
+            ShowMatrixs.OneMatrix(MatrixA, MatrixA_LblName, MatrixA_Labels, BrecketOpenPicture, BrecketClosePicture, new Point(3,3), false);
 
             #endregion FirstMatrix
 
@@ -212,7 +216,7 @@ namespace Task3OverloadingOperations
             PictureBox brecketOpen = Resources.brecketOpen();
             PictureBox brecketClose = Resources.brecketClose();
 
-            OneMatrix(MatrixB, MatrixB_LblName, MatrixB_Labels, brecketOpen, brecketClose, false);
+            OneMatrix(MatrixB, MatrixB_LblName, MatrixB_Labels, brecketOpen, brecketClose,new Point(3,3), false);
 
             #endregion SecondMatrix
 
@@ -241,7 +245,7 @@ namespace Task3OverloadingOperations
                 Y = brecketClose.Location.Y
             };
 
-            OneMatrix(ResultMatrix, LblMatrixName, Matrix_Result, Resources.brecketOpen(), Resources.brecketClose(), false);
+            OneMatrix(ResultMatrix, LblMatrixName, Matrix_Result, Resources.brecketOpen(), Resources.brecketClose(),new Point(3,3), false);
 
             #endregion Result
 
@@ -273,7 +277,9 @@ namespace Task3OverloadingOperations
             switch (operation)
             {
                 case Operation.Minor:
-                    DoOperation_Minor(MatrixA, Matrix.FindMinor(MatrixA.MatrixValue), LblTwoOperationName, false);
+
+                    DoOperation_Minor(MatrixA, Matrix.FindMinor(MatrixA.MatrixValue), Resources.lblMatrixName(), new Point(3, BrecketOpenPicture.Location.Y+BrecketOpenPicture.Size.Height+10), false) ;
+                    DoOperation_Minor(MatrixB, Matrix.FindMinor(MatrixB.MatrixValue), Resources.lblMatrixName(), new Point(3, 2*(BrecketOpenPicture.Location.Y + BrecketOpenPicture.Size.Height+ 10)), false);
                     break;
 
                 case Operation.Determinant:
@@ -281,6 +287,7 @@ namespace Task3OverloadingOperations
 
                 case Operation.Transpose:
                     break;
+
             }
         }
 
@@ -329,7 +336,7 @@ namespace Task3OverloadingOperations
 
             #region FirstMatrix
 
-            ShowMatrixs.OneMatrix(MatrixA, MatrixA_LblName, MatrixA_Labels, BrecketOpenPicture, BrecketClosePicture, false);
+            ShowMatrixs.OneMatrix(MatrixA, MatrixA_LblName, MatrixA_Labels, BrecketOpenPicture, BrecketClosePicture, new Point (3,3), false);
 
             #endregion FirstMatrix
 
@@ -361,7 +368,7 @@ namespace Task3OverloadingOperations
 
             Matrix ResultMatrix1 = new Matrix();
             ResultMatrix1.MatrixValue = ResultMatrix;
-            OneMatrix(ResultMatrix1, LblMatrixName, Matrix_Result, Resources.brecketOpen(), Resources.brecketClose(), false);
+            OneMatrix(ResultMatrix1, LblMatrixName, Matrix_Result, Resources.brecketOpen(), Resources.brecketClose(), new Point(3, 3), false);
 
             #endregion Result
 
@@ -417,7 +424,7 @@ namespace Task3OverloadingOperations
 
             #region FirstMatrix
 
-            ShowMatrixs.OneMatrix(MatrixA, MatrixA_LblName, MatrixA_Labels, BrecketOpenPicture, BrecketClosePicture, false);
+            ShowMatrixs.OneMatrix(MatrixA, MatrixA_LblName, MatrixA_Labels, BrecketOpenPicture, BrecketClosePicture, new Point(3, 3), false);
 
             #endregion FirstMatrix
 
@@ -454,32 +461,37 @@ namespace Task3OverloadingOperations
             #endregion SetMiddlePosition
         }
 
-        private static void DoOperation_Minor(Matrix matrix, int[,] Result, Label LblOperationName, bool ClearPannel = true)
+        private static void DoOperation_Minor(Matrix matrix, int[,] Result, Label LblOperation1, Point Startposition,  bool ClearPannel = true)
         {
             #region MatrixOperationName
 
             if (ClearPannel)
                 FormMain.PanelResult.Controls.Clear();//удаление всех элементов панель результат
 
-            LblOperationName = Resources.Label();
-            LblOperationName.Location = new Point(3, 3);
 
-            LblOperationName.Text = $"M({MatrixA.Name})=";
-            LblOperationName.AutoSize = true;
+            if (LblOperation1 == null)
+                LblOperation1 = Resources.lblMatrixName();
+            LblOperation1.Location = Startposition;
 
-            FormMain.PanelResult.Controls.Add(LblOperationName);
+            LblOperation1.Text = $"M({matrix.Name})=";
+            LblOperation1.AutoSize = true;
 
-            MatrixA_LblName.Location = new Point()
+            FormMain.PanelResult.Controls.Add(LblOperation1);
+
+            var lblOp = Resources.Label();
+            lblOp.Location = new Point()
             {
-                X = LblOperationName.Location.X + LblOperationName.Size.Width,
-                Y = 3
+                X = LblOperation1.Location.X + LblOperation1.Size.Width,
+                Y = Startposition.Y
             };
 
             #endregion MatrixOperationName
 
             #region FirstMatrix
 
-            ShowMatrixs.OneMatrix(MatrixA, MatrixA_LblName, MatrixA_Labels, BrecketOpenPicture, BrecketClosePicture, false);
+            var BrecketOpenPic = Resources.brecketOpen();
+            var BrecketClosePic = Resources.brecketClose();
+            ShowMatrixs.OneMatrix(matrix, lblOp, MatrixA_Labels, BrecketOpenPic, BrecketClosePic, Startposition, false);
 
             #endregion FirstMatrix
 
@@ -490,8 +502,8 @@ namespace Task3OverloadingOperations
             //Кординации начало для имя операции
             LblEqual.Location = new Point
             {
-                X = BrecketClosePicture.Location.X + 22,
-                Y = BrecketClosePicture.Location.Y
+                X = BrecketClosePic.Location.X + 22,
+                Y = BrecketClosePic.Location.Y + Startposition.Y
             };
 
             //Добавление имя операции в главной форме
@@ -506,29 +518,29 @@ namespace Task3OverloadingOperations
             LblMatrixName.Location = new Point()
             {
                 X = LblEqual.Location.X + LblEqual.Size.Width,
-                Y = BrecketClosePicture.Location.Y
+                Y = BrecketClosePicture.Location.Y +  Startposition.Y
             };
             Matrix matrix1 = new Matrix
             {
                 MatrixValue = Result
             };
 
-            OneMatrix(matrix1, LblMatrixName, Matrix_Result, Resources.brecketOpen(), Resources.brecketClose(), false);
+            OneMatrix(matrix1, LblMatrixName, Matrix_Result, Resources.brecketOpen(), Resources.brecketClose(), Startposition, false);
 
             #endregion Result
 
             #region SetMiddlePosition
 
-            LblOperationName.Location = new Point
+            LblOperation1.Location = new Point
             {
-                X = LblOperationName.Location.X,
-                Y = BrecketClosePicture.Size.Height / 2 - LblOperationName.Size.Height / 2
+                X = LblOperation1.Location.X,
+                Y = (BrecketClosePicture.Size.Height / 2 - LblOperation1.Size.Height / 2) + Startposition.Y
             };
 
             LblEqual.Location = new Point
             {
                 X = LblEqual.Location.X,
-                Y = BrecketClosePicture.Size.Height / 2 - LblEqual.Size.Height / 2
+                Y = (BrecketClosePicture.Size.Height / 2 - LblEqual.Size.Height / 2) + Startposition.Y
             };
 
             #endregion SetMiddlePosition
