@@ -121,7 +121,6 @@ namespace Task3OverloadingOperations.MatrixForm
             this.MatrixSizeComboBox.Size = new System.Drawing.Size(51, 21);
             this.MatrixSizeComboBox.Sorted = true;
             this.MatrixSizeComboBox.TabIndex = 4;
-
             // 
             // lblTextOfCBNameOFMatrix
             // 

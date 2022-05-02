@@ -31,7 +31,7 @@ namespace Task3OverloadingOperations.MatrixForm
                 Matrix.FormChange.MatrixNameComboBox.Items.Add(Matrix.MatrixA.Name);
                 Matrix.MatrixSizeComboBox_ClearItems();
                 Matrix.FormChange.MatrixSizeComboBox.Text = Matrix.MatrixA.MatrixValue.GetLength(0).ToString();
-
+                Matrix.MatrixSize = Matrix.MatrixA.MatrixValue.GetLength(0);
                 Matrix.CreateTextBoxes(FormName: "Change", matrix: Matrix.MatrixA.MatrixValue);
             }
             else if (Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
@@ -41,6 +41,7 @@ namespace Task3OverloadingOperations.MatrixForm
                 Matrix.MatrixSizeComboBox_ClearItems();
                 Matrix.FormChange.MatrixSizeComboBox.Text = Matrix.MatrixB.MatrixValue.GetLength(0).ToString();
                 Matrix.FormChange.MatrixSizeComboBox.Items.Add(Matrix.MatrixB.MatrixValue.GetLength(0).ToString());
+                Matrix.MatrixSize = Matrix.MatrixB.MatrixValue.GetLength(0);
                 Matrix.CreateTextBoxes(FormName: "Change", matrix: Matrix.MatrixB.MatrixValue);
             }
             else if (!Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
@@ -50,18 +51,18 @@ namespace Task3OverloadingOperations.MatrixForm
                 Matrix.FormChange.MatrixNameComboBox.Items.Add(Matrix.MatrixA.Name);
                 Matrix.FormChange.MatrixNameComboBox.Items.Add(Matrix.MatrixB.Name);
                 Matrix.FormChange.MatrixSizeComboBox.Items.Add(Matrix.MatrixA.MatrixValue.GetLength(0).ToString());
+                Matrix.MatrixSize = Matrix.MatrixA.MatrixValue.GetLength(0);
                 Matrix.CreateTextBoxes(FormName: "Change", matrix: Matrix.MatrixA.MatrixValue);
             }
-        }
-
-        private static void loadTextBoxes()
-        {
+            else
+            {
+                Matrix.FormChange.PanelMatrixValue.Controls.Clear();
+            }
         }
 
         private static void OnLoad()
         {
             onLoadDefaultParametrs();
-            loadTextBoxes();
         }
 
         public void MatrixTextBoxes_TextChanged(object sender, EventArgs e)
@@ -89,7 +90,7 @@ namespace Task3OverloadingOperations.MatrixForm
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            Matrix.ChangeValues();
+            Matrix.ChangeValues(MatrixNameComboBox.Text);
         }
 
         private void MatrixNameComboBox_TextChanged(object sender, EventArgs e)

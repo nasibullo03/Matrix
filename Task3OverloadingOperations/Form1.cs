@@ -9,6 +9,9 @@ namespace Task3OverloadingOperations
     {
         #region Constructors
 
+        public static int WinHeight = 600;
+        public static int WinWidth = 600;
+
         public Form1()
         {
             InitializeComponent();
@@ -71,26 +74,12 @@ namespace Task3OverloadingOperations
         private void Panel1_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-            if (this.Size.Width >= 595 || this.Size.Height >= 330)
-            {
-                PostMessage(this.Handle, WM_SYSCOMMAND, DOSIZE, 0);
-            }
+
+            PostMessage(this.Handle, WM_SYSCOMMAND, DOSIZE, 0);
         }
 
         private void Panel1_MouseLeave(object sender, EventArgs e)
         {
-        }
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            if (this.Size.Width < 595)
-            {
-                this.Size = new Size(596, this.Size.Height);
-            }
-            if (this.Size.Height < 330)
-            {
-                this.Size = new Size(this.Size.Width, 330);
-            }
         }
 
         private void LblProgramName_MouseDown(object sender, MouseEventArgs e)
@@ -100,5 +89,9 @@ namespace Task3OverloadingOperations
         }
 
         #endregion Metods
+
+        private void ControlPanel_Paint(object sender, PaintEventArgs e)
+        {
+        }
     }
 }

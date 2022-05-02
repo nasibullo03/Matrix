@@ -52,8 +52,9 @@ namespace Task3OverloadingOperations
             this.ControlPanel.ForeColor = System.Drawing.Color.White;
             this.ControlPanel.Location = new System.Drawing.Point(0, 0);
             this.ControlPanel.Name = "ControlPanel";
-            this.ControlPanel.Size = new System.Drawing.Size(595, 49);
+            this.ControlPanel.Size = new System.Drawing.Size(700, 49);
             this.ControlPanel.TabIndex = 0;
+            this.ControlPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ControlPanel_Paint);
             this.ControlPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlPanel_MouseDown);
             // 
             // CloseBtn
@@ -63,7 +64,7 @@ namespace Task3OverloadingOperations
             this.CloseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.CloseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CloseBtn.Location = new System.Drawing.Point(569, 0);
+            this.CloseBtn.Location = new System.Drawing.Point(674, 0);
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.Size = new System.Drawing.Size(26, 23);
             this.CloseBtn.TabIndex = 1;
@@ -75,7 +76,7 @@ namespace Task3OverloadingOperations
             // 
             this.lblProgramName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblProgramName.Font = new System.Drawing.Font("Script MT Bold", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProgramName.Location = new System.Drawing.Point(236, 2);
+            this.lblProgramName.Location = new System.Drawing.Point(289, 2);
             this.lblProgramName.Name = "lblProgramName";
             this.lblProgramName.Size = new System.Drawing.Size(130, 44);
             this.lblProgramName.TabIndex = 0;
@@ -92,7 +93,7 @@ namespace Task3OverloadingOperations
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 49);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(595, 281);
+            this.panelMain.Size = new System.Drawing.Size(700, 351);
             this.panelMain.TabIndex = 1;
             // 
             // PanelForms
@@ -101,16 +102,16 @@ namespace Task3OverloadingOperations
             this.PanelForms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelForms.Location = new System.Drawing.Point(20, 0);
             this.PanelForms.Name = "PanelForms";
-            this.PanelForms.Size = new System.Drawing.Size(555, 261);
+            this.PanelForms.Size = new System.Drawing.Size(660, 331);
             this.PanelForms.TabIndex = 12;
             // 
             // DownEmptyPanel
             // 
             this.DownEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.DownEmptyPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DownEmptyPanel.Location = new System.Drawing.Point(20, 261);
+            this.DownEmptyPanel.Location = new System.Drawing.Point(20, 331);
             this.DownEmptyPanel.Name = "DownEmptyPanel";
-            this.DownEmptyPanel.Size = new System.Drawing.Size(555, 20);
+            this.DownEmptyPanel.Size = new System.Drawing.Size(660, 20);
             this.DownEmptyPanel.TabIndex = 9;
             // 
             // RightEmptyPanel
@@ -118,9 +119,9 @@ namespace Task3OverloadingOperations
             this.RightEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.RightEmptyPanel.Controls.Add(this.panel1);
             this.RightEmptyPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RightEmptyPanel.Location = new System.Drawing.Point(575, 0);
+            this.RightEmptyPanel.Location = new System.Drawing.Point(680, 0);
             this.RightEmptyPanel.Name = "RightEmptyPanel";
-            this.RightEmptyPanel.Size = new System.Drawing.Size(20, 281);
+            this.RightEmptyPanel.Size = new System.Drawing.Size(20, 351);
             this.RightEmptyPanel.TabIndex = 8;
             // 
             // panel1
@@ -128,7 +129,7 @@ namespace Task3OverloadingOperations
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
             this.panel1.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 261);
+            this.panel1.Location = new System.Drawing.Point(0, 331);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(20, 20);
             this.panel1.TabIndex = 0;
@@ -141,7 +142,7 @@ namespace Task3OverloadingOperations
             this.LeftEmptyPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftEmptyPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftEmptyPanel.Name = "LeftEmptyPanel";
-            this.LeftEmptyPanel.Size = new System.Drawing.Size(20, 281);
+            this.LeftEmptyPanel.Size = new System.Drawing.Size(20, 351);
             this.LeftEmptyPanel.TabIndex = 7;
             // 
             // Form1
@@ -149,15 +150,15 @@ namespace Task3OverloadingOperations
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
-            this.ClientSize = new System.Drawing.Size(595, 330);
+            this.ClientSize = new System.Drawing.Size(700, 400);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.ControlPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "Form1";
             this.Text = "Matrix";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ControlPanel.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
             this.RightEmptyPanel.ResumeLayout(false);

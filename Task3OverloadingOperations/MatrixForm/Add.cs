@@ -136,7 +136,17 @@ namespace Task3OverloadingOperations.MatrixForm
         /// <param name="e"></param>
         private void MatrixSizeComboBox_TextChanged(object sender, EventArgs e)
         {
-            if (MatrixNameComboBox.Text != string.Empty)
+            int MatrixSizeInTextBoxes;
+            try
+            {
+                MatrixSizeInTextBoxes = Convert.ToInt32(MatrixSizeComboBox.Text);
+            }
+            catch
+            {
+                MatrixSizeInTextBoxes = 0;
+            }
+
+            if (MatrixNameComboBox.Text != string.Empty && MatrixSizeInTextBoxes < 40 && MatrixSizeInTextBoxes != 0)
             {
                 if (MatrixSizeComboBox.BackColor == Color.Red)
                 {
@@ -244,5 +254,9 @@ namespace Task3OverloadingOperations.MatrixForm
         }
 
         #endregion Metods
+
+        private void MatrixSizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
     }
 }
