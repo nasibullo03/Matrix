@@ -146,7 +146,7 @@ namespace Task3OverloadingOperations.MatrixForm
                 MatrixSizeInTextBoxes = 0;
             }
 
-            if (MatrixNameComboBox.Text != string.Empty && MatrixSizeInTextBoxes < 40 && MatrixSizeInTextBoxes != 0)
+            if (MatrixNameComboBox.Text != string.Empty && MatrixSizeInTextBoxes < 40)
             {
                 if (MatrixSizeComboBox.BackColor == Color.Red)
                 {

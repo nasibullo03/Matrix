@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
+using Svg;
 
 namespace Task3OverloadingOperations
 {
@@ -35,9 +37,18 @@ namespace Task3OverloadingOperations
             ShowForm.PerformOperation("Main");
 
             PanelValuesElementsParametrs();
+            AddControlElements();
+        }
+
+        private static void AddControlElements()
+        {
+            SvgDocument WindowMaximize_SVG = SvgDocument.Open("D:\Nasibullo\c-sharp\Task3OverloadingOperations\Resources\");
+            Bitmap WindowMaximize_BitMap = WindowMaximize_SVG.Draw();
+            WindowMaximize_BitMap.Save("WindowMaximize.png", ImageFormat.Png);
         }
 
         private static void PanelValuesElementsParametrs()
+
         {
             Matrix.BrecketOpenPicture = Resources.brecketOpen();
 
