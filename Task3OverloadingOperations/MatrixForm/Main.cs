@@ -79,5 +79,35 @@ namespace Task3OverloadingOperations.MatrixForm
             Matrix.FormMain = this;
             PerformOperation.Operations[PerformOperation.Operation.ShowMatrixs]();
         }
+
+        private void ButtonGreatThan_Click(object sender, EventArgs e)
+        {
+            PerformOperation.Operations[PerformOperation.Operation.GreateThan]();
+        }
+
+        private void ButtonSmallThan_Click(object sender, EventArgs e)
+        {
+            PerformOperation.Operations[PerformOperation.Operation.SmallThan]();
+        }
+
+        private void ButtonIsNotEqual_Click(object sender, EventArgs e)
+        {
+            PerformOperation.Operations[PerformOperation.Operation.IsNotEqual]();
+        }
+
+        private void ButtonSmall_OR_Equal_Than_Click(object sender, EventArgs e)
+        {
+            PerformOperation.Operations[PerformOperation.Operation.SmallOrEqualThan]();
+        }
+
+        private void ButtonEqual_Click(object sender, EventArgs e)
+        {
+            PerformOperation.Operations[PerformOperation.Operation.Equal]();
+        }
+
+        private void ButtonGrate_OR_Equal_Than_Click(object sender, EventArgs e)
+        {
+            PerformOperation.Operations[PerformOperation.Operation.GreatOrEqualThan]();
+        }
     }
 }

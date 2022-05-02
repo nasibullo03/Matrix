@@ -138,7 +138,7 @@ namespace Task3OverloadingOperations
                 }
             }
 
-            return MainMatrix;
+            return Transpose;
         }
 
         private static int[,] MinorOf3x3(int[,] MainMatrix)
@@ -176,7 +176,7 @@ namespace Task3OverloadingOperations
             return MinorMatrix;
         }
 
-        private static int[,] MinorOf4x4(int[,] MainMatrix)
+        private static int[,] MinorOfGreaterThan3(int[,] MainMatrix)
         {
             /*
                 | a11 a12 a13 |
@@ -186,10 +186,52 @@ namespace Task3OverloadingOperations
                         | a22 a23 |
             a11 = M11 =	| a32 a33 | = a22*a33 - a23*a32
             */
-            int Size = MainMatrix.GetLength(0);
-            int[,] MinorMatrix = new int[Size, Size];
+            if (MainMatrix.GetLength(0) == 3)
+            {
+                return MinorOf3x3(MainMatrix);
+            }
 
-            return MinorMatrix;
+            int DetSize = MainMatrix.GetLength(0) - 1,
+
+                RowIndex = 0,
+                ColIndex = 0,
+                MatIndex = MainMatrix.GetLength(0);
+
+            int[,] Minor = new int[MatIndex, MatIndex];
+            int[,] DetMatrix = new int[DetSize, DetSize];
+
+            for (int MainMatrixCol = 0; MainMatrixCol < MatIndex; ++MainMatrixCol)
+            {
+                for (int MainMatrixRow = 0; MainMatrixRow < MatIndex; ++MainMatrixRow)
+                {
+                    for (int DetMatrixCol = 0; DetMatrixCol < MatIndex; ++DetMatrixCol)
+                    {
+                        if (MainMatrixCol == DetMatrixCol)
+                            continue;
+                        for (int DetMatrixRow = 0; DetMatrixRow < MatIndex; ++DetMatrixRow)
+                        {
+                            if (MainMatrixRow == DetMatrixRow)
+                                continue;
+                            else
+                            {
+                                DetMatrix[ColIndex, RowIndex++] = MainMatrix[DetMatrixCol, DetMatrixRow];
+                                if (RowIndex >= DetSize)
+                                    RowIndex = 0;
+                            }
+                        }
+                        RowIndex = 0;
+                        ++ColIndex;
+                    }
+                    RowIndex = 0;
+                    ColIndex = 0;
+
+                    Minor[MainMatrixCol, MainMatrixRow] = DeterminantOver3(DetMatrix);
+
+                    DetMatrix = new int[DetSize, DetSize];
+                }
+            }
+
+            return Minor;
         }
 
         public static int[,] FindMinor(int[,] MainMatrix)
@@ -210,7 +252,7 @@ namespace Task3OverloadingOperations
             }
             else if (Size > 3)
             {
-                throw new IndexOutOfRangeException();
+                Minor = MinorOfGreaterThan3(MainMatrix);
             }
 
             return Minor;
