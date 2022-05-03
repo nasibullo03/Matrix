@@ -113,9 +113,9 @@ namespace Task3OverloadingOperations
 
             MARGINS margins = new MARGINS()
             {
-                bottomHeight = 5,
-                leftWidth = 5,
-                rightWidth = 5,
+                bottomHeight = 8,
+                leftWidth = 8,
+                rightWidth = 8,
                 topHeight = 50
             };
 

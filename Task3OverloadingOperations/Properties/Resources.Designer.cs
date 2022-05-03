@@ -103,6 +103,26 @@ namespace Task3OverloadingOperations.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        public static byte[] Play_Bold {
+            get {
+                object obj = ResourceManager.GetObject("Play_Bold", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        public static byte[] Play_Regular {
+            get {
+                object obj = ResourceManager.GetObject("Play_Regular", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         public static byte[] window_maximizeSvg {
             get {
                 object obj = ResourceManager.GetObject("window_maximizeSvg", resourceCulture);

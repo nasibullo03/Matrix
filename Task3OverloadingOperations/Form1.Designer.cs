@@ -63,6 +63,7 @@ namespace Task3OverloadingOperations
             this.ControlPanel.Size = new System.Drawing.Size(700, 49);
             this.ControlPanel.TabIndex = 0;
             this.ControlPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ControlPanel_Paint);
+            this.ControlPanel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ControlPanel_MouseDoubleClick);
             this.ControlPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlPanel_MouseDown);
             // 
             // MinimizeBtn
@@ -116,12 +117,13 @@ namespace Task3OverloadingOperations
             // lblProgramName
             // 
             this.lblProgramName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblProgramName.Font = new System.Drawing.Font("Script MT Bold", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProgramName.Location = new System.Drawing.Point(289, 2);
+            this.lblProgramName.AutoSize = true;
+            this.lblProgramName.Font = new System.Drawing.Font("Script MT Bold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProgramName.Location = new System.Drawing.Point(208, 9);
             this.lblProgramName.Name = "lblProgramName";
-            this.lblProgramName.Size = new System.Drawing.Size(130, 44);
+            this.lblProgramName.Size = new System.Drawing.Size(310, 33);
             this.lblProgramName.TabIndex = 0;
-            this.lblProgramName.Text = "Matrix";
+            this.lblProgramName.Text = "Квадратная матрица";
             this.lblProgramName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LblProgramName_MouseDown);
             // 
             // panelMain
@@ -142,18 +144,18 @@ namespace Task3OverloadingOperations
             this.PanelForms.AutoScroll = true;
             this.PanelForms.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.PanelForms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelForms.Location = new System.Drawing.Point(5, 0);
+            this.PanelForms.Location = new System.Drawing.Point(8, 0);
             this.PanelForms.Name = "PanelForms";
-            this.PanelForms.Size = new System.Drawing.Size(690, 346);
+            this.PanelForms.Size = new System.Drawing.Size(684, 343);
             this.PanelForms.TabIndex = 12;
             // 
             // DownEmptyPanel
             // 
             this.DownEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
             this.DownEmptyPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DownEmptyPanel.Location = new System.Drawing.Point(5, 346);
+            this.DownEmptyPanel.Location = new System.Drawing.Point(8, 343);
             this.DownEmptyPanel.Name = "DownEmptyPanel";
-            this.DownEmptyPanel.Size = new System.Drawing.Size(690, 5);
+            this.DownEmptyPanel.Size = new System.Drawing.Size(684, 8);
             this.DownEmptyPanel.TabIndex = 9;
             // 
             // RightEmptyPanel
@@ -161,9 +163,9 @@ namespace Task3OverloadingOperations
             this.RightEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
             this.RightEmptyPanel.Controls.Add(this.panel1);
             this.RightEmptyPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RightEmptyPanel.Location = new System.Drawing.Point(695, 0);
+            this.RightEmptyPanel.Location = new System.Drawing.Point(692, 0);
             this.RightEmptyPanel.Name = "RightEmptyPanel";
-            this.RightEmptyPanel.Size = new System.Drawing.Size(5, 351);
+            this.RightEmptyPanel.Size = new System.Drawing.Size(8, 351);
             this.RightEmptyPanel.TabIndex = 8;
             // 
             // panel1
@@ -173,7 +175,7 @@ namespace Task3OverloadingOperations
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 331);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(5, 20);
+            this.panel1.Size = new System.Drawing.Size(8, 20);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             this.panel1.MouseLeave += new System.EventHandler(this.Panel1_MouseLeave);
@@ -184,7 +186,7 @@ namespace Task3OverloadingOperations
             this.LeftEmptyPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftEmptyPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftEmptyPanel.Name = "LeftEmptyPanel";
-            this.LeftEmptyPanel.Size = new System.Drawing.Size(5, 351);
+            this.LeftEmptyPanel.Size = new System.Drawing.Size(8, 351);
             this.LeftEmptyPanel.TabIndex = 7;
             // 
             // LogoPictureBox
@@ -213,6 +215,7 @@ namespace Task3OverloadingOperations
             this.Text = "Matrix";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ControlPanel.ResumeLayout(false);
+            this.ControlPanel.PerformLayout();
             this.panelMain.ResumeLayout(false);
             this.RightEmptyPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();

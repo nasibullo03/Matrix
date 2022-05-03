@@ -10,6 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Drawing.Imaging;
 using Svg;
+using System.Drawing.Text;
+using System.IO;
 
 namespace Task3OverloadingOperations
 {
@@ -47,12 +49,30 @@ namespace Task3OverloadingOperations
 
             MaximizeBtn.Location = new Point(CloseBtn.Location.X - MaximizeBtn.Width, CloseBtn.Location.Y);
             MinimizeBtn.Location = new Point(MaximizeBtn.Location.X - MinimizeBtn.Width, CloseBtn.Location.Y);
-            LogoPictureBox.Location = new Point(0, 0);
+            LogoPictureBox.Location = new Point(10, 0);
 
             CloseBtn.BackgroundImage = Resources.CloseBtnPic();
             MaximizeBtn.BackgroundImage = Resources.MaximizeBtnPic();
             MinimizeBtn.BackgroundImage = Resources.MinimizeBtnPic();
             LogoPictureBox.BackgroundImage = Resources.LogoPic();
+
+            ChangelblProgramName_Font(this);
+        }
+
+        private static void ChangelblProgramName_Font(Form1 form)
+        {
+            PrivateFontCollection myFont = new PrivateFontCollection();
+            using (MemoryStream fontStream = new MemoryStream(Properties.Resources.Play_Bold))
+            {
+                var data = Marshal.AllocCoTaskMem((int)fontStream.Length);
+                byte[] FontData = new byte[fontStream.Length];
+                fontStream.Read(FontData, 0, (int)fontStream.Length);
+                Marshal.Copy(FontData, 0, data, (int)fontStream.Length);
+                myFont.AddMemoryFont(data, (int)fontStream.Length);
+                Marshal.FreeCoTaskMem(data);
+            }
+            form.lblProgramName.Font = new Font(myFont.Families[0], 18, FontStyle.Bold);
+            form.lblProgramName.UseCompatibleTextRendering = true;
         }
 
         private static void PanelValuesElementsParametrs()
@@ -124,6 +144,14 @@ namespace Task3OverloadingOperations
         private void MinimizeBtn_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void ControlPanel_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
         }
     }
 }
