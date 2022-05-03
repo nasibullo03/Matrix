@@ -29,7 +29,10 @@ namespace Task3OverloadingOperations
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.ControlPanel = new System.Windows.Forms.Panel();
+            this.MinimizeBtn = new System.Windows.Forms.Button();
+            this.MaximizeBtn = new System.Windows.Forms.Button();
             this.CloseBtn = new System.Windows.Forms.Button();
             this.lblProgramName = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
@@ -38,14 +41,19 @@ namespace Task3OverloadingOperations
             this.RightEmptyPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LeftEmptyPanel = new System.Windows.Forms.Panel();
+            this.LogoPictureBox = new System.Windows.Forms.PictureBox();
             this.ControlPanel.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.RightEmptyPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // ControlPanel
             // 
             this.ControlPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
+            this.ControlPanel.Controls.Add(this.LogoPictureBox);
+            this.ControlPanel.Controls.Add(this.MinimizeBtn);
+            this.ControlPanel.Controls.Add(this.MaximizeBtn);
             this.ControlPanel.Controls.Add(this.CloseBtn);
             this.ControlPanel.Controls.Add(this.lblProgramName);
             this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -57,9 +65,43 @@ namespace Task3OverloadingOperations
             this.ControlPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ControlPanel_Paint);
             this.ControlPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlPanel_MouseDown);
             // 
+            // MinimizeBtn
+            // 
+            this.MinimizeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MinimizeBtn.BackColor = System.Drawing.Color.Transparent;
+            this.MinimizeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.MinimizeBtn.FlatAppearance.BorderSize = 0;
+            this.MinimizeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
+            this.MinimizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinimizeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MinimizeBtn.Location = new System.Drawing.Point(595, 2);
+            this.MinimizeBtn.Name = "MinimizeBtn";
+            this.MinimizeBtn.Size = new System.Drawing.Size(26, 23);
+            this.MinimizeBtn.TabIndex = 5;
+            this.MinimizeBtn.UseVisualStyleBackColor = false;
+            this.MinimizeBtn.Click += new System.EventHandler(this.MinimizeBtn_Click);
+            // 
+            // MaximizeBtn
+            // 
+            this.MaximizeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaximizeBtn.BackColor = System.Drawing.Color.Transparent;
+            this.MaximizeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.MaximizeBtn.FlatAppearance.BorderSize = 0;
+            this.MaximizeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
+            this.MaximizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MaximizeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MaximizeBtn.Location = new System.Drawing.Point(642, 0);
+            this.MaximizeBtn.Name = "MaximizeBtn";
+            this.MaximizeBtn.Size = new System.Drawing.Size(26, 23);
+            this.MaximizeBtn.TabIndex = 4;
+            this.MaximizeBtn.UseVisualStyleBackColor = false;
+            this.MaximizeBtn.Click += new System.EventHandler(this.MaximizeBtn_Click);
+            // 
             // CloseBtn
             // 
             this.CloseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseBtn.BackColor = System.Drawing.Color.Transparent;
+            this.CloseBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CloseBtn.FlatAppearance.BorderSize = 0;
             this.CloseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.CloseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -68,8 +110,7 @@ namespace Task3OverloadingOperations
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.Size = new System.Drawing.Size(26, 23);
             this.CloseBtn.TabIndex = 1;
-            this.CloseBtn.Text = "X";
-            this.CloseBtn.UseVisualStyleBackColor = true;
+            this.CloseBtn.UseVisualStyleBackColor = false;
             this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
             // lblProgramName
@@ -85,7 +126,7 @@ namespace Task3OverloadingOperations
             // 
             // panelMain
             // 
-            this.panelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
+            this.panelMain.BackColor = System.Drawing.Color.Transparent;
             this.panelMain.Controls.Add(this.PanelForms);
             this.panelMain.Controls.Add(this.DownEmptyPanel);
             this.panelMain.Controls.Add(this.RightEmptyPanel);
@@ -99,51 +140,62 @@ namespace Task3OverloadingOperations
             // PanelForms
             // 
             this.PanelForms.AutoScroll = true;
+            this.PanelForms.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
             this.PanelForms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelForms.Location = new System.Drawing.Point(20, 0);
+            this.PanelForms.Location = new System.Drawing.Point(5, 0);
             this.PanelForms.Name = "PanelForms";
-            this.PanelForms.Size = new System.Drawing.Size(660, 331);
+            this.PanelForms.Size = new System.Drawing.Size(690, 346);
             this.PanelForms.TabIndex = 12;
             // 
             // DownEmptyPanel
             // 
-            this.DownEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
+            this.DownEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
             this.DownEmptyPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DownEmptyPanel.Location = new System.Drawing.Point(20, 331);
+            this.DownEmptyPanel.Location = new System.Drawing.Point(5, 346);
             this.DownEmptyPanel.Name = "DownEmptyPanel";
-            this.DownEmptyPanel.Size = new System.Drawing.Size(660, 20);
+            this.DownEmptyPanel.Size = new System.Drawing.Size(690, 5);
             this.DownEmptyPanel.TabIndex = 9;
             // 
             // RightEmptyPanel
             // 
-            this.RightEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
+            this.RightEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
             this.RightEmptyPanel.Controls.Add(this.panel1);
             this.RightEmptyPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RightEmptyPanel.Location = new System.Drawing.Point(680, 0);
+            this.RightEmptyPanel.Location = new System.Drawing.Point(695, 0);
             this.RightEmptyPanel.Name = "RightEmptyPanel";
-            this.RightEmptyPanel.Size = new System.Drawing.Size(20, 351);
+            this.RightEmptyPanel.Size = new System.Drawing.Size(5, 351);
             this.RightEmptyPanel.TabIndex = 8;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 331);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(20, 20);
+            this.panel1.Size = new System.Drawing.Size(5, 20);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             this.panel1.MouseLeave += new System.EventHandler(this.Panel1_MouseLeave);
             // 
             // LeftEmptyPanel
             // 
-            this.LeftEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(98)))), ((int)(((byte)(228)))));
+            this.LeftEmptyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
             this.LeftEmptyPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftEmptyPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftEmptyPanel.Name = "LeftEmptyPanel";
-            this.LeftEmptyPanel.Size = new System.Drawing.Size(20, 351);
+            this.LeftEmptyPanel.Size = new System.Drawing.Size(5, 351);
             this.LeftEmptyPanel.TabIndex = 7;
+            // 
+            // LogoPictureBox
+            // 
+            this.LogoPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.LogoPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.LogoPictureBox.Location = new System.Drawing.Point(0, 2);
+            this.LogoPictureBox.Name = "LogoPictureBox";
+            this.LogoPictureBox.Size = new System.Drawing.Size(59, 47);
+            this.LogoPictureBox.TabIndex = 6;
+            this.LogoPictureBox.TabStop = false;
             // 
             // Form1
             // 
@@ -154,6 +206,7 @@ namespace Task3OverloadingOperations
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.ControlPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "Form1";
@@ -162,6 +215,7 @@ namespace Task3OverloadingOperations
             this.ControlPanel.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
             this.RightEmptyPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -177,6 +231,9 @@ namespace Task3OverloadingOperations
         private System.Windows.Forms.Panel DownEmptyPanel;
         private System.Windows.Forms.Panel RightEmptyPanel;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button MaximizeBtn;
+        private System.Windows.Forms.Button MinimizeBtn;
+        private System.Windows.Forms.PictureBox LogoPictureBox;
     }
 }
 

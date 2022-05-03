@@ -2,6 +2,12 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Linq;
+using System.ComponentModel;
+using System.Text;
+using System.Windows;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Drawing.Imaging;
 using Svg;
 
@@ -17,6 +23,7 @@ namespace Task3OverloadingOperations
         public Form1()
         {
             InitializeComponent();
+            (new Task3OverloadingOperations.DropShadow()).ApplyShadows(this);
         }
 
         #endregion Constructors
@@ -37,14 +44,15 @@ namespace Task3OverloadingOperations
             ShowForm.PerformOperation("Main");
 
             PanelValuesElementsParametrs();
-            AddControlElements();
-        }
 
-        private static void AddControlElements()
-        {
-            SvgDocument WindowMaximize_SVG = SvgDocument.Open("D:\Nasibullo\c-sharp\Task3OverloadingOperations\Resources\");
-            Bitmap WindowMaximize_BitMap = WindowMaximize_SVG.Draw();
-            WindowMaximize_BitMap.Save("WindowMaximize.png", ImageFormat.Png);
+            MaximizeBtn.Location = new Point(CloseBtn.Location.X - MaximizeBtn.Width, CloseBtn.Location.Y);
+            MinimizeBtn.Location = new Point(MaximizeBtn.Location.X - MinimizeBtn.Width, CloseBtn.Location.Y);
+            LogoPictureBox.Location = new Point(0, 0);
+
+            CloseBtn.BackgroundImage = Resources.CloseBtnPic();
+            MaximizeBtn.BackgroundImage = Resources.MaximizeBtnPic();
+            MinimizeBtn.BackgroundImage = Resources.MinimizeBtnPic();
+            LogoPictureBox.BackgroundImage = Resources.LogoPic();
         }
 
         private static void PanelValuesElementsParametrs()
@@ -103,6 +111,19 @@ namespace Task3OverloadingOperations
 
         private void ControlPanel_Paint(object sender, PaintEventArgs e)
         {
+        }
+
+        private void MaximizeBtn_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
+        }
+
+        private void MinimizeBtn_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

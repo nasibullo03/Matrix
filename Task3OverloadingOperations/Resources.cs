@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using Svg;
+using System.IO;
+using System.Timers;
 
 namespace Task3OverloadingOperations
 {
@@ -61,6 +64,85 @@ namespace Task3OverloadingOperations
                 Size = new System.Drawing.Size(20, 68),
                 Name = $"brecketOpen{PictureCount++}"
             };
+        }
+
+        public static Bitmap MaximizeBtnPic()
+        {
+            string path = Path.Combine(Environment.CurrentDirectory + @"\Resources\window-maximizeSvg.svg");
+            SvgDocument svg = SvgDocument.Open(path);
+            Bitmap bitmap = svg.Draw();
+            for (int x = 0; x < bitmap.Width; ++x)
+            {
+                for (int y = 0; y < bitmap.Height; ++y)
+                {
+                    if (bitmap.GetPixel(y, x).A != 0)
+                    {
+                        bitmap.SetPixel(y, x, Color.White);
+                    }
+                }
+            }
+
+            return new Bitmap(bitmap, new Size(15, 15));
+        }
+
+        public static Bitmap MinimizeBtnPic()
+        {
+            string path = Path.Combine(Environment.CurrentDirectory + @"\Resources\window-minimizeSvg.svg");
+            SvgDocument svg = SvgDocument.Open(path);
+            Bitmap bitmap = svg.Draw();
+            for (int x = 0; x < bitmap.Width; ++x)
+            {
+                for (int y = 0; y < bitmap.Height; ++y)
+                {
+                    if (bitmap.GetPixel(x, y).A != 0)
+                    {
+                        bitmap.SetPixel(x, y, Color.White);
+                    }
+                }
+            }
+
+            return new Bitmap(bitmap, new Size(15, 15));
+        }
+
+        public static Bitmap CloseBtnPic()
+        {
+            string path = Path.Combine(Environment.CurrentDirectory + @"\Resources\window-closeSvg.svg");
+            SvgDocument svg = SvgDocument.Open(path);
+            Bitmap bitmap = svg.Draw();
+            for (int x = 0; x < bitmap.Width; ++x)
+            {
+                for (int y = 0; y < bitmap.Height; ++y)
+                {
+                    if (bitmap.GetPixel(x, y).A != 0)
+                    {
+                        bitmap.SetPixel(x, y, Color.White);
+                    }
+                }
+            }
+
+            return new Bitmap(bitmap, new Size(12, 12));
+        }
+
+        public static Bitmap LogoPic()
+        {
+            string path = Path.Combine(Environment.CurrentDirectory + @"\Resources\logoSvg.svg");
+            SvgDocument svg = SvgDocument.Open(path);
+            Bitmap bitmap = svg.Draw();
+
+            Random random = new Random();
+
+            for (int x = 0; x < bitmap.Width; ++x)
+            {
+                for (int y = 0; y < bitmap.Height; ++y)
+                {
+                    if (bitmap.GetPixel(x, y).A != 0)
+                    {
+                        bitmap.SetPixel(x, y, Color.White);
+                    }
+                }
+            }
+
+            return new Bitmap(bitmap, new Size(40, 30));
         }
 
         #endregion Metods

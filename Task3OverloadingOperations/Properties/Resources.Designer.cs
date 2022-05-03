@@ -22,7 +22,7 @@ namespace Task3OverloadingOperations.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Task3OverloadingOperations.Properties {
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Task3OverloadingOperations.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Task3OverloadingOperations.Properties {
         ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Task3OverloadingOperations.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap back_image_20px20px {
+        public static System.Drawing.Bitmap back_image_20px20px {
             get {
                 object obj = ResourceManager.GetObject("back_image_20px20px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace Task3OverloadingOperations.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bracket_Close {
+        public static System.Drawing.Bitmap bracket_Close {
             get {
                 object obj = ResourceManager.GetObject("bracket_Close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace Task3OverloadingOperations.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bracket_Open {
+        public static System.Drawing.Bitmap bracket_Open {
             get {
                 object obj = ResourceManager.GetObject("bracket_Open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -91,11 +91,21 @@ namespace Task3OverloadingOperations.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        public static System.Drawing.Icon logo {
+            get {
+                object obj = ResourceManager.GetObject("logo", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        internal static byte[] WindowMaximize {
+        public static byte[] window_maximizeSvg {
             get {
-                object obj = ResourceManager.GetObject("WindowMaximize", resourceCulture);
+                object obj = ResourceManager.GetObject("window_maximizeSvg", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -103,9 +113,9 @@ namespace Task3OverloadingOperations.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        internal static byte[] WindowMinimize {
+        public static byte[] window_minimizeSvg {
             get {
-                object obj = ResourceManager.GetObject("WindowMinimize", resourceCulture);
+                object obj = ResourceManager.GetObject("window_minimizeSvg", resourceCulture);
                 return ((byte[])(obj));
             }
         }

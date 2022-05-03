@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DropShadow.cs" />
     <Compile Include="PerformOperation.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -117,7 +118,7 @@
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -147,10 +148,13 @@
     <Content Include="Images\bracket_Close.png" />
     <Content Include="Images\bracket_Open.png" />
     <Content Include="Images\circle-arrow-left-solid %282%29 %281%29 %281%29.png" />
+    <Content Include="Resources\logo.ico" />
+    <Content Include="Resources\logoSvg.svg" />
     <Content Include="Resources\bracket_Close.png" />
     <Content Include="Resources\bracket_Open.png" />
-    <Content Include="Resources\WindowMaximize.svg" />
-    <Content Include="Resources\WindowMinimize.svg" />
+    <Content Include="Resources\window-maximizeSvg.svg" />
+    <Content Include="Resources\window-minimizeSvg.svg" />
+    <Content Include="Resources\window-closeSvg.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
