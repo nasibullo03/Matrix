@@ -171,7 +171,7 @@ namespace Task3OverloadingOperations.MatrixForm
             // 
             // ButtonBack
             // 
-            this.ButtonBack.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.back_image_20px20px;
+            this.ButtonBack.BackgroundImage = global::Task3OverloadingOperations.Properties.Resources.imgBack;
             this.ButtonBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ButtonBack.Dock = System.Windows.Forms.DockStyle.Left;
             this.ButtonBack.FlatAppearance.BorderSize = 0;

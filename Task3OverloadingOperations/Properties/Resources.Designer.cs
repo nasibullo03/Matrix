@@ -63,16 +63,6 @@ namespace Task3OverloadingOperations.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap back_image_20px20px {
-            get {
-                object obj = ResourceManager.GetObject("back_image_20px20px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap bracket_Close {
             get {
                 object obj = ResourceManager.GetObject("bracket_Close", resourceCulture);
@@ -86,6 +76,16 @@ namespace Task3OverloadingOperations.Properties {
         public static System.Drawing.Bitmap bracket_Open {
             get {
                 object obj = ResourceManager.GetObject("bracket_Open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap imgBack {
+            get {
+                object obj = ResourceManager.GetObject("imgBack", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
