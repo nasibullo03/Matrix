@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Task3OverloadingOperations
 {
-    internal abstract class FillMatrix : Matrix
+    internal abstract class FillMatrix : SquareMatrix
     {
-        public static void Fill(ref SquareMatrix matrix, int Size)
+        public static void Fill(ref MatrixsInfo matrix, int Size)
         {
             Random rand = new Random();
 
@@ -55,7 +55,7 @@ namespace Task3OverloadingOperations
             }
         }
 
-        public static void Fill(ref Matrix matrix)
+        public static void Fill(ref SquareMatrix matrix)
         {
             matrix.MatrixValue = new int[Size, Size];
             for (int ColIndex = 0; ColIndex < Size; ++ColIndex)

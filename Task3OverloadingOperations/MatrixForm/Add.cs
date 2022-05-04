@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Task3OverloadingOperations.MatrixForm
@@ -32,47 +26,64 @@ namespace Task3OverloadingOperations.MatrixForm
 
         #region Metods
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_SAVEBITS = 0x0800;
+                //Сохраняет в виде растрового изображения часть изображения экрана,
+                //скрытая окном этого класса.При удалении окна система использует
+                //сохраненную растровую карту для восстановления изображения экрана,
+                //включая другие окна, которые были скрыты.
+
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_SAVEBITS;
+
+                return cp;
+            }
+        }
+
         /// <summary>
         /// Параметры по умолчанию при открытии формы
         /// </summary>
         public static void OnLoadDefaultParametrs()
         {
             //Если заполнена только Первая матрица
-            if (!Matrix.IsMatrixAEmpty && Matrix.IsMatrixBEmpty)
+            if (!SquareMatrix.IsMatrixAEmpty && SquareMatrix.IsMatrixBEmpty)
             {
-                if (Matrix.MatrixA.Name == "A")
+                if (SquareMatrix.MatrixA.Name == "A")
                 {
-                    Matrix.FormAdd.MatrixNameComboBox.Text = "B";
+                    SquareMatrix.FormAdd.MatrixNameComboBox.Text = "B";
                 }
                 else
                 {
-                    Matrix.FormAdd.MatrixNameComboBox.Text = "A";
+                    SquareMatrix.FormAdd.MatrixNameComboBox.Text = "A";
                 }
-                Matrix.MatrixSizeComboBox_ClearItems();
+                SquareMatrix.MatrixSizeComboBox_ClearItems();
 
-                Matrix.FormAdd.MatrixSizeComboBox.Text = Matrix.MatrixA.MatrixValue.GetLength(0).ToString();
-                Matrix.FormAdd.MatrixSizeComboBox.Enabled = false;
+                SquareMatrix.FormAdd.MatrixSizeComboBox.Text = SquareMatrix.MatrixA.MatrixValue.GetLength(0).ToString();
+                SquareMatrix.FormAdd.MatrixSizeComboBox.Enabled = false;
             }
-            else if (Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty) // если заполнена только значение второй матрицы
+            else if (SquareMatrix.IsMatrixAEmpty && !SquareMatrix.IsMatrixBEmpty) // если заполнена только значение второй матрицы
             {
-                Matrix.FormAdd.MatrixNameComboBox.Text = Matrix.MatrixA.Name;
-                if (Matrix.MatrixB.Name == "B")
+                SquareMatrix.FormAdd.MatrixNameComboBox.Text = SquareMatrix.MatrixA.Name;
+                if (SquareMatrix.MatrixB.Name == "B")
                 {
-                    Matrix.FormAdd.MatrixNameComboBox.Text = "A";
+                    SquareMatrix.FormAdd.MatrixNameComboBox.Text = "A";
                 }
                 else
                 {
-                    Matrix.FormAdd.MatrixNameComboBox.Text = "B";
+                    SquareMatrix.FormAdd.MatrixNameComboBox.Text = "B";
                 }
-                Matrix.MatrixSizeComboBox_ClearItems();
-                Matrix.FormAdd.MatrixSizeComboBox.Text = Matrix.MatrixB.MatrixValue.GetLength(0).ToString();
+                SquareMatrix.MatrixSizeComboBox_ClearItems();
+                SquareMatrix.FormAdd.MatrixSizeComboBox.Text = SquareMatrix.MatrixB.MatrixValue.GetLength(0).ToString();
             } // если оба матрицы заполнена/не заполнена
-            else if (Matrix.IsMatrixAEmpty && Matrix.IsMatrixBEmpty
-              || !Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
+            else if (SquareMatrix.IsMatrixAEmpty && SquareMatrix.IsMatrixBEmpty
+              || !SquareMatrix.IsMatrixAEmpty && !SquareMatrix.IsMatrixBEmpty)
             {
-                Matrix.FormAdd.MatrixNameComboBox.Text = "A";
-                Matrix.FormAdd.MatrixSizeComboBox.Text = string.Empty;
-                Matrix.FormAdd.MatrixSizeComboBox.Enabled = true;
+                SquareMatrix.FormAdd.MatrixNameComboBox.Text = "A";
+                SquareMatrix.FormAdd.MatrixSizeComboBox.Text = string.Empty;
+                SquareMatrix.FormAdd.MatrixSizeComboBox.Enabled = true;
             }
         }
 
@@ -91,9 +102,9 @@ namespace Task3OverloadingOperations.MatrixForm
         /// <param name="e"></param>
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            if (Matrix.textBoxes == null)
+            if (SquareMatrix.textBoxes == null)
             {
-                Matrix.ClearTextBoxes();
+                SquareMatrix.ClearTextBoxes();
                 ShowForm.PerformOperation("Main");
             }
             else
@@ -103,7 +114,7 @@ namespace Task3OverloadingOperations.MatrixForm
                 result = MessageBox.Show("При выходе из этого окно ваше действия не сохраняется!!\n\nХотите ли вы продолжать?", "Matrix", buttons, MessageBoxIcon.Exclamation);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    Matrix.ClearTextBoxes();
+                    SquareMatrix.ClearTextBoxes();
                     ShowForm.PerformOperation("Main");
                 }
             }
@@ -150,7 +161,7 @@ namespace Task3OverloadingOperations.MatrixForm
             {
                 if (MatrixSizeComboBox.BackColor == Color.Red)
                 {
-                    Matrix.MatrixSizeComboBox_DefaultColor();
+                    SquareMatrix.MatrixSizeComboBox_DefaultColor();
                 }
 
                 lblTextOfCBNameOFMatrix.BackColor = Color.Transparent;
@@ -160,35 +171,35 @@ namespace Task3OverloadingOperations.MatrixForm
 
                     try
                     {
-                        Matrix.MatrixSize = Convert.ToInt32(MatrixSizeComboBox.Text) > 1 ? Convert.ToInt32(MatrixSizeComboBox.Text) : 0;
+                        SquareMatrix.MatrixSize = Convert.ToInt32(MatrixSizeComboBox.Text) > 1 ? Convert.ToInt32(MatrixSizeComboBox.Text) : 0;
                     }
                     catch
                     {
                         MatrixSizeComboBox.Text = "2";
-                        Matrix.MatrixSize = 2;
+                        SquareMatrix.MatrixSize = 2;
                     }
                     finally
                     {
-                        Matrix.CreateTextBoxes();
+                        SquareMatrix.CreateTextBoxes();
                     }
                 }
                 else if (MatrixSizeComboBox.Text == "1" || MatrixSizeComboBox.Text == "0")
                 {
-                    Matrix.MatrixSizeComboBox_ChangeColor();
-                    Matrix.MatrixSize = 0;
-                    Matrix.CreateTextBoxes();
-                    Matrix.LblMatrixName.Visible = false;
-                    Matrix.BrecketClosePicture.Visible = false;
-                    Matrix.BrecketOpenPicture.Visible = false;
+                    SquareMatrix.MatrixSizeComboBox_ChangeColor();
+                    SquareMatrix.MatrixSize = 0;
+                    SquareMatrix.CreateTextBoxes();
+                    SquareMatrix.LblMatrixName.Visible = false;
+                    SquareMatrix.BrecketClosePicture.Visible = false;
+                    SquareMatrix.BrecketOpenPicture.Visible = false;
                 }
                 else
                 {
-                    Matrix.ClearTextBoxes(ClearMatrixName: false);
+                    SquareMatrix.ClearTextBoxes(ClearMatrixName: false);
                 }
             }
             else
             {
-                Matrix.MatrixSizeComboBox_ChangeColor();
+                SquareMatrix.MatrixSizeComboBox_ChangeColor();
             }
         }
 
@@ -205,14 +216,14 @@ namespace Task3OverloadingOperations.MatrixForm
             }
             if (MatrixSizeComboBox.Text == string.Empty || MatrixSizeComboBox.Text == "0")
             {
-                Matrix.MatrixSizeComboBox_ChangeColor();
+                SquareMatrix.MatrixSizeComboBox_ChangeColor();
             }
             else
             {
-                Matrix.FillTextBoxes();
+                SquareMatrix.FillTextBoxes();
                 if (MatrixSizeComboBox.BackColor == Color.Red)
                 {
-                    Matrix.MatrixSizeComboBox_DefaultColor();
+                    SquareMatrix.MatrixSizeComboBox_DefaultColor();
                 }
             }
         }
@@ -224,18 +235,18 @@ namespace Task3OverloadingOperations.MatrixForm
         /// <param name="e"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            Matrix.AddingValues();
+            SquareMatrix.AddingValues();
             ShowForm.PerformOperation("Main");
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
         {
-            Matrix.ClearTextBoxes();
+            SquareMatrix.ClearTextBoxes();
         }
 
         public void MatrixTextBoxes_TextChanged(object sender, EventArgs e)
         {
-            Matrix.ResizeTextBoxes();
+            SquareMatrix.ResizeTextBoxes();
         }
 
         private void PanelMatrixValue_Paint(object sender, PaintEventArgs e)
@@ -244,19 +255,15 @@ namespace Task3OverloadingOperations.MatrixForm
 
         private void ClearMatrixValuesButton_Click(object sender, EventArgs e)
         {
-            Matrix.ClearTextBoxes(false);
+            SquareMatrix.ClearTextBoxes(false);
         }
 
         private void Add_Load(object sender, EventArgs e)
         {
-            Matrix.FormAdd = this;
+            SquareMatrix.FormAdd = this;
             OnLoad();
         }
 
         #endregion Metods
-
-        private void MatrixSizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Task3OverloadingOperations.MatrixForm
@@ -19,6 +11,22 @@ namespace Task3OverloadingOperations.MatrixForm
 
         {
             InitializeComponent();
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_SAVEBITS = 0x0800;
+                //Сохраняет в виде растрового изображения часть изображения экрана,
+                //скрытая окном этого класса.При удалении окна система использует
+                //сохраненную растровую карту для восстановления изображения экрана,
+                //включая другие окна, которые были скрыты.
+
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_SAVEBITS;
+                return cp;
+            }
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -39,8 +47,8 @@ namespace Task3OverloadingOperations.MatrixForm
         private void ButtonClear_Click(object sender, EventArgs e)
         {
             PanelResult.Controls.Clear();
-            Matrix.MatrixA = new Matrix();
-            Matrix.MatrixB = new Matrix();
+            SquareMatrix.MatrixA = new SquareMatrix();
+            SquareMatrix.MatrixB = new SquareMatrix();
         }
 
         private void ButtonMinus_Click(object sender, EventArgs e)
@@ -77,7 +85,7 @@ namespace Task3OverloadingOperations.MatrixForm
 
         private void Main_Load(object sender, EventArgs e)
         {
-            Matrix.FormMain = this;
+            SquareMatrix.FormMain = this;
             PerformOperation.Operations[PerformOperation.Operation.ShowMatrixs]();
         }
 

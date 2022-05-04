@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using System.Linq;
-using System.ComponentModel;
-using System.Text;
-using System.Windows;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Drawing.Imaging;
-using Svg;
 using System.Drawing.Text;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace Task3OverloadingOperations
 {
@@ -25,12 +17,25 @@ namespace Task3OverloadingOperations
         public Form1()
         {
             InitializeComponent();
-            (new Task3OverloadingOperations.DropShadow()).ApplyShadows(this);
         }
 
         #endregion Constructors
 
         #region Metods
+
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x00020000;
+
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+
+                return cp;
+            }
+        }
 
         private void CloseBtn_Click(object sender, EventArgs e)
         {
@@ -40,8 +45,8 @@ namespace Task3OverloadingOperations
         private void Form1_Load(object sender, EventArgs e)
         {
             PerformOperation.FillOperations();
-            Matrix.MatrixA = new Matrix();
-            Matrix.MatrixB = new Matrix();
+            SquareMatrix.MatrixA = new SquareMatrix();
+            SquareMatrix.MatrixB = new SquareMatrix();
             ShowForm.Form1 = this;
             ShowForm.PerformOperation("Main");
 
@@ -78,15 +83,11 @@ namespace Task3OverloadingOperations
         private static void PanelValuesElementsParametrs()
 
         {
-            Matrix.BrecketOpenPicture = Resources.brecketOpen();
-
-            Matrix.BrecketClosePicture = Resources.brecketClose();
-
-            Matrix.LblMatrixName = Resources.lblMatrixName();
-
-            ShowMatrixs.MatrixA_LblName = Resources.lblMatrixName();
-
-            ShowMatrixs.MatrixB_LblName = Resources.lblMatrixName();
+            SquareMatrix.BrecketOpenPicture = Resources.BrecketOpen();
+            SquareMatrix.BrecketClosePicture = Resources.BrecketClose();
+            SquareMatrix.LblMatrixName = Resources.LblMatrixName();
+            ShowMatrixs.MatrixA_LblName = Resources.LblMatrixName();
+            ShowMatrixs.MatrixB_LblName = Resources.LblMatrixName();
         }
 
         public void ClearPannelFormValue()
@@ -113,12 +114,7 @@ namespace Task3OverloadingOperations
         private void Panel1_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-
             PostMessage(this.Handle, WM_SYSCOMMAND, DOSIZE, 0);
-        }
-
-        private void Panel1_MouseLeave(object sender, EventArgs e)
-        {
         }
 
         private void LblProgramName_MouseDown(object sender, MouseEventArgs e)
@@ -129,16 +125,16 @@ namespace Task3OverloadingOperations
 
         #endregion Metods
 
-        private void ControlPanel_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
         private void MaximizeBtn_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
+            {
                 this.WindowState = FormWindowState.Maximized;
+            }
             else
+            {
                 this.WindowState = FormWindowState.Normal;
+            }
         }
 
         private void MinimizeBtn_Click(object sender, EventArgs e)
@@ -149,9 +145,13 @@ namespace Task3OverloadingOperations
         private void ControlPanel_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
+            {
                 this.WindowState = FormWindowState.Maximized;
+            }
             else
+            {
                 this.WindowState = FormWindowState.Normal;
+            }
         }
     }
 }

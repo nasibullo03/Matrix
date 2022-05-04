@@ -21,7 +21,7 @@ namespace Task3OverloadingOperations
 
         #region Metods
 
-        public static Label lblMatrixName()
+        public static Label LblMatrixName()
         {
             return new Label
             {
@@ -44,7 +44,7 @@ namespace Task3OverloadingOperations
             };
         }
 
-        public static PictureBox brecketOpen()
+        public static PictureBox BrecketOpen()
         {
             return new PictureBox
             {
@@ -55,7 +55,7 @@ namespace Task3OverloadingOperations
             };
         }
 
-        public static PictureBox brecketClose()
+        public static PictureBox BrecketClose()
         {
             return new PictureBox
             {
@@ -128,8 +128,6 @@ namespace Task3OverloadingOperations
             string path = Path.Combine(Environment.CurrentDirectory + @"\Resources\logoSvg.svg");
             SvgDocument svg = SvgDocument.Open(path);
             Bitmap bitmap = svg.Draw();
-
-            Random random = new Random();
 
             for (int x = 0; x < bitmap.Width; ++x)
             {

@@ -66,7 +66,7 @@ namespace Task3OverloadingOperations
             Operations[op]();
         }
 
-        public static void ShowOneMartix(Matrix matrix, String MatrixName)
+        public static void ShowOneMartix(SquareMatrix matrix, String MatrixName)
         {
         }
 

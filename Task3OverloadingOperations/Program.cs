@@ -1,7 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿/*****************************************
+*   Program - Name: Квадратная матрица   *
+*   Date: 04.05.2022                     *
+*   Author: Nasibullo Khalilov           *
+*****************************************/
+
+using System;
 using System.Windows.Forms;
 
 namespace Task3OverloadingOperations

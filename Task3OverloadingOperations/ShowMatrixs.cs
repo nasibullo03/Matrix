@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Reflection;
 
 namespace Task3OverloadingOperations
 {
-    public class ShowMatrixs : Matrix
+    public class ShowMatrixs : SquareMatrix
     {
         #region Fields
 
@@ -33,17 +24,17 @@ namespace Task3OverloadingOperations
         public static void Show()
 
         {
-            if (!Matrix.IsMatrixAEmpty && Matrix.IsMatrixBEmpty)
+            if (!SquareMatrix.IsMatrixAEmpty && SquareMatrix.IsMatrixBEmpty)
             {
                 FormMain.PanelResult.Controls.Clear();
                 OneMatrix(MatrixA, MatrixA_LblName, MatrixA_Labels, BrecketOpenPicture, BrecketClosePicture, new Point(3, 3));
             }
-            else if (Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
+            else if (SquareMatrix.IsMatrixAEmpty && !SquareMatrix.IsMatrixBEmpty)
             {
                 FormMain.PanelResult.Controls.Clear();
                 OneMatrix(MatrixB, MatrixB_LblName, MatrixB_Labels, BrecketOpenPicture, BrecketClosePicture, new Point(3, 3));
             }
-            else if (!Matrix.IsMatrixAEmpty && !Matrix.IsMatrixBEmpty)
+            else if (!SquareMatrix.IsMatrixAEmpty && !SquareMatrix.IsMatrixBEmpty)
             {
                 FormMain.PanelResult.Controls.Clear();
                 BothMatrixs();
@@ -55,7 +46,7 @@ namespace Task3OverloadingOperations
         #region Private Metods
 
         public static void OneMatrix(
-            Matrix matrix,
+            SquareMatrix matrix,
             Label lblMatrixName,
             Label[,] MatrixLabels,
             PictureBox BrecketOpenPicture,
@@ -174,8 +165,8 @@ namespace Task3OverloadingOperations
             };
 
             //Вызов метод для добавление второй матрицы
-            var brecketOpen = Resources.brecketOpen();
-            var brecketClose = Resources.brecketClose();
+            var brecketOpen = Resources.BrecketOpen();
+            var brecketClose = Resources.BrecketClose();
             OneMatrix(MatrixB, MatrixB_LblName, MatrixB_Labels, brecketOpen, brecketClose, new Point(3, 3));
 
             Label LblSeparatinSign1 = Resources.Label();
