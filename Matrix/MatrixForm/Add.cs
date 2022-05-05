@@ -102,7 +102,7 @@ namespace Task3OverloadingOperations.MatrixForm
         /// <param name="e"></param>
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            if (SquareMatrix.textBoxes == null)
+            if (PanelMatrixValue.Controls.Count == 0)
             {
                 SquareMatrix.ClearTextBoxes();
                 ShowForm.PerformOperation("Main");

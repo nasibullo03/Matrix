@@ -83,7 +83,7 @@ namespace Task3OverloadingOperations.MatrixForm
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            if (SquareMatrix.textBoxes == null)
+            if (PanelMatrixValue.Controls.Count == 0)
             {
                 ShowForm.PerformOperation("Main");
             }
@@ -102,6 +102,7 @@ namespace Task3OverloadingOperations.MatrixForm
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             SquareMatrix.ChangeValues(MatrixNameComboBox.Text);
+            ShowForm.PerformOperation("Main");
         }
 
         private void MatrixNameComboBox_TextChanged(object sender, EventArgs e)

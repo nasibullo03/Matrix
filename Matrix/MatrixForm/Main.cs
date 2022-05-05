@@ -87,6 +87,7 @@ namespace Task3OverloadingOperations.MatrixForm
         {
             SquareMatrix.FormMain = this;
             PerformOperation.Operations[PerformOperation.Operation.ShowMatrixs]();
+            SquareMatrix.textBoxes = null;
         }
 
         private void ButtonGreatThan_Click(object sender, EventArgs e)
